@@ -1,16 +1,16 @@
 import React from 'react';
-import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import OpportunityCard from '../components/OpportunityCard';
 import SortOption from '../components/SortOption';
 import FilterOption from '../components/FilterOption';
-import Search from '../components/Search';
+import Search from '../components/SearchBar';
 import Footer from '../components/Footer';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 
 function HomePage() {
+  useDocumentTitle('Home');
   return (
     <div className="home-page">
-      <Header />
       <HeroSection />
       <div className="opportunity-section">
         <div className="controls">

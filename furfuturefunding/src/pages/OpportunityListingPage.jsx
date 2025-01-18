@@ -1,5 +1,20 @@
-function OpportunityPage() {
-    return <h1>This is the OpportunityPage.</h1>;
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import useOpportunities from "../hooks/use-opportunities";
+import "./OpportunityListingPage.css";
+
+function OpportunityListingPage() {
+  const { id } = useParams();
+  const { opportunities, isLoading, error } = useOpportunities();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
-  
-  export default OpportunityPage;
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
+  return;
+}
+export default OpportunityListingPage;

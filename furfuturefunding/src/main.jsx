@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import NavBar from "./components/NavBar.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import CreateListingPage from "./pages/CreateListingPage.jsx";
+import CreateOpportunityPage from "./pages/CreateOpportunityPage.jsx";
 import OpportunityListingPage from "./pages/OpportunityListingPage.jsx";
 import UserProfilePage from "./pages/UserProfilePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <NavBar />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/create-listing", element: <CreateListingPage /> },
+      { path: "/create-listing", element: <CreateOpportunityPage /> },
       { path: "/opportunities", element: <OpportunityListingPage /> },
       { path: "/profile", element: <UserProfilePage /> },
       { path: "/about", element: <AboutPage /> },
@@ -35,6 +35,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
-    
   </React.StrictMode>
 );

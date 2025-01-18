@@ -1,0 +1,110 @@
+.filter-container {
+  background-color: #ffffff;
+  border: 1px solid #cc0808;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0; 
+  max-width: 300px; 
+  width: 90%; 
+  overflow: hidden;
+}
+
+.filter-section {
+  padding: 10px; /* Reduced padding */
+}
+
+.filter-section h6 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.filters__title {
+  font-size: 16px;
+  color: #681515;
+  margin-bottom: 15px;
+}
+
+.filters__item {
+  margin-bottom: 10px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox .box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #130a0a;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+}
+
+.checkbox input:checked + label .box:after {
+  content: '✔';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  color: #2196F3;
+}
+
+.badge {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.tooltip {
+  margin-left: 5px;
+}
+
+.tooltip .icon-info {
+  color: #aaa;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-size: 12px;
+}
+
+.tooltip:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+}

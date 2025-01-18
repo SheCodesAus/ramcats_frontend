@@ -1,0 +1,98 @@
+.form-login {
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 3px 15px rgba(51, 51, 51, 0.2);
+    background: var(--backgroundColor);
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .input__wrapper {
+    margin-bottom: 30px;
+  }
+  
+  .label-form {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-form {
+    height: 50px;
+    font-size: 16px;
+    border: 2px solid var(--neutralShade3);
+    width: 100%;
+    padding: 12px;
+    font-family: "Poppins";
+    border-radius: var(--borderRadius);
+    color: var(--foregroundColor);
+    background: var(--backgroundColor);
+  }
+  
+  .checkbox {
+    position: relative;
+    user-select: none;
+    margin-bottom: 30px;
+  }
+  
+  .checkbox input {
+    display: none;
+  }
+  
+  .checkbox label {
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    font-weight: 500;
+    padding-left: 35px;
+  }
+  
+  .checkbox .box {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--borderRadius);
+    border: 1px solid var(--grayColor);
+    vertical-align: middle;
+    margin-right: 3px;
+    transition: 0.3s ease;
+    position: absolute;
+    left: 0;
+  }
+  
+  .button {
+    outline: none;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    font: 500 16px/1 "Poppins", sans-serif;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: var(--borderRadius);
+    background: var(--primaryColor);
+    color: var(--backgroundColor);
+    position: relative;
+    top: 0;
+    transition: 0.2s ease;
+  }
+  
+  .spinner__wrapper {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .spinner__wrapper.active {
+    opacity: 1;
+    z-index: 1;
+  }

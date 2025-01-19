@@ -14,7 +14,6 @@ function OpportunityListingPage() {
       </div>
       <div class="opportunity-info">
         <h2>{oneOpportunity.title}</h2>
-        <h3>Created at: {oneOpportunity.date_created}</h3>
         <h5>{`Closing date: ${oneOpportunity.close_date}`}</h5>
         <h3>{`Status: ${oneOpportunity.is_open}`}</h3>
         <h4>{`Description of scholarship: ${oneOpportunity.description}`}</h4>

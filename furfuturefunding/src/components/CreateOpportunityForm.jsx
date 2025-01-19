@@ -1,9 +1,9 @@
-/* Whatever information is input here needs to render on OpportunityListingPage.jsx */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../hooks/use-auth";
+// // import { useAuth } from "../hooks/use-auth";
 
 function CreateOpportunityForm() {
+  const navigate = useNavigate();
   return (
     <form>
       <div>
@@ -12,33 +12,29 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <div>
-          <label htmlFor="logo">Logo:</label>
-          <input type="url" id="logo" placeholder="Enter logo URL" />
+          <label htmlFor="description">Description:</label>
+          <input
+            type="description"
+            id="description"
+            placeholder="Scholarship Description"
+          />
+          <div>
+            <label htmlFor="opportunity_url">Logo:</label>
+            <input
+              type="url"
+              id="opportunity_url"
+              placeholder="Enter logo URL"
+            />
+          </div>
         </div>
       </div>
       <div>
-        <label htmlFor="description">Description:</label>
-        <input
-          type="description"
-          id="description"
-          placeholder="Scholarship Description"
-        />
+        <label htmlFor="amount">Amount:</label>
+        <input type="number" id="amount" placeholder="Amount" />
       </div>
       <div>
-        <label htmlFor="opportunity-type">Opportunity Type:</label>
-        <input
-          type="opportunity-type"
-          id="opportunity-type"
-          placeholder="Opportunity Type"
-        />
-      </div>
-      <div>
-        <label htmlFor="opportunity-date-open">Date Open:</label>
-        <input
-          type="datetime"
-          id="opportunity-date-open"
-          placeholder="Date Open"
-        />
+        <label htmlFor="is-open">Is this scholarship open?</label>
+        <input type="checkbox" id="is-open" placeholder="Is Open" />
       </div>
       <button type="submit">Create</button>
     </form>

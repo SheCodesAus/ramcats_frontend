@@ -1,5 +1,7 @@
 import CreateOpportunityForm from "../components/CreateOpportunityForm";
 
-function CreateOpportunity() {
+function CreateOpportunityPage() {
   return <CreateOpportunityForm />;
 }
+
+export default CreateOpportunityPage;

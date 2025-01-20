@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import LocationDropDown from "./LocationDropDown";
 // // import { useAuth } from "../hooks/use-auth";
 
 function CreateOpportunityForm() {
-  const navigate = useNavigate();
+
   return (
     <form>
       <div>

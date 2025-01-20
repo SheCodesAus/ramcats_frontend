@@ -34,6 +34,31 @@ function LoginForm() {
       }
     });
   });
+  return (
+    <form>
+      <div>
+        <label htmlFor="email">Email</label>
+        <input type="text" id="emailInput" placeholder="Enter your email" />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          type="text"
+          id="passwordInput"
+          placeholder="Enter your password"
+        />
+      </div>
+      <div>
+        <label htmlFor="RememberMe">Remember Me?</label>
+        <input
+          type="checkbox"
+          id="rememberCheckbox"
+          placeholder="Remember Me?"
+        />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
 }
 
 export default LoginForm;

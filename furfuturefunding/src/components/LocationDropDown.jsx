@@ -1,35 +1,21 @@
 import React, { useState } from "react";
 
-function SearchBar() {
-  const [location, setLocation] = useState("");
-  const [state, setState] = useState("");
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Implement search functionality here
+function LocationDropDown() {
+  const [location, setLocation] = useState("Select Location");
+  const handleChange = (event) => {
+    setLocation(event.target.value);
   };
-
   return (
-    <form
-      onSubmit={handleSearch}
-      className="flex bg-white rounded-full overflow-hidden"
-    >
-      <select
-        value={state}
-        onChange={(e) => setState(e.target.value)}
-        className="p-2 text-black"
-      >
-        <option value="">State</option>[{/* Add state options here */}]
-        <option value="New South Wales">NSW</option>
-        <option value="Victoria">Victoria</option>
-        <option value="Australian Capital Territory">ACT</option>
-        <option value="Queensland">QLD</option>
-        <option value="South Australia">SA</option>
-        <option value="Tasmania">Tasmania</option>
-        <option value="Western Australia">WA</option>
-      </select>
-    </form>
+    <select value={location} onChange={handleChange}>
+      <option value="NSW">NSW</option>
+      <option value="QLD">QLD</option>
+      <option value="NT">NT</option>
+      <option value="ACT">ACT</option>
+      <option value="Tasmania">Tasmania</option>
+      <option value="SA">SA</option>
+      <option value="WA">WA</option>
+    </select>
   );
 }
 
-export default SearchBar;
+export default LocationDropDown;

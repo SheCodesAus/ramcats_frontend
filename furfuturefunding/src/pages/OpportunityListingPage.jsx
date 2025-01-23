@@ -1,7 +1,7 @@
 import { oneOpportunity } from "../data";
 import { useParams } from "react-router-dom";
 import useOpportunities from "../hooks/use-opportunities";
-import "./OpportunityListingPage.css";
+import OrganisationCard from "../components/OrganisationCard";
 
 function OpportunityListingPage() {
   return (

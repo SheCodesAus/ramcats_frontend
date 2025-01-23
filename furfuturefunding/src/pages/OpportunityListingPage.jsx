@@ -6,20 +6,20 @@ import "./OpportunityListingPage.css";
 function OpportunityListingPage() {
   return (
     <div>
-      <div class="organisation-info">
-        <h1>{oneOpportunity.organisation.name}</h1>
-        <h2>{oneOpportunity.organisation.website}</h2>
-        <h3>{oneOpportunity.organisation.description}</h3>
-        <img src={oneOpportunity.organisation.image} alt="logo" />
-      </div>
       <div class="opportunity-info">
         <h2>{oneOpportunity.title}</h2>
+        <h3>{`Description of scholarship: ${oneOpportunity.description}`}</h3>
+        <h3>{`Applications Open: ${oneOpportunity.open_date}`}</h3>
         <h5>{`Closing date: ${oneOpportunity.close_date}`}</h5>
-        <h3>{`Status: ${oneOpportunity.is_open}`}</h3>
-        <h4>{`Description of scholarship: ${oneOpportunity.description}`}</h4>
-        <h5>{`Attendance mode: ${oneOpportunity.attendance_mode}`}</h5>
-        <h5>{`Location of scholarship: ${oneOpportunity.location}`}</h5>
+        <h5>{oneOpportunity.location}</h5>
+        <h5>{oneOpportunity.attendance_mode}</h5>
+        <h5>{oneOpportunity.type}</h5>
+        <h5>{oneOpportunity.discipline}</h5>
       </div>
+      <div class="organisation-card">
+        <OrganisationCard />
+      </div>
+      <button class="apply_button">Apply Now</button>
     </div>
   );
 }

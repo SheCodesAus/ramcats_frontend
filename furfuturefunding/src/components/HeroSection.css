@@ -1,40 +1,48 @@
-.hero-section {
-    background-color: #1e1b4b; /* Dark indigo color */
-    color: white;
-    padding: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+```css
+/* Mobile styles for AboutUs.css */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 24px 16px;
   }
-  
-  .hero-content {
-    flex: 1;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    text-align: center;
   }
-  
-  .hero-content h1 {
-    font-size: 2.25rem;
-    font-weight: bold;
-    margin-bottom: 16px;
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 24px;
+    text-align: center;
   }
-  
-  .hero-image img {
-    width: 192px;
-    height: 192px;
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
-  
-  /* Media query for responsiveness */
-  @media (max-width: 768px) {
-    .hero-section {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .hero-content {
-      margin-bottom: 32px;
-    }
-  
-    .hero-image img {
-      width: 128px;
-      height: 128px;
-    }
+
+  .team-member {
+    padding: 16px;
   }
+
+  .member-image {
+    width: 80%;
+    margin: 0 auto 12px;
+  }
+
+  .member-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .position {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .bio {
+    font-size: 0.875rem;
+    padding: 0 12px;
+  }
+}
+```

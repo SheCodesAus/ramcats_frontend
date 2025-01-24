@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar'; 
-import './HeroSection.css'; // Make sure to create this CSS file
+import './HeroSection.css'; 
 
 function HeroSection() {
   return (

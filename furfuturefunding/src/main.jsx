@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
+import './style.css'
 
 const router = createBrowserRouter([
   {

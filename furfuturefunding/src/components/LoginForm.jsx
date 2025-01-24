@@ -1,63 +1,48 @@
 import React from "react";
+import './LoginForm.css';
 
 function LoginForm() {
-  document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.getElementById("loginForm");
-    const emailInput = document.getElementById("emailInput");
-    const passwordInput = document.getElementById("passwordInput");
-    const rememberCheckbox = document.getElementById("rememberCheckbox");
-    const spinnerWrapper = document.getElementById("spinnerWrapper");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = document.getElementById("emailInput").value;
+    const password = document.getElementById("passwordInput").value;
+    const rememberMe = document.getElementById("rememberCheckbox").checked;
 
-    loginForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    if (email && password) {
+      console.log("Login successful");
+      console.log("Email:", email);
+      console.log("Password:", password);
+      console.log("Remember Me:", rememberMe);
+    }
+  };
 
-      const email = emailInput.value;
-      const password = passwordInput.value;
-      const rememberMe = rememberCheckbox.checked;
-
-      // Perform login validation here
-      if (email && password) {
-        // Show loading spinner
-        spinnerWrapper.classList.add("active");
-
-        // Simulate login request
-        setTimeout(function () {
-          // Hide loading spinner
-          spinnerWrapper.classList.remove("active");
-
-          // Perform login success or failure actions here
-          console.log("Login successful");
-          console.log("Email:", email);
-          console.log("Password:", password);
-          console.log("Remember Me:", rememberMe);
-        }, 2000);
-      }
-    });
-  });
   return (
-    <form>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input type="text" id="emailInput" placeholder="Enter your email" />
+    <div className="login-background">
+      <div className="cat-container">
+       <img 
+         src="src/assets/14.png" 
+         alt="Cat" 
+         className="cat-icon"
+       />
+     </div>
+      <div className="login-container">
+        <h1 className="login-title">Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input type="text" id="emailInput" placeholder="Email" />
+          </div>
+          <div className="form-group">
+            <input type="password" id="passwordInput" placeholder="Password" />
+          </div>
+          <div className="remember-me">
+            <input type="checkbox" id="rememberCheckbox" />
+            <label htmlFor="rememberCheckbox">Remember me</label>
+          </div>
+          <button type="submit" className="primary-button">Log in</button>
+          <button type="button" className="secondary-button">Sign up</button>
+        </form>
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          id="passwordInput"
-          placeholder="Enter your password"
-        />
-      </div>
-      <div>
-        <label htmlFor="RememberMe">Remember Me?</label>
-        <input
-          type="checkbox"
-          id="rememberCheckbox"
-          placeholder="Remember Me?"
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    </div>
   );
 }
 

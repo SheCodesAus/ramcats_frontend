@@ -29,44 +29,75 @@ function SignupForm() {
         <p className="subtitle">Walk on keyboard unwrap toilet paper what the heck just happened, something feels fishy.</p>
         <form onSubmit={handleSubmit}>
           <div className="signup-form-group">
-            <input
-              type="text"
-              id="firstNameInput"
-              placeholder="First Name"
-              required
+            <input 
+              type="text" 
+              id="usernameInput" 
+              placeholder="Username" 
+              defaultValue="john_doe"
+              required 
             />
-            <input
-              type="text"
-              id="lastNameInput"
-              placeholder="Last Name"
-              required
+            <input 
+              type="password" 
+              id="passwordInput" 
+              placeholder="Password" 
+              defaultValue="securepassword123"
+              required 
             />
-            <input
-              type="email"
-              id="emailInput"
-              placeholder="Email"
-              required
+            <input 
+              type="email" 
+              id="emailInput" 
+              placeholder="Email" 
+              defaultValue="john_doe@example.com"
+              required 
             />
-            {/* </div> */}
-            {/* <div className="form-group"> */}
+            <input 
+              type="text" 
+              id="firstNameInput" 
+              placeholder="First Name" 
+              defaultValue="John"
+              required 
+            />
+            <input 
+              type="text" 
+              id="lastNameInput" 
+              placeholder="Last Name" 
+              defaultValue="Doe"
+              required 
+            />
+            <input 
+              type="text" 
+              id="organisationNameInput" 
+              placeholder="Organisation Name" 
+              defaultValue="Tech Innovators Ltd."
+              required 
+            />
+            <input 
+              type="url" 
+              id="organisationImageInput" 
+              placeholder="Organisation Image URL" 
+              defaultValue="https://example.com/logo.png"
+              required 
+            />
+            <input 
+              type="url" 
+              id="organisationWebsiteInput" 
+              placeholder="Organisation Website" 
+              defaultValue="https://techinnovators.com"
+              required 
+            />
+            <textarea 
+              id="organisationDescriptionInput" 
+              placeholder="Organisation Description" 
+              defaultValue="A leading tech solutions provider."
+              required 
+            />
             {/* <input 
               type="text" 
-              id="organisationInput" 
-              placeholder="Organisation" 
+              id="userTypeInput" 
+              placeholder="User Type" 
+              defaultValue="Organisation"
               required 
             /> */}
-            <input
-              type="text"
-              id="usernameInput"
-              placeholder="Username"
-              required
-            />
-            <input
-              type="password"
-              id="passwordInput"
-              placeholder="Password"
-              required
-            />
           </div>
           <button type="submit" className="submit-btn">Sign up</button>
         </form>

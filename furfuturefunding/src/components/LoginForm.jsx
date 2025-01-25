@@ -32,10 +32,7 @@ function LoginForm() {
           <div className="login-form-group">
             <input type="password" id="passwordInput" placeholder="Password" />
           </div>
-          <div className="remember-me">
-            <input type="checkbox" id="remember" />
-            <label htmlFor="remember">Remember me</label>
-          </div>
+
           <button type="submit" className="primary-button">Log in</button>
           <button
             type="button"

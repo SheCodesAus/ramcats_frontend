@@ -7,7 +7,7 @@
   width: 300px;
   height: auto;
   position: absolute;
-  top: -265px;
+  top: -260px;
   left: 490px;
   transform: translateX(-50%);
   margin-top: 1px;
@@ -32,7 +32,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 2px solid #000000;
   border-radius: 8px;
-  margin-top: 120px;
+  margin-top: 130px;
 }
 
 .login-title {
@@ -66,7 +66,22 @@ input[type="password"] {
   font-size: 0.9rem;
   color: #1a0f4d;
   cursor: pointer;
-}
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+ }
+ 
+ .remember-me input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #1a0f4d;
+ }
+ 
+ .remember-me label {
+  cursor: pointer;
+ }
 
 .primary-button {
   width: 80%;

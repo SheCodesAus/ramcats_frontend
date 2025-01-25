@@ -74,13 +74,13 @@ function LoginForm() {
             >
             Log in
           </button>
-          {/* <button
+          <button
             type="button"
             className="secondary-button"
             onClick={() => navigate('/signup')}
           >
             Sign up
-          </button> */}
+          </button>
         </form>
       </div>
     </div>

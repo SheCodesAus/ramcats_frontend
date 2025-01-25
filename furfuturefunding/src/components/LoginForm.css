@@ -6,7 +6,7 @@
   height: 150px;
   position: absolute;
   top: 40px;
-  left: 60%;
+  left: 65%;
   transform: translateX(-50%);
 }
 
@@ -44,6 +44,11 @@
 .login-form-group,
 .form-group {
   margin-bottom: 2rem;
+  
+}
+
+.form-group input:first-child {
+  margin-bottom: 1rem;
 }
 
 input[type="text"],

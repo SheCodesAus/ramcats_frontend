@@ -7,7 +7,7 @@
   width: 300px;
   height: auto;
   position: absolute;
-  top: -250px;
+  top: -265px;
   left: 490px;
   transform: translateX(-50%);
   margin-top: 1px;
@@ -26,7 +26,7 @@
 
 .login-container {
   width: 500px;
-  height: 350px;
+  height: 380px;
   padding: 2rem;
   background: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -106,8 +106,8 @@ input[type="password"] {
 @media (max-width: 768px) {
   .cat-icon {
     width: 200px;
-    top: -215px;
-    left: 190px;
+    top: -228px;
+    left: 220px;
   }
 
   .login-container {

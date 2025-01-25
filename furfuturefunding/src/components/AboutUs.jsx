@@ -17,7 +17,7 @@ const AboutUs = () => {
      image: "src/assets/Brooke.jpg"
    },
    {
-     name: "Catherine",
+     name: "Catherine Blentweyne",
      position: "Project Management Prodigy",
      bio: "Award-winning UX designer focused on accessibility",
      image: "src/assets/Catherine.jpg" 
@@ -32,7 +32,7 @@ const AboutUs = () => {
      name: "Rishika Arora",
      position: "Backend Rockstar",
      bio: "Driving innovation in fintech products",
-     image: "src/assets/Catherine.jpg"
+     image: "src/assets/Rishika.jpg"
    }
  ];
 

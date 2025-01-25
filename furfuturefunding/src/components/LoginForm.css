@@ -1,98 +1,163 @@
-.form-login {
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 3px 15px rgba(51, 51, 51, 0.2);
-    background: var(--backgroundColor);
-    margin-top: 30px;
-    position: relative;
-    overflow: hidden;
+.cat-container {
+  position: relative;
+  z-index: 2;
+}
+
+.cat-icon {
+  width: 300px;
+  height: auto;
+  position: absolute;
+  top: -260px;
+  left: 490px;
+  transform: translateX(-50%);
+  margin-top: 1px;
+  margin-left: auto;
+}
+
+.login-background {
+  background-image: url('src/assets/ramcats 1.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 500px;
+  height: 380px;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #000000;
+  border-radius: 8px;
+  margin-top: 130px;
+}
+
+.login-title {
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 80%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  display: block;
+  margin: 0 auto;
+}
+
+.remember-me {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  margin-left: 2rem;
+  font-size: 0.9rem;
+  color: #1a0f4d;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+ }
+ 
+ .remember-me input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #1a0f4d;
+ }
+ 
+ .remember-me label {
+  cursor: pointer;
+ }
+
+.primary-button {
+  width: 80%;
+  padding: 0.75rem;
+  background-color: #1a0f4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.primary-button:hover {
+  background-color: #FF914D;
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+.secondary-button {
+  width: 50%;
+  padding: 0.75rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 8px 120px;
+}
+
+.secondary-button:hover {
+  background-color: #FF914D;
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .cat-icon {
+    width: 200px;
+    top: -228px;
+    left: 220px;
   }
-  
-  .input__wrapper {
-    margin-bottom: 30px;
+
+  .login-container {
+    width: 70%;
+    height: auto;
+    min-height: 300px;
+    padding: 1.5rem;
+    margin-top: 80px;
   }
-  
-  .label-form {
-    font-weight: 500;
-    display: block;
-    margin-bottom: 5px;
+
+  .login-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
-  
-  .input-form {
-    height: 50px;
-    font-size: 16px;
-    border: 2px solid var(--neutralShade3);
-    width: 100%;
-    padding: 12px;
-    font-family: "Poppins";
-    border-radius: var(--borderRadius);
-    color: var(--foregroundColor);
-    background: var(--backgroundColor);
+
+  input[type="text"],
+  input[type="password"] {
+    width: 90%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
   }
-  
-  .checkbox {
-    position: relative;
-    user-select: none;
-    margin-bottom: 30px;
+
+  .remember-me {
+    margin-left: 1rem;
+    font-size: 0.8rem;
   }
-  
-  .checkbox input {
-    display: none;
+
+  .primary-button {
+    width: 90%;
+    padding: 0.6rem;
   }
-  
-  .checkbox label {
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    font-weight: 500;
-    padding-left: 35px;
+
+  .secondary-button {
+    width: 70%;
+    margin: 8px auto;
+    padding: 0.6rem;
   }
-  
-  .checkbox .box {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border-radius: var(--borderRadius);
-    border: 1px solid var(--grayColor);
-    vertical-align: middle;
-    margin-right: 3px;
-    transition: 0.3s ease;
-    position: absolute;
-    left: 0;
-  }
-  
-  .button {
-    outline: none;
-    width: 100%;
-    text-align: center;
-    display: inline-block;
-    border: none;
-    font: 500 16px/1 "Poppins", sans-serif;
-    padding: 20px;
-    cursor: pointer;
-    border-radius: var(--borderRadius);
-    background: var(--primaryColor);
-    color: var(--backgroundColor);
-    position: relative;
-    top: 0;
-    transition: 0.2s ease;
-  }
-  
-  .spinner__wrapper {
-    display: grid;
-    place-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: rgba(255, 255, 255, 0.85);
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.3s ease;
-  }
-  
-  .spinner__wrapper.active {
-    opacity: 1;
-    z-index: 1;
-  }
+}

@@ -26,69 +26,68 @@ function SignupForm() {
 
       <div className="signup-container">
         <h1>Sign up</h1>
-        <p className="subtitle">Walk on keyboard unwrap toilet paper what the heck just happened, something feels fishy.</p>
         <form onSubmit={handleSubmit}>
           <div className="signup-form-group">
             <input 
               type="text" 
               id="usernameInput" 
               placeholder="Username" 
-              defaultValue="john_doe"
+              defaultValue="Username"
               required 
             />
             <input 
               type="password" 
               id="passwordInput" 
               placeholder="Password" 
-              defaultValue="securepassword123"
+              defaultValue="Password"
               required 
             />
             <input 
               type="email" 
               id="emailInput" 
               placeholder="Email" 
-              defaultValue="john_doe@example.com"
+              defaultValue="Email"
               required 
             />
             <input 
               type="text" 
               id="firstNameInput" 
               placeholder="First Name" 
-              defaultValue="John"
+              defaultValue="First Name"
               required 
             />
             <input 
               type="text" 
               id="lastNameInput" 
               placeholder="Last Name" 
-              defaultValue="Doe"
+              defaultValue="Last Name"
               required 
             />
             <input 
               type="text" 
               id="organisationNameInput" 
               placeholder="Organisation Name" 
-              defaultValue="Tech Innovators Ltd."
+              defaultValue="Organisation Name"
               required 
             />
             <input 
               type="url" 
               id="organisationImageInput" 
               placeholder="Organisation Image URL" 
-              defaultValue="https://example.com/logo.png"
+              defaultValue="Organisation Image URL"
               required 
             />
             <input 
               type="url" 
               id="organisationWebsiteInput" 
               placeholder="Organisation Website" 
-              defaultValue="https://techinnovators.com"
+              defaultValue="Organisation Website"
               required 
             />
             <textarea 
               id="organisationDescriptionInput" 
               placeholder="Organisation Description" 
-              defaultValue="A leading tech solutions provider."
+              defaultValue="Organisation Description"
               required 
             />
             {/* <input 

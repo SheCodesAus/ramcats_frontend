@@ -15,65 +15,56 @@
 
 h1 {
     color: #1a0f4d;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.subtitle {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1rem;
-}
-
-.sign-up-form-group {
-    margin-bottom: 1.5rem;
-
-    input,
-    textarea {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-}
-
-.sign-up-form-group input,
-.sign-up-form-group textarea {
-    margin-bottom: 1rem;
-}
-
-textarea {
-    margin: 10px;
-    padding: 10px;
-}
-
-.sign-up-form-group input:last-child {
-    margin-bottom: 0;
-}
-
-label {
-    display: block;
+    text-align: center;
+    margin-top: 0rem;
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
+.signup-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
 
+.signup-form-group input,
+.signup-form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f8f8f8;
+}
+
+.signup-form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
 
 .submit-btn {
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem;
     background: #1a0f4d;
     color: white;
     border: none;
-    border-radius: 4px;
-    margin-top: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-btn:hover {
+    background: #FF914D;
+    transform: translateY(-2px);
 }
 
 .catmascot {
     position: absolute;
     top: 110px;
-    right: 150px;
+    right: 185px;
     z-index: 2;
 }
 

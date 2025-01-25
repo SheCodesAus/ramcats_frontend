@@ -82,6 +82,7 @@ h1 {
     margin: 8rem auto;
     position: relative;
     z-index: 1;
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {

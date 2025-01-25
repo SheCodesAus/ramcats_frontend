@@ -43,12 +43,13 @@
   font-weight: bold;
 }
 
-.form-group {
+.login-form-group {
   margin-bottom: 1.5rem;
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
   width: 80%;
   padding: 0.75rem;
   border: 2px solid #ddd;
@@ -69,19 +70,19 @@ input[type="password"] {
   display: flex;
   align-items: center;
   gap: 0.5rem;
- }
- 
- .remember-me input[type="checkbox"] {
+}
+
+.remember-me input[type="checkbox"] {
   width: 18px;
   height: 18px;
   margin: 0;
   cursor: pointer;
   accent-color: #1a0f4d;
- }
- 
- .remember-me label {
+}
+
+.remember-me label {
   cursor: pointer;
- }
+}
 
 .primary-button {
   width: 80%;
@@ -118,7 +119,7 @@ input[type="password"] {
 }
 
 /* Mobile styles */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .cat-icon {
     width: 200px;
     top: -228px;

@@ -29,7 +29,7 @@ function LoginForm() {
           <div className="form-group">
             <input type="text" id="emailInput" placeholder="Email" />
           </div>
-          <div className="form-group">
+          <div className="login-form-group">
             <input type="password" id="passwordInput" placeholder="Password" />
           </div>
           <div className="remember-me">

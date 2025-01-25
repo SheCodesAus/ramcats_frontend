@@ -1,56 +1,69 @@
 .cat-container {
-  position: relative;
-  z-index: 2;
-}
-
-.cat-icon {
-  width: 300px;
-  height: auto;
   position: absolute;
-  top: -260px;
-  left: 490px;
+  top: -90px;
+  left: 65%;
   transform: translateX(-50%);
-  margin-top: 1px;
-  margin-left: auto;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+.cat-icon {
+  height: 150px;
 }
 
 .login-background {
   background-image: url('src/assets/ramcats 1.png');
   background-size: cover;
   background-position: center;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  padding: 1rem;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+ }
 
-.login-container {
-  width: 500px;
-  height: 380px;
+ .login-container {
+  width: 100%;
+  max-width: 500px;
   padding: 2rem;
   background: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 2px solid #000000;
   border-radius: 8px;
-  margin-top: 130px;
-}
+  position: relative;
+  margin-top: 8rem; 
+ }
 
 .login-title {
   text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
   font-size: 2.5rem;
   font-weight: bold;
 }
 
+.login-form-group,
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  
+}
+
+.form-group input:first-child {
+  margin-bottom: 1rem;
 }
 
 input[type="text"],
-input[type="password"] {
-  width: 80%;
-  padding: 0.75rem;
+input[type="password"],
+input[type="email"] {
+  width: 90%;
+  padding: 1rem;
   border: 2px solid #ddd;
   border-radius: 8px;
   font-size: 1rem;
@@ -59,31 +72,25 @@ input[type="password"] {
   margin: 0 auto;
 }
 
-.remember-me {
-  text-align: left;
-  margin-bottom: 1.5rem;
-  margin-left: 2rem;
-  font-size: 0.9rem;
-  color: #1a0f4d;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
- }
- 
- .remember-me input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: #1a0f4d;
- }
- 
- .remember-me label {
-  cursor: pointer;
- }
-
 .primary-button {
+  width: 80%;
+  padding: 0.75rem;
+  background-color: #1a0f4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 1rem auto;
+
+}
+
+.primary-button:hover {
+  background-color: #FF914D;
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+.secondary-button {
   width: 80%;
   padding: 0.75rem;
   background-color: #1a0f4d;
@@ -94,23 +101,6 @@ input[type="password"] {
   margin: 0 auto;
 }
 
-.primary-button:hover {
-  background-color: #FF914D;
-  transform: translateY(-2px);
-  color: #000000;
-}
-
-.secondary-button {
-  width: 50%;
-  padding: 0.75rem;
-  background-color: #000000;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  display: block;
-  margin: 8px 120px;
-}
-
 .secondary-button:hover {
   background-color: #FF914D;
   transform: translateY(-2px);
@@ -118,46 +108,50 @@ input[type="password"] {
 }
 
 /* Mobile styles */
-@media (max-width: 768px) {
-  .cat-icon {
-    width: 200px;
-    top: -228px;
-    left: 220px;
-  }
-
+@media (max-width: 375px) {
+  
+ 
   .login-container {
-    width: 70%;
-    height: auto;
-    min-height: 300px;
+    width: 85%;
     padding: 1.5rem;
-    margin-top: 80px;
+    margin: 0;
+    height: auto;
+  }
+ 
+  .cat-container {
+    top: -40px;
+    right: -10px;
+  }
+ 
+  .cat-icon {
+    height: 80px;
+  }
+ }
+
+ @media (max-width: 768px) {
+  .login-container {
+    max-width: 90%;
+    margin-top: 6rem;
   }
 
-  .login-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+  .cat-container {
+    top: -70px;
+    left: 50%;
+    padding-right: 0;
+  }
+
+  .cat-icon {
+    height: 120px;
   }
 
   input[type="text"],
-  input[type="password"] {
-    width: 90%;
-    padding: 0.5rem;
-    font-size: 0.9rem;
+  input[type="password"],
+  input[type="email"] {
+    width: 100%;
   }
 
-  .remember-me {
-    margin-left: 1rem;
-    font-size: 0.8rem;
-  }
-
-  .primary-button {
-    width: 90%;
-    padding: 0.6rem;
-  }
-
+  .primary-button,
   .secondary-button {
-    width: 70%;
-    margin: 8px auto;
-    padding: 0.6rem;
+    width: 100%;
   }
 }

@@ -63,8 +63,8 @@ h1 {
 
 .catmascot {
     position: absolute;
-    top: 110px;
-    right: 175px;
+    top: 60px;
+    right: -145px;
     z-index: 2;
 }
 
@@ -85,13 +85,42 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 375px) {
+    .signup-container {
+        width: 85%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+    
+    .signup-form-group {
+        gap: 0.75rem;
+    }
+    
+    .signup-form-group input {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .signup-form-group textarea {
+        min-height: 60px;
+    }
+    
+    .signup-container {
+        margin-top: 3rem;
+    }
+ }
+ 
+ @media (max-width: 768px) {
     .signup-container {
         width: 90%;
-        margin: 1rem auto;
     }
-
-    .cat-paws {
+    
+    .catmascot {
         display: none;
     }
-}
+ }
+

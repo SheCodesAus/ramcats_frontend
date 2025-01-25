@@ -20,11 +20,10 @@ function SignupForm() {
 
   return (
     <div className="signup-page">
-      <div className="catmascot">
-        <img src="/src/assets/ramcats-mascot.png" alt="Cat paw" className="paw" />
-      </div>
-
       <div className="signup-container">
+        <div className="catmascot">
+          <img src="/src/assets/ramcats-mascot.png" alt="Cat paw" className="paw" />
+        </div>
         <h1>Sign up</h1>
         <form onSubmit={handleSubmit}>
           <div className="signup-form-group">

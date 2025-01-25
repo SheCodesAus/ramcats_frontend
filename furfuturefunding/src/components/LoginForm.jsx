@@ -9,7 +9,7 @@ import './LoginForm.css';
 
 function LoginForm() {
   const navigate = useNavigate();
-  const { auth, setAuth } = useAuth;
+  const { auth, setAuth } = useAuth();
   const [ credentials, setCredentials] = useState ({
     username: "",
     password: "",
@@ -17,15 +17,20 @@ function LoginForm() {
 
   const handleChange = (event) => {
     const { id, value } = event.target;
+    console.log({id});
+    console.log({value});
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [id]: value,
     }));
+    console.log({credentials})
   };
 
   const handleSubmit = (event) => {
+    console.log("button press")
        event.preventDefault();
-       if (credentials.username && credentials.password) {
+       console.log({event})
+              if (credentials.username && credentials.password) {
            postLogin(
                credentials.username,
                credentials.password
@@ -52,21 +57,23 @@ function LoginForm() {
               type="text" 
               id="username" 
               placeholder="Username" 
-                onChange={handleChange}
+              onChange={handleChange}
               />
-          </div>
-          <div className="form-group">
+          {/* </div>
+          <div className="form-group"> */}
             <input 
             type="password" 
-            id="passwordInput" 
+            id="password" 
             placeholder="Password" 
             onChange={handleChange}
             />
           </div>
           <button 
             type="submit" 
-            className="primary-button">
-            Log in</button>
+            className="primary-button"
+            >
+            Log in
+          </button>
           {/* <button
             type="button"
             className="secondary-button"

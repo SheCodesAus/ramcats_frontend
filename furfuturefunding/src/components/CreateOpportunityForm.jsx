@@ -22,15 +22,15 @@ function CreateOpportunityForm() {
     description: "",
     opportunity_url: "",
     amount: "",
-    is_open: "",
+    is_open: true,
     open_date: "",
     close_date: "",
     is_archive: "",
     location: "",
     attendance_mode: "",
-    type: "",
-    discipline: "",
-    eligibility: "",
+    type: [],
+    discipline: [],
+    eligibility: [],
   });
 
   const handleChange = (event) => {
@@ -73,11 +73,7 @@ function CreateOpportunityForm() {
         opportunity.type,
         opportunity.discipline,
         opportunity.eligibility
-      ).then((response) => {
-        window.localStorage.setItem("token", response.token);
-        setAuth({
-          token: response.token,
-        });
+      ).then(() => {
         navigate("/");
         console.log("Form Data Submitted:", opportunity);
       });

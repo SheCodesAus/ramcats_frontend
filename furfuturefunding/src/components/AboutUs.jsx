@@ -7,31 +7,31 @@ const AboutUs = () => {
    {
      name: "Amber Nguyen",
      position: "Backend Boss",
-     bio: "20+ years experience in tech leadership",
+     bio: "20+ years experience in tech leadershipAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
      image: "/src/assets/Amber.jpg"
    },
    {
      name: "Brooke Pierson", 
      position: "Git Gladiator",
-     bio: "Cloud architecture specialist & system design expert",
+     bio: "Software developer in training who enjoys long walks on the beach, beautiful sunsets, and yodelling to Celine Dion in her down time.",
      image: "src/assets/Brooke.jpg"
    },
    {
      name: "Catherine Blentweyne",
-     position: "Project Management Prodigy",
-     bio: "Award-winning UX designer focused on accessibility",
+     position: "Project Manager Whiz",
+     bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
      image: "src/assets/Catherine.jpg" 
    },
    {
      name: "Christin Estrella",
      position: "Frontend Guru",
-     bio: "Full-stack developer with ML expertise",
+     bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
      image: "src/assets/Christin.jpg"
    },
    {
      name: "Rishika Arora",
-     position: "Backend Rockstar",
-     bio: "Driving innovation in fintech products",
+     position: "Backend Pro",
+     bio: "sdfsdxcgAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
      image: "src/assets/Rishika.jpg"
    }
  ];
@@ -39,7 +39,7 @@ const AboutUs = () => {
  return (
    <div className="about-section">
      <h1>Meet Our Team</h1>
-     <p>Hack lick human with sandpaper tongue or lick plastic bags, i bet my nine lives on you-oooo-ooo-hooo for have my breakfast spaghetti yarn so cough furball and leave hair on owner's clothes. Scratch leg; meow for can opener to feed me allways wanting food yet while happily ignoring when being called, so destroy house in 5 seconds yet trip on catnip yet meowing non stop for food, i hate cucumber pls dont throw it at me. </p>
+     <p>Hack lick human with sandpaper tongue or lick plastic bags, i bet my nine lives on you-oooo-ooo-hooo for have my breakfast spaghetti yarn so cough furball and leave hair on owner's clothes. Scratch leg; meow for can opener to feed me allways wanting food yet while happily ignoring when being called </p>
      <div className="team-grid">
        {team.map((member, i) => (
          <div key={i} className="team-member">

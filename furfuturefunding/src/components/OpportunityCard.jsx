@@ -46,7 +46,27 @@ const OpportunityCard = () => {
      eligibility: "First Nations Only",
      discipline: "Healthcare",
      image: "src/assets/orglogo.png"
-   }
+   },{
+    title: "Healthcare Heroes Scholarship",
+    description: "Supporting future healthcare professionals from Indigenous backgrounds.",
+    opening_date: "2023-03-01",
+    closing_date: "2025-02-28",
+    location: "WA",
+    study_mode: "ONLINE",
+    eligibility: "First Nations Only",
+    discipline: "Healthcare",
+    image: "src/assets/orglogo.png"
+  },{
+    title: "Healthcare Heroes Scholarship",
+    description: "Supporting future healthcare professionals from Indigenous backgrounds.",
+    opening_date: "2023-03-01",
+    closing_date: "2025-02-28",
+    location: "WA",
+    study_mode: "ONLINE",
+    eligibility: "First Nations Only",
+    discipline: "Healthcare",
+    image: "src/assets/orglogo.png"
+  }
  ];
  return (
   <div className="opportunities-container">

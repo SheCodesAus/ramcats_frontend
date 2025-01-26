@@ -11,7 +11,7 @@ const OpportunityCard = () => {
      location: "NSW",
      study_mode: "ONLINE",
      eligibility: "First Nations Only",
-     discipline: "Science and Technology",
+     discipline: "Science",
      image: "src/assets/orglogo.png"
    },
    {

@@ -1,28 +1,107 @@
 import { useState } from "react";
-import LocationDropDown from "./LocationDropDown";
-// // import { useAuth } from "../hooks/use-auth";
+import DropDown from "./DropDown.jsx";
+import "./CreateOpportunityForm.css";
+import { useAuth } from "../hooks/use-auth";
+import { useParams } from "react-router-dom";
+import postOpportunity from "../api/post-opportunity.js";
+import { useNavigate } from "react-router-dom";
+import {
+  aus_states,
+  attendance_mode,
+  discipline_options,
+  type_options,
+  eligibility_options,
+} from "../data.js";
 
 function CreateOpportunityForm() {
-  const hardcodeddate = "2025-01-25";
-  const hardcodeddate2 = "2025-01-26";
+  const { id } = useParams();
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  const [opportunity, setOpportunity] = useState({
+    title: "",
+    description: "",
+    opportunity_url: "",
+    amount: "",
+    is_open: "",
+    open_date: "",
+    close_date: "",
+    is_archive: "",
+    location: "",
+    attendance_mode: "",
+    type: "",
+    discipline: "",
+    eligibility: "",
+  });
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setOpportunity((prevOpportunity) => ({
+      ...prevOpportunity,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Submitting opportunity:", opportunity);
+    if (
+      opportunity.title &&
+      opportunity.description &&
+      opportunity.opportunity_url &&
+      opportunity.amount &&
+      opportunity.is_open &&
+      opportunity.open_date &&
+      opportunity.close_date &&
+      opportunity.is_archive &&
+      opportunity.location &&
+      opportunity.attendance_mode &&
+      opportunity.type &&
+      opportunity.discipline &&
+      opportunity.eligibility
+    ) {
+      postOpportunity(
+        opportunity.title,
+        opportunity.description,
+        opportunity.opportunity_url,
+        opportunity.amount,
+        opportunity.is_open,
+        opportunity.open_date,
+        opportunity.close_date,
+        opportunity.is_archive,
+        opportunity.location,
+        opportunity.attendance_mode,
+        opportunity.type,
+        opportunity.discipline,
+        opportunity.eligibility
+      ).then((response) => {
+        window.localStorage.setItem("token", response.token);
+        setAuth({
+          token: response.token,
+        });
+        navigate("/");
+        console.log("Form Data Submitted:", opportunity);
+      });
+    }
+  };
+
   return (
-    <form>
+    <form className="create-opportunity" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="title">Title: </label>
         <input
           type="text"
           id="title"
           placeholder="Enter scholarship title:"
-          value="Learn How To Become a BitCoin Boss Bitch"
+          onChange={handleChange}
         />
       </div>
       <div>
         <label htmlFor="description">Description: </label>
         <input
-          type="description"
+          type="text"
           id="description"
           placeholder="Scholarship Description"
-          value="Bitcoin: You thought it was old news and only for straight white men, but you're wrong."
+          onChange={handleChange}
         />
       </div>
       <div>
@@ -31,64 +110,101 @@ function CreateOpportunityForm() {
           type="url"
           id="opportunity_url"
           placeholder="Enter website URL"
-          value="https://bitcoinbossbitch.com.au"
+          onChange={handleChange}
         />
       </div>
       <div>
         <label htmlFor="open_date">When does it open? </label>
         <input
-          type="date"
+          type="datetime-local"
           id="open_date"
           placeholder="Opening Date"
-          value={hardcodeddate}
+          onChange={handleChange}
         />
       </div>
       <div>
         <label htmlFor="close_date">When is it closing? </label>
         <input
-          type="date"
+          type="datetime-local"
           id="close_date"
           placeholder="Closing Date"
-          value={hardcodeddate2}
+          onChange={handleChange}
         />
       </div>
       <div>
         <label htmlFor="location">Location: </label>
-        <LocationDropDown />
+        <DropDown
+          options={aus_states}
+          value={opportunity.location}
+          onChange={(event) =>
+            setOpportunity((prev) => ({
+              ...prev,
+              location: event.target.value,
+            }))
+          }
+          placeholder="Select a state"
+        />
       </div>
       <div>
         <label htmlFor="amount">Scholarship value: </label>
-        <input type="number" id="amount" placeholder="Amount" value={2000} />
+        <input
+          type="number"
+          id="amount"
+          placeholder="Amount"
+          onChange={handleChange}
+        />
       </div>
       <div>
         <label htmlFor="attendance_mode">Attendance mode: </label>
-        <input
-          type="text"
-          id="attendance_mode"
-          placeholder="Attendance mode"
-          value="Online"
+        <DropDown
+          options={attendance_mode}
+          value={opportunity.attendance_mode}
+          onChange={(event) =>
+            setOpportunity((prev) => ({
+              ...prev,
+              attendance_mode: event.target.value,
+            }))
+          }
+          placeholder="Select an attendance mode"
         />
       </div>
       <div>
         <label htmlFor="type">Type: </label>
-        <input type="text" id="type" placeholder="Type" value="Short course" />
+        <DropDown
+          options={type_options}
+          value={opportunity.type}
+          onChange={(event) =>
+            setOpportunity((prev) => ({ ...prev, type: event.target.value }))
+          }
+          placeholder="Select a type"
+        />
       </div>
       <div>
         <label htmlFor="discipline">Discipline: </label>
-        <input
-          type="text"
-          id="discipline"
-          placeholder="Discipline"
-          value="Finance"
+        <DropDown
+          options={discipline_options}
+          value={opportunity.discipline}
+          onChange={(event) =>
+            setOpportunity((prev) => ({
+              ...prev,
+              discipline: event.target.value,
+            }))
+          }
+          placeholder="Select a discipline"
         />
       </div>
       <div>
         <label htmlFor="eligibility">Eligibility: </label>
-        <input
-          type="text"
-          id="eligibility"
-          placeholder="Eligibility"
-          value="Female-identifying persons"
+        <DropDown
+          options={eligibility_options}
+          value={opportunity.eligibility_options}
+          onChange={(event) =>
+            setOpportunity((prev) => ({
+              ...prev,
+              eligibility: event.target.value,
+            }))
+          }
+          placeholder="Select eligibility"
         />
       </div>
       <button type="submit">Create </button>

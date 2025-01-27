@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-import getOpportunity from "../api/get-opportunity";
+import getTypes from "../api/get-types";
 
-export default function useOpportunities() {
-  const [opportunities, setOpportunities] = useState([]);
+export default function useTypes() {
+  const [types, setTypes] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
-    getOpportunity()
-      .then((opportunities) => {
-        setOpportunities(opportunities);
+    getTypes()
+      .then((types) => {
+        setTypes(types);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -20,6 +20,5 @@ export default function useOpportunities() {
       });
   }, []);
 
-  return { opportunities, isLoading, error };
+  return { types, isLoading, error };
 }
-

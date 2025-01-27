@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
+import getDisciplines from "../api/get-disciplines";
 
-import getOpportunity from "../api/get-opportunity";
-
-export default function useOpportunities() {
-  const [opportunities, setOpportunities] = useState([]);
-
+export default function useDisciplines() {
+  const [disciplines, setDisciplines] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
-    getOpportunity()
-      .then((opportunities) => {
-        setOpportunities(opportunities);
+    getDisciplines()
+      .then((disciplines) => {
+        setDisciplines(disciplines);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -20,6 +18,5 @@ export default function useOpportunities() {
       });
   }, []);
 
-  return { opportunities, isLoading, error };
+  return { disciplines, isLoading, error };
 }
-

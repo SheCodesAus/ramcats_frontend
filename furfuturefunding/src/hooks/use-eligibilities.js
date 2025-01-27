@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-import getOpportunity from "../api/get-opportunity";
+import getEligibilities from "../api/get-eligibilities";
 
-export default function useOpportunities() {
-  const [opportunities, setOpportunities] = useState([]);
+export default function useEligbilities() {
+  const [eligibilities, setEligibilities] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
-    getOpportunity()
-      .then((opportunities) => {
-        setOpportunities(opportunities);
+    getEligibilities()
+      .then((eligibilities) => {
+        setEligibilities(eligibilities);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -20,6 +20,5 @@ export default function useOpportunities() {
       });
   }, []);
 
-  return { opportunities, isLoading, error };
+  return { eligibilities, isLoading, error };
 }
-

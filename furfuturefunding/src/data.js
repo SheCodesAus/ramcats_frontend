@@ -27,44 +27,44 @@ export const oneOpportunity = {
 };
 
 export const aus_states = [
-  { id: [1], label: "New South Wales" },
-  { id: [2], label: "Victoria" },
-  { id: [3], label: "Queensland" },
-  { id: [4], label: "South Australia" },
-  { id: [5], label: "Western Australia" },
-  { id: [6], label: "Tasmania" },
-  { id: [7], label: "Northern Territory" },
-  { id: [8], label: "Australian Capital Territory" },
+  { value: 1, label: "New South Wales" },
+  { value: 2, label: "Victoria" },
+  { value: 3, label: "Queensland" },
+  { value: 4, label: "South Australia" },
+  { value: 5, label: "Western Australia" },
+  { value: 6, label: "Tasmania" },
+  { value: 7, label: "Northern Territory" },
+  { value: 8, label: "Australian Capital Territory" },
 ];
 
-export const discipline_options = [
-  { id: [1], label: "Humanities" },
-  { id: [2], label: "Computer Science" },
-  { id: [3], label: "Chemistry" },
-  { id: [4], label: "Biology" },
-  { id: [5], label: "Engineering" },
-  { id: [6], label: "Mathematics" },
+export const disciplineOptions = [
+  { value: 1, label: "Humanities" },
+  { value: 2, label: "Computer Science" },
+  { value: 3, label: "Chemistry" },
+  { value: 4, label: "Biology" },
+  { value: 5, label: "Engineering" },
+  { value: 6, label: "Mathematics" },
 ];
 
-export const type_options = [
-  { id: [1], label: "Scholarship" },
-  { id: [2], label: "Training course" },
-  { id: [3], label: "Conference Ticket" },
-  { id: [4], label: "Event Ticket" },
-  { id: [5], label: "Mentor Program" },
-  { id: [6], label: "Other" },
+export const typeOptions = [
+  { value: 1, label: "Scholarship" },
+  { value: 2, label: "Training course" },
+  { value: 3, label: "Conference Ticket" },
+  { value: 4, label: "Event Ticket" },
+  { value: 5, label: "Mentor Program" },
+  { value: 6, label: "Other" },
 ];
 
-export const eligibility_options = [
-  { id: [1], label: "Women in STEM" },
-  { id: [2], label: "Aboriginal and Torres Strait Islander peoples" },
-  { id: [3], label: "Refugees and Asylum Seekers" },
-  { id: [4], label: "People with Disability" },
-  { id: [5], label: "Low-income Families" },
-  { id: [6], label: "First Generation University Students" },
+export const eligibilityOptions = [
+  { value: 1, label: "Women in STEM" },
+  { value: 2, label: "Aboriginal and Torres Strait Islander peoples" },
+  { value: 3, label: "Refugees and Asylum Seekers" },
+  { value: 4, label: "People with Disability" },
+  { value: 5, label: "Low-income Families" },
+  { value: 6, label: "First Generation University Students" },
 ];
 
-export const attendance_mode = [
-  { id: [1], label: "Online" },
-  { id: [2], label: "Face to Face" },
+export const attendanceMode = [
+  { value: 1, label: "Online" },
+  { value: 2, label: "Face to Face" },
 ];

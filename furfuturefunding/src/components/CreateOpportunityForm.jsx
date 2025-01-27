@@ -7,10 +7,10 @@ import postOpportunity from "../api/post-opportunity.js";
 import { useNavigate } from "react-router-dom";
 import {
   aus_states,
-  attendance_mode,
-  discipline_options,
-  type_options,
-  eligibility_options,
+  attendanceMode,
+  disciplineOptions,
+  typeOptions,
+  eligibilityOptions,
 } from "../data.js";
 
 function CreateOpportunityForm() {
@@ -153,7 +153,7 @@ function CreateOpportunityForm() {
       <div>
         <label htmlFor="attendance_mode">Attendance mode: </label>
         <DropDown
-          options={attendance_mode}
+          options={attendanceMode}
           value={opportunity.attendance_mode}
           onChange={(event) =>
             setOpportunity((prev) => ({
@@ -167,10 +167,13 @@ function CreateOpportunityForm() {
       <div>
         <label htmlFor="type">Type: </label>
         <DropDown
-          options={type_options}
+          options={typeOptions}
           value={opportunity.type}
           onChange={(event) =>
-            setOpportunity((prev) => ({ ...prev, type: event.target.value }))
+            setOpportunity((prev) => ({
+              ...prev,
+              type: event.target.value ? [parseInt(event.target.value)] : [],
+            }))
           }
           placeholder="Select a type"
         />
@@ -178,12 +181,14 @@ function CreateOpportunityForm() {
       <div>
         <label htmlFor="discipline">Discipline: </label>
         <DropDown
-          options={discipline_options}
+          options={disciplineOptions}
           value={opportunity.discipline}
           onChange={(event) =>
             setOpportunity((prev) => ({
               ...prev,
-              discipline: event.target.value,
+              discipline: event.target.value
+                ? [parseInt(event.target.value)]
+                : [],
             }))
           }
           placeholder="Select a discipline"
@@ -192,12 +197,14 @@ function CreateOpportunityForm() {
       <div>
         <label htmlFor="eligibility">Eligibility: </label>
         <DropDown
-          options={eligibility_options}
-          value={opportunity.eligibility_options}
+          options={eligibilityOptions}
+          value={opportunity.eligibility}
           onChange={(event) =>
             setOpportunity((prev) => ({
               ...prev,
-              eligibility: event.target.value,
+              eligibility: event.target.value
+                ? [parseInt(event.target.value)]
+                : [],
             }))
           }
           placeholder="Select eligibility"

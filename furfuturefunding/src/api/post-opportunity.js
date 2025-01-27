@@ -32,9 +32,9 @@ async function postOpportunity(
       is_archive: is_archive,
       location: location,
       attendance_mode: attendance_mode,
-      type: type,
-      discipline: discipline,
-      eligibility: eligibility,
+      type: Array.isArray(type) ? type : [type],
+      discipline: Array.isArray(discipline) ? discipline : [discipline],
+      eligibility: Array.isArray(eligibility) ? eligibility : [eligibility],
     }),
   });
 

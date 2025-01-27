@@ -1,63 +1,142 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import postSignup from "../api/post-signup";
 import './SignUpForm.css';
 
 function SignupForm() {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const firstName = document.getElementById("firstNameInput").value;
-    const lastName = document.getElementById("lastNameInput").value;
-    const email = document.getElementById("emailInput").value;
-    const organisation = document.getElementById("organisationInput").value;
+  const [inputs, setInputs, selectedValue, setSelectedValue] = useState({
+    username: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    user_type: '',
+    name: '',
+    logo: '',
+    website: '',
+    description: '',
+  });
 
-    if (firstName && lastName && email && organisation) {
-      console.log("Signup successful");
-      navigate('/login');
-    }
+
+  const handleSelect = (value) => { setSelectedValue(value); }; 
+
+  const handleChange = (event) => {
+    console.log(event.target.id) 
+    const id = event.target.id;
+      const value = event.target.value;
+      setInputs(values => ({...values, [id]: value}))
   };
+    
+    const handleSubmit= async (event) => {
+      event.preventDefault();
+      try {
+          const result = await postSignup(inputs);
+          console.log("Success:", result);
+          navigate("/login")
+      }   catch (error) {
+          console.error("Signup failed:", error)    
+      }}
+    
 
   return (
     <div className="signup-page">
-    
-      <div className="catmascot">
-        <img src="/src/assets/ramcats-mascot.png" alt="Cat paw" className="paw" />
-      </div>
-
       <div className="signup-container">
+        <div className="catmascot">
+          <img src="/src/assets/ramcats-mascot.png" alt="Cat paw" className="paw" />
+        </div>
         <h1>Sign up</h1>
-        <p className="subtitle">Walk on keyboard unwrap toilet paper what the heck just happened, something feels fishy.</p>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="signup-form-group">
+          <label htmlFor="username">Username:</label>
             <input 
               type="text" 
-              id="firstNameInput" 
-              placeholder="First Name" 
+              id="username" 
+              placeholder="Create a username" 
+              value={inputs.username}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="password">Password:</label>
             <input 
-              type="text" 
-              id="lastNameInput" 
-              placeholder="Last Name" 
+              type="password" 
+              id="password" 
+              placeholder="Create a password" 
+              value={inputs.password}
+                onChange={handleChange}
               required 
             />
-          </div>
-          <div className="form-group">
+            <label htmlFor="email">Email:</label>
             <input 
               type="email" 
-              id="emailInput" 
-              placeholder="Email" 
+              id="email" 
+              placeholder="Enter your email" 
+              value={inputs.email}
+                onChange={handleChange}
               required 
             />
-          </div>
-          <div className="form-group">
+            <label htmlFor="first_name">Given name:</label>
             <input 
               type="text" 
-              id="organisationInput" 
-              placeholder="Organisation" 
+              id="first_name" 
+              placeholder="Enter your given name" 
+              value={inputs.first_name}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="last_name">Family name:</label>
+            <input 
+              type="text" 
+              id="last_name" 
+              placeholder="Enter your family name" 
+              value={inputs.last_name}
+                onChange={handleChange}
+              required 
+            />
+            <label htmlFor="name">Organisation name:</label>            
+            <input 
+              type="text" 
+              id="name" 
+              placeholder="Enter your organisation name" 
+              value={inputs.name}
+                onChange={handleChange}
+              required 
+            />
+            <label htmlFor="logo">Organisation logo:</label>            
+            <input 
+              type="url" 
+              id="logo" 
+              placeholder="Provide a URL for your organisation's logo" 
+              value={inputs.logo}
+                onChange={handleChange}
+              required 
+            />
+            <label htmlFor="website">Organisation website:</label>             
+            <input 
+              type="url" 
+              id="website" 
+              placeholder="Provide the URL for your organisation's website" 
+              value={inputs.website}
+                onChange={handleChange}
+              required 
+            />
+            <label htmlFor="description">Description of organisation:</label>             
+            <textarea 
+              id="description" 
+              placeholder="Provide a brief description of your organisation" 
+              value={inputs.description}
+                onChange={handleChange}
+              required 
+            />
+            {/* <input 
+              type="text" 
+              id="userTypeInput" 
+              placeholder="User Type" 
+              defaultValue="Organisation"
+              required 
+            /> */}
           </div>
           <button type="submit" className="submit-btn">Sign up</button>
         </form>

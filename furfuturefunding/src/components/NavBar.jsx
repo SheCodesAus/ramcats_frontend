@@ -6,7 +6,7 @@ import './NavBar.css';
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -17,14 +17,19 @@ function NavBar() {
         <nav>
           <div className="logo-container">
             <Link to="/">
-              <img 
-                className="logo-nav"
+              <img
+                className="logo-nav desktop-logo"
                 src="src/assets/logo_typography.png"
-                alt="FurFuture Funding Logo" 
+                alt="FurFuture Funding Logo"
               />
-            </Link> 
+              <img
+                className="logo-nav mobile-logo"
+                src="src/assets/typoicon.png"
+                alt="FurFuture Funding Logo Mobile"
+              />
+            </Link>
           </div>
-          
+
           <button className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
             <span className="bar"></span>
             <span className="bar"></span>

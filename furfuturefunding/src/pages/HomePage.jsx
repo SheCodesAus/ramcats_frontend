@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
-import HeroSection from '../components/HeroSection';
-import OpportunityCard from '../components/OpportunityCard';
+import React, { useState } from "react";
+import HeroSection from "../components/HeroSection";
+import OpportunityCard from "../components/OpportunityCard";
+import useOpportunities from "../hooks/use-opportunities";
 // import SortOption from '../components/SortOption';
 // import FilterOption from '../components/FilterOption';
 // import Footer from '../components/Footer';
 // import useDocumentTitle from '../hooks/useDocumentTitle';
 
-
 const Homepage = () => {
+  const { opportunities, isLoading, error } = useOpportunities();
+  if (isLoading) {
+    return (
+      <div>
+        <p>Fecthing the data...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    alert(error.message);
+  }
   return (
     <div className="homepage">
       <HeroSection />
-      <OpportunityCard />
+      {opportunities.map((opportunitiesData, key) => {
+        return (
+          <OpportunityCard key={key} opportunitiesData={opportunitiesData} />
+        );
+      })}
     </div>
   );
 };
-
 export default Homepage;
-
 
 // function HomePage() {
 //   useDocumentTitle('Home');
@@ -26,7 +40,6 @@ export default Homepage;
 //   const handleSortClick = () => {
 //     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
 //   };
-
 
 //   const filterGroups = [
 //     {

@@ -1,22 +1,45 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import postSignup from "../api/post-signup";
 import './SignUpForm.css';
 
 function SignupForm() {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const firstName = document.getElementById("firstNameInput").value;
-    const lastName = document.getElementById("lastNameInput").value;
-    const email = document.getElementById("emailInput").value;
-    const organisation = document.getElementById("organisationInput").value;
+  const [inputs, setInputs, selectedValue, setSelectedValue] = useState({
+    username: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    user_type: '',
+    name: '',
+    logo: '',
+    website: '',
+    description: '',
+  });
 
-    if (firstName && lastName && email && organisation) {
-      console.log("Signup successful");
-      navigate('/login');
-    }
+
+  const handleSelect = (value) => { setSelectedValue(value); }; 
+
+  const handleChange = (event) => {
+    console.log(event.target.id) 
+    const id = event.target.id;
+      const value = event.target.value;
+      setInputs(values => ({...values, [id]: value}))
   };
+    
+    const handleSubmit= async (event) => {
+      event.preventDefault();
+      try {
+          const result = await postSignup(inputs);
+          console.log("Success:", result);
+          navigate("/login")
+      }   catch (error) {
+          console.error("Signup failed:", error)    
+      }}
+    
 
   return (
     <div className="signup-page">
@@ -27,66 +50,84 @@ function SignupForm() {
         <h1>Sign up</h1>
         <form onSubmit={handleSubmit}>
           <div className="signup-form-group">
+          <label htmlFor="username">Username:</label>
             <input 
               type="text" 
-              id="usernameInput" 
-              placeholder="Username" 
-              defaultValue="Username"
+              id="username" 
+              placeholder="Create a username" 
+              value={inputs.username}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="password">Password:</label>
             <input 
               type="password" 
-              id="passwordInput" 
-              placeholder="Password" 
-              defaultValue="Password"
+              id="password" 
+              placeholder="Create a password" 
+              value={inputs.password}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="email">Email:</label>
             <input 
               type="email" 
-              id="emailInput" 
-              placeholder="Email" 
-              defaultValue="Email"
+              id="email" 
+              placeholder="Enter your email" 
+              value={inputs.email}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="first_name">Given name:</label>
             <input 
               type="text" 
-              id="firstNameInput" 
-              placeholder="First Name" 
-              defaultValue="First Name"
+              id="first_name" 
+              placeholder="Enter your given name" 
+              value={inputs.first_name}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="last_name">Family name:</label>
             <input 
               type="text" 
-              id="lastNameInput" 
-              placeholder="Last Name" 
-              defaultValue="Last Name"
+              id="last_name" 
+              placeholder="Enter your family name" 
+              value={inputs.last_name}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="name">Organisation name:</label>            
             <input 
               type="text" 
-              id="organisationNameInput" 
-              placeholder="Organisation Name" 
-              defaultValue="Organisation Name"
+              id="name" 
+              placeholder="Enter your organisation name" 
+              value={inputs.name}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="logo">Organisation logo:</label>            
             <input 
               type="url" 
-              id="organisationImageInput" 
-              placeholder="Organisation Image URL" 
-              defaultValue="Organisation Image URL"
+              id="logo" 
+              placeholder="Provide a URL for your organisation's logo" 
+              value={inputs.logo}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="website">Organisation website:</label>             
             <input 
               type="url" 
-              id="organisationWebsiteInput" 
-              placeholder="Organisation Website" 
-              defaultValue="Organisation Website"
+              id="website" 
+              placeholder="Provide the URL for your organisation's website" 
+              value={inputs.website}
+                onChange={handleChange}
               required 
             />
+            <label htmlFor="description">Description of organisation:</label>             
             <textarea 
-              id="organisationDescriptionInput" 
-              placeholder="Organisation Description" 
-              defaultValue="Organisation Description"
+              id="description" 
+              placeholder="Provide a brief description of your organisation" 
+              value={inputs.description}
+                onChange={handleChange}
               required 
             />
             {/* <input 

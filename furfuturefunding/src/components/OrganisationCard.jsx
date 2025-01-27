@@ -1,16 +1,15 @@
 import "./OrganisationCard.css";
-import { oneOpportunity } from "../data";
 
-function OrganisationCard() {
+const OrganisationCard = ({ organisation }) => {
   return (
-    <div className="organisation-card">
-      <div class="org_logo"> {oneOpportunity.organisation.image}</div>
-      <div class="org_url"> {oneOpportunity.organisation.website}</div>
-      <div class="org_description">
-        {oneOpportunity.organisation.description}
-      </div>
+    <div>
+      <img src={organisation.logo} alt={`${organisation.name} logo`} />
+      <h2>{organisation.name}</h2>
+      <h3>Description</h3>
+      <p>{organisation.description}</p>
+      <p><a href={organisation.website} alt={`Visit ${organisation.name}'s website`}>{organisation.website}</a></p>
     </div>
   );
-}
+};
 
 export default OrganisationCard;

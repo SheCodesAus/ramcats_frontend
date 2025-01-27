@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/create-opportunity", element: <CreateOpportunityPage /> },
-      { path: "/opportunities", element: <OpportunityListingPage /> },
+      { path: "/opportunities/:id", element: <OpportunityListingPage /> },
       { path: "/profile", element: <UserProfilePage /> },
       { path: "/about", element: <AboutPage /> },
       { path: "/contact", element: <ContactPage /> },

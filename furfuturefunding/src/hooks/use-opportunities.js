@@ -22,3 +22,4 @@ export default function useOpportunities() {
 
   return { opportunities, isLoading, error };
 }
+

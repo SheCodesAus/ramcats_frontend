@@ -2,21 +2,13 @@ import React, { useState } from "react";
 import useDisciplines from "../hooks/use-disciplines";
 import useEligibilities from "../hooks/use-eligibilities";
 import useTypes from "../hooks/use-types";
-import useAttendanceMode from "../hooks/use-attendance_mode";
 import "./DropDown.css";
 
 function DropDown({ label, options = [], value, onChange, placeholder }) {
   const { eligibilities } = useEligibilities();
   const { disciplines } = useDisciplines();
   const { types } = useTypes();
-  const { attendance_mode } = useAttendanceMode();
 
-  // const attendanceModeOptions = attendance_mode.map((attendance_mode) => [
-  //   {
-  //     value: attendance_mode.id,
-  //     label: attendance_mode.title,
-  //   },
-  // ]);
   // const disciplineOptions = disciplines.map((disciplines) => [
   //   {
   //     value: disciplines.id,

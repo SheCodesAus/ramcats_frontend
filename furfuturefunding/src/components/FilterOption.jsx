@@ -1,7 +1,8 @@
+// FilterOption.jsx
 import React from 'react';
 import './FilterOption.css';
 
-const FilterOption = ({ onFilterChange, currentFilters = {} }) => {
+const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, currentSort = '' }) => {
   const stateOptions = [
     { value: 'ACT', label: 'Australian Capital Territory' },
     { value: 'NSW', label: 'New South Wales' },
@@ -37,11 +38,15 @@ const FilterOption = ({ onFilterChange, currentFilters = {} }) => {
   ];
 
   const handleSelectChange = (e, filterType) => {
-    console.log(`Filter changed: ${filterType} = ${e.target.value}`);
     onFilterChange({
       type: filterType,
       value: e.target.value
     });
+  };
+
+  const handleSortClick = () => {
+    const nextSort = !currentSort || currentSort === 'oldest' ? 'newest' : 'oldest';
+    onSortChange(nextSort);
   };
 
   const handleReset = () => {
@@ -51,12 +56,25 @@ const FilterOption = ({ onFilterChange, currentFilters = {} }) => {
         value: ''
       });
     });
+    onSortChange('');
   };
 
   return (
     <div className="filter-container">
       <div className="filter-header">
         <h3>Filters</h3>
+        <button 
+          onClick={handleSortClick}
+          className={`sort-button ${currentSort ? 'active' : ''}`}
+          title={currentSort === 'newest' ? 'Showing newest first' : currentSort === 'oldest' ? 'Showing oldest first' : 'Sort by date'}
+        >
+          <span className="material-icons">sort</span>
+          <span className="sort-label">
+            {currentSort === 'newest' ? 'Newest first' : 
+             currentSort === 'oldest' ? 'Oldest first' : 
+             'Sort by date'}
+          </span>
+        </button>
       </div>
       <div className="dropdown-filters">
         <select 

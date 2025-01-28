@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// Homepage.jsx
+import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
@@ -12,59 +13,47 @@ const Homepage = () => {
     type: '',
     discipline: '',
   });
+  const [sortOrder, setSortOrder] = useState('');
 
   const handleFilterChange = ({ type, value }) => {
-    console.log('Filter changed:', type, value);
     setFilters(prev => ({
       ...prev,
       [type]: value
     }));
   };
 
-  const filteredOpportunities = opportunities?.filter(opportunity => {
-    if (!opportunity) return false;
+  const handleSortChange = (value) => {
+    setSortOrder(value);
+  };
 
-    // State filter (location)
-    const stateMatch = filters.state === '' || 
-      (opportunity.location && 
-       opportunity.location === filters.state);
+  // Filter and sort opportunities
+  const processedOpportunities = React.useMemo(() => {
+    let result = opportunities?.filter(opportunity => {
+      if (!opportunity) return false;
 
-    // Eligibility filter
-    const eligibilityMatch = filters.eligibility === '' || 
-      (Array.isArray(opportunity.eligibility) && 
-       opportunity.eligibility.some(e => 
-         e.description.toLowerCase().includes(filters.eligibility.toLowerCase())));
+      return (
+        (filters.state === '' || opportunity.location === filters.state) &&
+        (filters.eligibility === '' || 
+          (Array.isArray(opportunity.eligibility) && 
+           opportunity.eligibility.some(e => e.description === filters.eligibility))) &&
+        (filters.type === '' || opportunity.attendance_mode === filters.type) &&
+        (filters.discipline === '' || 
+          (Array.isArray(opportunity.discipline) && 
+           opportunity.discipline.some(d => d.description === filters.discipline)))
+      );
+    }) || [];
 
-    // Type filter - now using attendance_mode
-    const typeMatch = filters.type === '' || 
-      (opportunity.attendance_mode && 
-       opportunity.attendance_mode === filters.type);
-
-    // Discipline filter
-    const disciplineMatch = filters.discipline === '' || 
-      (Array.isArray(opportunity.discipline) && 
-       opportunity.discipline.some(d => 
-         d.description.toLowerCase().includes(filters.discipline.toLowerCase())));
-
-    // Debug logging
-    if (filters.type) {
-      console.log('Opportunity:', {
-        id: opportunity.id,
-        attendance_mode: opportunity.attendance_mode,
-        matchesFilter: typeMatch
+    // Sort by close_date if sort order is specified
+    if (sortOrder) {
+      result.sort((a, b) => {
+        const dateA = new Date(a.close_date);
+        const dateB = new Date(b.close_date);
+        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
       });
     }
 
-    return stateMatch && eligibilityMatch && typeMatch && disciplineMatch;
-  });
-
-  // Debug log when filters change
-  useEffect(() => {
-    if (opportunities?.length > 0) {
-      console.log('Sample opportunity:', opportunities[0]);
-      console.log('All attendance_mode values:', [...new Set(opportunities.map(o => o.attendance_mode))]);
-    }
-  }, [opportunities]);
+    return result;
+  }, [opportunities, filters, sortOrder]);
 
   return (
     <div className="homepage">
@@ -72,7 +61,9 @@ const Homepage = () => {
       <div className="controls">
         <FilterOption 
           onFilterChange={handleFilterChange}
+          onSortChange={handleSortChange}
           currentFilters={filters}
+          currentSort={sortOrder}
         />
       </div>
       <div className="opportunities-container">
@@ -84,8 +75,8 @@ const Homepage = () => {
             <div>Loading...</div>
           ) : error ? (
             <div>Error: {error.message}</div>
-          ) : filteredOpportunities?.length > 0 ? (
-            filteredOpportunities.map((opportunitiesData, key) => (
+          ) : processedOpportunities.length > 0 ? (
+            processedOpportunities.map((opportunitiesData, key) => (
               <OpportunityCard
                 key={opportunitiesData.id || key}
                 opportunitiesData={opportunitiesData}
@@ -97,17 +88,6 @@ const Homepage = () => {
               <pre className="text-sm text-gray-500 mt-2">
                 Current filters: {JSON.stringify(filters, null, 2)}
               </pre>
-              <div className="mt-2 text-sm text-gray-500">
-                Available opportunities: {opportunities?.length || 0}
-              </div>
-              {/* Show all available attendance_mode values */}
-              <div className="mt-2 text-sm text-gray-500">
-                Available types: {
-                  opportunities 
-                    ? [...new Set(opportunities.map(o => o.attendance_mode))].join(', ')
-                    : 'None'
-                }
-              </div>
             </div>
           )}
         </div>

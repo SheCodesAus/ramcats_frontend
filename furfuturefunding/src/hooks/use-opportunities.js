@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import getOpportunity from "../api/get-opportunity";
+import getOpportunities from "../api/get-opportunities";
 
 export default function useOpportunities() {
   const [opportunities, setOpportunities] = useState([]);
@@ -9,7 +9,7 @@ export default function useOpportunities() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    getOpportunity()
+    getOpportunities()
       .then((opportunities) => {
         setOpportunities(opportunities);
         setIsLoading(false);

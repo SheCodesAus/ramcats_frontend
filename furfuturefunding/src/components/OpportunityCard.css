@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: none;
+  max-width: 100%;
 }
 
 .opportunities-title {
@@ -22,13 +22,18 @@
 
 .opportunities-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 1rem;
   margin-left: auto;
   margin-right: 1rem;
   max-width: 1000px;
 }
+.opportunities-container {
+  margin-left: 50px; 
+  padding: 20px;
+}
+
 
 @media (min-width: 1400px) {
   .opportunities-title {

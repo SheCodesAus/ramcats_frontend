@@ -1,5 +1,5 @@
-async function getOpportunity() {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities`;
+async function getOpportunity(opportunityId) {
+  const url = `${import.meta.env.VITE_API_URL}/opportunities/${opportunityId}`;
   const response = await fetch(url, { method: "GET" });
 
   if (!response.ok) {

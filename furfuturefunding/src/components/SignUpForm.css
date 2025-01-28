@@ -1,0 +1,126 @@
+.signup-page {
+    min-height: 100vh;
+    background-image: url('src/assets/ramcats 1.png');
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-button {
+    background: #FF914D;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+}
+
+h1 {
+    color: #1a0f4d;
+    text-align: center;
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.signup-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.signup-form-group input,
+.signup-form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f8f8f8;
+}
+
+.signup-form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #1a0f4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-btn:hover {
+    background: #FF914D;
+    transform: translateY(-2px);
+}
+
+.catmascot {
+    position: absolute;
+    top: 60px;
+    right: -145px;
+    z-index: 2;
+}
+
+.paw {
+    width: 200px;
+    height: auto;
+}
+
+.signup-container {
+    width: 600px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 8rem auto;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 375px) {
+    .signup-container {
+        width: 85%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+    
+    .signup-form-group {
+        gap: 0.75rem;
+    }
+    
+    .signup-form-group input {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .signup-form-group textarea {
+        min-height: 60px;
+    }
+    
+    .signup-container {
+        margin-top: 3rem;
+    }
+ }
+ 
+ @media (max-width: 768px) {
+    .signup-container {
+        width: 90%;
+    }
+    
+    .catmascot {
+        display: none;
+    }
+ }
+

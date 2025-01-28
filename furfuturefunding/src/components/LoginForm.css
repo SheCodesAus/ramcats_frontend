@@ -1,0 +1,157 @@
+.cat-container {
+  position: absolute;
+  top: -90px;
+  left: 65%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+.cat-icon {
+  height: 150px;
+}
+
+.login-background {
+  background-image: url('src/assets/ramcats 1.png');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+ }
+
+ .login-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #000000;
+  border-radius: 8px;
+  position: relative;
+  margin-top: 8rem; 
+ }
+
+.login-title {
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.login-form-group,
+.form-group {
+  margin-bottom: 2rem;
+  
+}
+
+.form-group input:first-child {
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 90%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  display: block;
+  margin: 0 auto;
+}
+
+.primary-button {
+  width: 80%;
+  padding: 0.75rem;
+  background-color: #1a0f4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 1rem auto;
+
+}
+
+.primary-button:hover {
+  background-color: #FF914D;
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+.secondary-button {
+  width: 80%;
+  padding: 0.75rem;
+  background-color: #1a0f4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.secondary-button:hover {
+  background-color: #FF914D;
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+/* Mobile styles */
+@media (max-width: 375px) {
+  
+ 
+  .login-container {
+    width: 85%;
+    padding: 1.5rem;
+    margin: 0;
+    height: auto;
+  }
+ 
+  .cat-container {
+    top: -40px;
+    right: -10px;
+  }
+ 
+  .cat-icon {
+    height: 80px;
+  }
+ }
+
+ @media (max-width: 768px) {
+  .login-container {
+    max-width: 90%;
+    margin-top: 6rem;
+  }
+
+  .cat-container {
+    top: -70px;
+    left: 50%;
+    padding-right: 0;
+  }
+
+  .cat-icon {
+    height: 120px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 100%;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+}

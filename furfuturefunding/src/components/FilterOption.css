@@ -1,110 +1,165 @@
+.filter-wrapper {
+  position: absolute;
+  left: 0;
+  top: 380px; /* Adjust based on your header height */
+  /* z-index: 1000; */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.filter-wrapper.open {
+  transform: translateX(0);
+}
+
+.toggle-filters-btn {
+  position: absolute;
+  right: -130px; /* Width of the button */
+  top: 0;
+  background-color: #130265;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-filters-btn:hover {
+  background-color: #FF914D;
+  color: #000000;
+}
+
 .filter-container {
-  background-color: #ffffff;
-  border: 1px solid #cc0808;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 2rem 0; 
-  max-width: 300px; 
-  width: 90%; 
-  overflow: hidden;
+  background-color: white;
+  border: 2px solid #000000;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem;
+  width: 270px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: auto
 }
 
-.filter-section {
-  padding: 10px; /* Reduced padding */
-}
-
-.filter-section h6 {
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.filters__title {
-  font-size: 16px;
-  color: #681515;
-  margin-bottom: 15px;
-}
-
-.filters__item {
-  margin-bottom: 10px;
-}
-
-.checkbox-wrapper {
+.filter-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
-.checkbox {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.checkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.checkbox label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.checkbox .box {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #130a0a;
-  display: inline-block;
-  margin-right: 10px;
-  position: relative;
-}
-
-.checkbox input:checked + label .box:after {
-  content: '✔';
-  position: absolute;
-  top: -2px;
-  left: 2px;
-  color: #2196F3;
-}
-
-.badge {
-  background-color: #e0e0e0;
+.filter-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #333;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin-left: 10px;
+  margin: 0;
 }
 
-.tooltip {
-  margin-left: 5px;
+.dropdown-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.tooltip .icon-info {
-  color: #aaa;
-  border: 1px solid #aaa;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  display: inline-flex;
+.filter-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: white;
+}
+
+.filter-select:hover {
+  border-color: #a3a3a3;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #130265;
+  box-shadow: 0 0 0 2px rgba(19, 2, 101, 0.1);
+}
+
+.reset-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #130265;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.reset-button:hover {
+  background-color: #1a0382;
+}
+
+.sort-button {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-style: normal;
-  font-size: 12px;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background-color: white;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.tooltip:hover:after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 4px;
-  white-space: nowrap;
-  font-size: 12px;
+.sort-button:hover {
+  border-color: #130265;
+  color: #130265;
+}
+
+.sort-button.active {
+  background-color: #130265;
+  border-color: #130265;
+  color: white;
+}
+
+.sort-label {
+  font-size: 0.875rem;
+}
+
+/* Remove the margin-left from opportunities container since filters are now collapsible */
+.opportunities-container {
+  margin-left: 50px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .filter-wrapper {
+    position: static;
+    transform: none;
+    margin: 1rem;
+  }
+
+  .toggle-filters-btn {
+    position: static;
+    width: 100%;
+    border-radius: 4px;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .filter-container {
+    width: 100%;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .filter-wrapper.open .filter-container {
+    display: block;
+  }
+
+  .opportunities-container {
+    margin-left: 0;
+  }
 }

@@ -1,4 +1,3 @@
-// Homepage.jsx
 import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
@@ -85,9 +84,6 @@ const Homepage = () => {
           ) : (
             <div className="no-results">
               <p>No opportunities match your selected filters.</p>
-              <pre className="text-sm text-gray-500 mt-2">
-                Current filters: {JSON.stringify(filters, null, 2)}
-              </pre>
             </div>
           )}
         </div>

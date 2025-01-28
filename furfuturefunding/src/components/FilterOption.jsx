@@ -1,8 +1,10 @@
 // FilterOption.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import './FilterOption.css';
 
 const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, currentSort = '' }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const stateOptions = [
     { value: 'ACT', label: 'Australian Capital Territory' },
     { value: 'NSW', label: 'New South Wales' },
@@ -60,78 +62,91 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
   };
 
   return (
-    <div className="filter-container">
-      <div className="filter-header">
-        <h3>Filters</h3>
-        <button 
-          onClick={handleSortClick}
-          className={`sort-button ${currentSort ? 'active' : ''}`}
-          title={currentSort === 'newest' ? 'Showing newest first' : currentSort === 'oldest' ? 'Showing oldest first' : 'Sort by date'}
-        >
-          <span className="material-icons">sort</span>
-          <span className="sort-label">
-            {currentSort === 'newest' ? 'Newest first' : 
-             currentSort === 'oldest' ? 'Oldest first' : 
-             'Sort by date'}
-          </span>
-        </button>
-      </div>
-      <div className="dropdown-filters">
-        <select 
-          className="filter-select"
-          onChange={(e) => handleSelectChange(e, 'state')}
-          value={currentFilters.state || ''}
-        >
-          <option value="">Select State</option>
-          {stateOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+    <div className={`filter-wrapper ${isOpen ? 'open' : ''}`}>
+      <button 
+        className="toggle-filters-btn"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="material-icons">
+          {isOpen ? 'close' : 'filter_list'}
+        </span>
+        {isOpen ? 'Hide Filters' : 'Show Filters'}
+      </button>
 
-        <select 
-          className="filter-select"
-          onChange={(e) => handleSelectChange(e, 'eligibility')}
-          value={currentFilters.eligibility || ''}
-        >
-          <option value="">Select Eligibility</option>
-          {eligibilityOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+      <div className="filter-container">
+        <div className="filter-header">
+          <h3>Filters</h3>
+          <button 
+            onClick={handleSortClick}
+            className={`sort-button ${currentSort ? 'active' : ''}`}
+            title={currentSort === 'newest' ? 'Showing newest first' : currentSort === 'oldest' ? 'Showing oldest first' : 'Sort by date'}
+          >
+            <span className="material-icons">sort</span>
+            <span className="sort-label">
+              {currentSort === 'newest' ? 'Newest first' : 
+               currentSort === 'oldest' ? 'Oldest first' : 
+               'Sort by date'}
+            </span>
+          </button>
+        </div>
 
-        <select 
-          className="filter-select"
-          onChange={(e) => handleSelectChange(e, 'type')}
-          value={currentFilters.type || ''}
-        >
-          <option value="">Select Type</option>
-          {typeOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <div className="dropdown-filters">
+          <select 
+            className="filter-select"
+            onChange={(e) => handleSelectChange(e, 'state')}
+            value={currentFilters.state || ''}
+          >
+            <option value="">Select State</option>
+            {stateOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
 
-        <select 
-          className="filter-select"
-          onChange={(e) => handleSelectChange(e, 'discipline')}
-          value={currentFilters.discipline || ''}
-        >
-          <option value="">Select Discipline</option>
-          {disciplineOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+          <select 
+            className="filter-select"
+            onChange={(e) => handleSelectChange(e, 'eligibility')}
+            value={currentFilters.eligibility || ''}
+          >
+            <option value="">Select Eligibility</option>
+            {eligibilityOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
 
-        <button onClick={handleReset} className="reset-button">
-          Reset Filters
-        </button>
+          <select 
+            className="filter-select"
+            onChange={(e) => handleSelectChange(e, 'type')}
+            value={currentFilters.type || ''}
+          >
+            <option value="">Select Type</option>
+            {typeOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+
+          <select 
+            className="filter-select"
+            onChange={(e) => handleSelectChange(e, 'discipline')}
+            value={currentFilters.discipline || ''}
+          >
+            <option value="">Select Discipline</option>
+            {disciplineOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+
+          <button onClick={handleReset} className="reset-button">
+            Reset Filters
+          </button>
+        </div>
       </div>
     </div>
   );

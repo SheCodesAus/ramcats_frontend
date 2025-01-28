@@ -1,11 +1,46 @@
+.filter-wrapper {
+  position: absolute;
+  left: 0;
+  top: 380px; /* Adjust based on your header height */
+  /* z-index: 1000; */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.filter-wrapper.open {
+  transform: translateX(0);
+}
+
+.toggle-filters-btn {
+  position: absolute;
+  right: -130px; /* Width of the button */
+  top: 0;
+  background-color: #130265;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-filters-btn:hover {
+  background-color: #FF914D;
+  color: #000000;
+}
+
 .filter-container {
-  padding: 1rem;
-  margin-top: 3rem;
-  border: 2px solid #000000;
-  border-radius: 8px;
   background-color: white;
+  border: 2px solid #000000;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem;
   width: 270px;
-  margin-left: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: auto
 }
 
 .filter-header {
@@ -58,7 +93,7 @@
   cursor: pointer;
   font-size: 0.875rem;
   transition: background-color 0.2s;
-  width: 210px;
+  width: 100%;
 }
 
 .reset-button:hover {
@@ -93,38 +128,38 @@
   font-size: 0.875rem;
 }
 
-@media (max-width: 768px) {
-  .filter-container {
-    margin: 1rem;
-  }
-  
-  .sort-label {
-    display: none;
-  }
-  
-  .sort-button {
-    padding: 0.5rem;
-  }
+/* Remove the margin-left from opportunities container since filters are now collapsible */
+.opportunities-container {
+  margin-left: 50px;
+  padding: 20px;
 }
 
-@media (max-width: 375px) {
-  .filter-container {
-    margin: 0.5rem;
-    padding: 0.75rem;
+@media (max-width: 768px) {
+  .filter-wrapper {
+    position: static;
+    transform: none;
+    margin: 1rem;
   }
 
-  .filter-header {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-  }
-
-  .sort-button {
+  .toggle-filters-btn {
+    position: static;
     width: 100%;
+    border-radius: 4px;
     justify-content: center;
+    margin-bottom: 1rem;
   }
 
-  .sort-label {
-    display: inline;
+  .filter-container {
+    width: 100%;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .filter-wrapper.open .filter-container {
+    display: block;
+  }
+
+  .opportunities-container {
+    margin-left: 0;
   }
 }

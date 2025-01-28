@@ -11,24 +11,32 @@ function DropDown({ label, options = [], value, onChange, placeholder }) {
   const { types } = useTypes();
   const { attendance_mode } = useAttendanceMode();
 
-  // const attendanceModeOptions = attendance_mode.map((attendance_mode) => [{
-  //   value: attendance_mode.id,
-  //   label: attendance_mode.title,
-  // }]);
-  // const disciplineOptions = disciplines.map((disciplines) => [{
-  //   value: disciplines.id,
-  //   label: disciplines.title,
-  // }]);
+  // const attendanceModeOptions = attendance_mode.map((attendance_mode) => [
+  //   {
+  //     value: attendance_mode.id,
+  //     label: attendance_mode.title,
+  //   },
+  // ]);
+  // const disciplineOptions = disciplines.map((disciplines) => [
+  //   {
+  //     value: disciplines.id,
+  //     label: disciplines.title,
+  //   },
+  // ]);
 
-  // const typeOptions = types.map((type) => [{
-  //   value: type.id,
-  //   label: type.title,
-  // }]);
+  // const typeOptions = types.map((type) => [
+  //   {
+  //     value: type.id,
+  //     label: type.title,
+  //   },
+  // ]);
 
-  // const eligibilityOptions = eligibilities.map((eligibility) => [{
-  //   value: eligibility.id,
-  //   label: eligibility.title,
-  // }]);
+  // const eligibilityOptions = eligibilities.map((eligibility) => [
+  //   {
+  //     value: eligibility.id,
+  //     label: eligibility.title,
+  //   },
+  // ]);
 
   return (
     <div>

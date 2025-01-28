@@ -1,5 +1,5 @@
-async function getEligibilities([eligibility]) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities/${[eligibility]}`;
+async function getEligibilities() {
+  const url = `${import.meta.env.VITE_API_URL}/eligibilities`;
   const response = await fetch(url, { method: "GET" });
 
   if (!response.ok) {

@@ -1,5 +1,5 @@
-async function getDisciplines([discipline]) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities/${[discipline]}`;
+async function getDisciplines() {
+  const url = `${import.meta.env.VITE_API_URL}/disciplines`;
   const response = await fetch(url, { method: "GET" });
 
   if (!response.ok) {

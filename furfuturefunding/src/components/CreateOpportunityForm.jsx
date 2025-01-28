@@ -35,32 +35,36 @@ function CreateOpportunityForm() {
 
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setOpportunity((prevOpportunity) => ({
-      ...prevOpportunity,
-      [id]: value,
-    }));
+    console.log("Handle change working", opportunity),
+      setOpportunity((prevOpportunity) => ({
+        ...prevOpportunity,
+
+        [id]: value,
+      }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submitting opportunity:", opportunity);
     if (
-      opportunity.title &&
-      opportunity.description &&
-      opportunity.opportunity_url &&
-      opportunity.amount &&
-      opportunity.is_open &&
-      opportunity.open_date &&
-      opportunity.close_date &&
-      opportunity.is_archive &&
-      opportunity.location &&
-      opportunity.attendance_mode &&
-      opportunity.type &&
-      opportunity.discipline &&
-      opportunity.eligibility
+      (opportunity.title &&
+        opportunity.description &&
+        opportunity.opportunity_url &&
+        opportunity.amount &&
+        opportunity.is_open &&
+        opportunity.open_date &&
+        opportunity.close_date &&
+        opportunity.is_archive &&
+        opportunity.location &&
+        opportunity.attendance_mode &&
+        opportunity.type &&
+        opportunity.discipline &&
+        opportunity.eligibility,
+      console.log("Form Data Submitted:", opportunity))
     ) {
       postOpportunity(
         opportunity.title,
+
         opportunity.description,
         opportunity.opportunity_url,
         opportunity.amount,
@@ -72,7 +76,8 @@ function CreateOpportunityForm() {
         opportunity.attendance_mode,
         opportunity.type,
         opportunity.discipline,
-        opportunity.eligibility
+        opportunity.eligibility,
+        console.log("Form Data Submitted:", opportunity)
       ).then(() => {
         navigate("/");
         console.log("Form Data Submitted:", opportunity);

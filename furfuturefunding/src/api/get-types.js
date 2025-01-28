@@ -1,5 +1,5 @@
-async function getTypes([type]) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities/${[type]}`;
+async function getTypes() {
+  const url = `${import.meta.env.VITE_API_URL}/types`;
   const response = await fetch(url, { method: "GET" });
 
   if (!response.ok) {

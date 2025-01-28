@@ -13,7 +13,7 @@ async function postOpportunity(
   discipline,
   eligibility
 ) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities/`;
+  const url = `${import.meta.env.VITE_API_URL}/opportunities`;
   const response = await fetch(url, {
     method: "POST",
     headers: {

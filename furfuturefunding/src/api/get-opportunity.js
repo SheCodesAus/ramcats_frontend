@@ -1,4 +1,4 @@
-async function getOpportunity(opportunityId) {
+async function getOpportunity(opportunityId, opportunityData) {
   const url = `${import.meta.env.VITE_API_URL}/opportunities/${opportunityId}`;
   const response = await fetch(url, { method: "GET" });
 

@@ -1,16 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './FilterOption.css';
 
-const FilterOption = ({ onFilterChange }) => {
-  // Use refs to access select elements
-  const selectRefs = {
-    state: useRef(),
-    eligibility: useRef(),
-    type: useRef(),
-    discipline: useRef(),
-    sort: useRef()
-  };
-
+const FilterOption = ({ onFilterChange, currentFilters = {} }) => {
   const stateOptions = [
     { value: 'ACT', label: 'Australian Capital Territory' },
     { value: 'NSW', label: 'New South Wales' },
@@ -23,20 +14,17 @@ const FilterOption = ({ onFilterChange }) => {
   ];
 
   const eligibilityOptions = [
-    { value: 'women-stem', label: 'Women in STEM' },
-    { value: 'refugees', label: 'Refugees and Asylum Seekers' },
-    { value: 'disability', label: 'People with Disability' },
-    { value: 'low-income', label: 'Low-income Families' },
-    { value: 'first-gen', label: 'First Generation University Students' },
-    { value: 'student', label: 'Student' },
-    { value: 'professional', label: 'Professional' },
-    { value: 'graduate', label: 'Graduate' }
+    { value: 'Women in STEM', label: 'Women in STEM' },
+    { value: 'Aboriginal and Torres Strait Islander peoples', label: 'Aboriginal and Torres Strait Islander peoples' },
+    { value: 'Refugees and Asylum Seekers', label: 'Refugees and Asylum Seekers' },
+    { value: 'People with Disability', label: 'People with Disability' },
+    { value: 'Low-income Families', label: 'Low-income Families' },
+    { value: 'First Generation University Students', label: 'First Generation University Students' }
   ];
 
   const typeOptions = [
-    { value: 'scholarship', label: 'Scholarship' },
-    { value: 'grant', label: 'Grant' },
-    { value: 'fellowship', label: 'Fellowship' }
+    { value: 'ONLINE', label: 'Online' },
+    { value: 'FACE_TO_FACE', label: 'Face to Face' }
   ];
 
   const disciplineOptions = [
@@ -48,12 +36,8 @@ const FilterOption = ({ onFilterChange }) => {
     { value: 'mathematics', label: 'Mathematics' }
   ];
 
-  const sortOptions = [
-    { value: 'newest', label: 'Newest to Oldest' },
-    { value: 'oldest', label: 'Oldest to Newest' }
-  ];
-
   const handleSelectChange = (e, filterType) => {
+    console.log(`Filter changed: ${filterType} = ${e.target.value}`);
     onFilterChange({
       type: filterType,
       value: e.target.value
@@ -61,15 +45,7 @@ const FilterOption = ({ onFilterChange }) => {
   };
 
   const handleReset = () => {
-    // Reset all select elements to their default value
-    Object.values(selectRefs).forEach(ref => {
-      if (ref.current) {
-        ref.current.value = '';
-      }
-    });
-
-    // Reset all filters in the parent component
-    ['state', 'eligibility', 'type', 'discipline', 'sort'].forEach(filterType => {
+    ['state', 'eligibility', 'type', 'discipline'].forEach(filterType => {
       onFilterChange({
         type: filterType,
         value: ''
@@ -84,10 +60,9 @@ const FilterOption = ({ onFilterChange }) => {
       </div>
       <div className="dropdown-filters">
         <select 
-          ref={selectRefs.state}
           className="filter-select"
           onChange={(e) => handleSelectChange(e, 'state')}
-          defaultValue=""
+          value={currentFilters.state || ''}
         >
           <option value="">Select State</option>
           {stateOptions.map((option) => (
@@ -98,10 +73,9 @@ const FilterOption = ({ onFilterChange }) => {
         </select>
 
         <select 
-          ref={selectRefs.eligibility}
           className="filter-select"
           onChange={(e) => handleSelectChange(e, 'eligibility')}
-          defaultValue=""
+          value={currentFilters.eligibility || ''}
         >
           <option value="">Select Eligibility</option>
           {eligibilityOptions.map((option) => (
@@ -112,10 +86,9 @@ const FilterOption = ({ onFilterChange }) => {
         </select>
 
         <select 
-          ref={selectRefs.type}
           className="filter-select"
           onChange={(e) => handleSelectChange(e, 'type')}
-          defaultValue=""
+          value={currentFilters.type || ''}
         >
           <option value="">Select Type</option>
           {typeOptions.map((option) => (
@@ -126,10 +99,9 @@ const FilterOption = ({ onFilterChange }) => {
         </select>
 
         <select 
-          ref={selectRefs.discipline}
           className="filter-select"
           onChange={(e) => handleSelectChange(e, 'discipline')}
-          defaultValue=""
+          value={currentFilters.discipline || ''}
         >
           <option value="">Select Discipline</option>
           {disciplineOptions.map((option) => (
@@ -138,20 +110,6 @@ const FilterOption = ({ onFilterChange }) => {
             </option>
           ))}
         </select>
-
-        {/* <select
-          ref={selectRefs.sort}
-          className="filter-select" 
-          onChange={(e) => handleSelectChange(e, 'sort')}
-          defaultValue=""
-        >
-          <option value="">Sort by</option>
-          {sortOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select> */}
 
         <button onClick={handleReset} className="reset-button">
           Reset Filters

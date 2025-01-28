@@ -8,9 +8,9 @@ const OpportunityCard = (props) => {
   console.log(opportunitiesData.eligibility);
   return (
     <div className="opportunities-container">
-      <h2 className="opportunities-title">
+      {/* <h2 className="opportunities-title">
         Scholarship and Conference Opportunities
-      </h2>
+      </h2> */}
       <div className="opportunities-grid">
         <Link to={opportunityLink}>
           <div className="card">

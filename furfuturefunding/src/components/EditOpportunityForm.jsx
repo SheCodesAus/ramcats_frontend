@@ -54,7 +54,6 @@ export default function EditOpportunityForm() {
       </p>
     );
   }
-  console.log("Opportunity loaded:", opportunity);
 
   const handleCancle = (event) => {
     event.preventDefault();

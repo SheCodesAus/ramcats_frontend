@@ -42,36 +42,48 @@ function CreateOpportunityForm() {
     }));
   };
 
+  // const onChangeHandler = (event) => {
+  //   const index = event.target.value;
+  //   opportunity.type = [parseInt(index)];
+  //   opportunity.eligibility = [parseInt(index)];
+  //   opportunity.discipline = [parseInt(index)];
+  //   console.log(
+  //     "Change is working:",
+  //     opportunity.type,
+  //     opportunity.discipline,
+  //     opportunity.eligibility
+  //   );
+  // };
+
   const onChangeHandler = (event) => {
-    const index = event.target.value;
-    opportunity.type = [parseInt(index)];
-    opportunity.eligibility = [parseInt(index)];
-    opportunity.discipline = [parseInt(index)];
-    console.log(
-      "Change is working:",
-      opportunity.type,
-      opportunity.discipline,
-      opportunity.eligibility
-    );
+    console.log("Full event target:", event.target);
+    const { name, value } = event.target;
+    setOpportunity((prevOpportunity) => ({
+      ...prevOpportunity,
+      [name]: ["type", "discipline", "eligibility"].includes(name)
+        ? [parseInt(value)] // Store as an array
+        : value, // Store as a string for location & attendance_mode
+    }));
+    console.log(`Updated ${name}:`, value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Form Data All Here:", opportunity);
     if (
-      (opportunity.title &&
-        opportunity.description &&
-        opportunity.opportunity_url &&
-        opportunity.amount &&
-        opportunity.is_open &&
-        opportunity.open_date &&
-        opportunity.close_date &&
-        opportunity.is_archive &&
-        opportunity.location &&
-        opportunity.attendance_mode &&
-        opportunity.type &&
-        opportunity.discipline &&
-        opportunity.eligibility,
-      console.log("Form Data All Here:", opportunity))
+      opportunity.title &&
+      opportunity.description &&
+      opportunity.opportunity_url &&
+      opportunity.amount &&
+      opportunity.is_open &&
+      opportunity.open_date &&
+      opportunity.close_date &&
+      opportunity.is_archive &&
+      opportunity.location &&
+      opportunity.attendance_mode &&
+      opportunity.type &&
+      opportunity.discipline &&
+      opportunity.eligibility
     ) {
       postOpportunity(
         opportunity.title,
@@ -147,8 +159,8 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="location">Location: </label>
-        <select onChange={onChangeHandler} defaultValue={"DEFAULT"}>
-          <option value="DEFAULT" disabled>
+        <select name="location" onChange={onChangeHandler} defaultValue="">
+          <option value="" disabled>
             --select a state--
           </option>
           <option value="ACT">ACT</option>
@@ -172,8 +184,12 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="attendance_mode">Attendance mode: </label>
-        <select onChange={onChangeHandler} defaultValue={"DEFAULT"}>
-          <option value="DEFAULT" disabled>
+        <select
+          name="attendance_mode"
+          onChange={onChangeHandler}
+          defaultValue=""
+        >
+          <option value="" disabled>
             --select an attendance mode--
           </option>
           <option value="Face-to-Face">Face-to-Face</option>
@@ -182,7 +198,7 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="type">Type: </label>
-        <select onChange={onChangeHandler} defaultValue="0">
+        <select name="type" onChange={onChangeHandler} defaultValue="0">
           <option value="0" disabled>
             --select a type--
           </option>
@@ -197,7 +213,7 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="discipline">Discipline: </label>
-        <select onChange={onChangeHandler} defaultValue="0">
+        <select name="discipline" onChange={onChangeHandler} defaultValue="0">
           <option value="0" disabled>
             --select a discipline--
           </option>
@@ -212,7 +228,7 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="eligibility">Eligibility: </label>
-        <select onChange={onChangeHandler} defaultValue="0">
+        <select name="eligibility" onChange={onChangeHandler} defaultValue="0">
           <option value="0" disabled>
             --select an eligibility--
           </option>

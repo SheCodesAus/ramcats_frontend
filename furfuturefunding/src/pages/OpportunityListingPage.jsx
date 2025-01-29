@@ -16,21 +16,23 @@ function OpportunityListingPage() {
 
   useEffect(() => {
     if (opportunity) {
-      setArchive({ is_archive: opportunity.is_archive });
+      setArchive(opportunity.is_archive);
     }
   }, [opportunity]);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message || "An error occurred."}</p>;
 
-  const handleArchive = () => {
-    setArchive((prevState) => {
-      const updatedArchive = !prevState.is_archive;
-      archiveOpportunity(id, updatedArchive).then(() => {
-        alert("Archive status updated");
-      });
-      return { ...prevState, is_archive: updatedArchive };
-    });
+  const handleArchive = async () => {
+    const updatedArchive = !archive;
+    try {
+      await archiveOpportunity(id, updatedArchive);
+      setArchive(updatedArchive);
+      alert(`Opportunity ${updatedArchive ? "archived" : "unarchived"}`);
+    } catch (error) {
+      console.error("Error updating archive status:", error);
+      alert("Failed to update archive status.");
+    }
   };
 
   const formatDate = (isoString) => {
@@ -76,7 +78,7 @@ function OpportunityListingPage() {
           }
         </span>
         <button onClick={handleArchive}>
-          {archive.is_archive ? "Unarchive" : "Archive"}
+          {archive ? "Unarchive" : "Archive"}
         </button>
       </div>
     </div>

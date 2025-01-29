@@ -3,11 +3,18 @@ import { useEffect, useState } from "react";
 import putOpportunity from "../api/put-opportunity";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import getOpportunity from "../api/get-opportunity";
+import useOpportunity from "../hooks/use-opportunity";
+import useEligbilities from "../hooks/use-eligibilities";
+import useTypes from "../hooks/use-types";
+import useDisciplines from "../hooks/use-disciplines";
 
-export default function EditOpportunityForm(opportunityId) {
+export default function EditOpportunityForm() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { opportunity, isLoading, error } = useOpportunity(id);
+  const { eligibilities } = useEligbilities();
+  const { types } = useTypes();
+  const { disciplines } = useDisciplines();
   const [opportunityDetails, setOpportunityDetails] = useState({
     title: "",
     description: "",
@@ -23,40 +30,42 @@ export default function EditOpportunityForm(opportunityId) {
   });
 
   useEffect(() => {
-    getOpportunity(id)
-      .then((opportunity) =>
-        setOpportunityDetails({
-          ...opportunityDetails,
-          title: opportunity.title,
-          description: opportunity.description,
-          opportunity_url: opportunity.opportunity_url,
-          amount: opportunity.amount,
-          is_open: opportunity.is_open,
-          open_date: opportunity.open_date,
-          close_date: opportunity.close_date,
-          is_archive: opportunity.is_archive,
-          attendance_mode: opportunity.attendance_mode,
-          location: opportunity.location,
-          eligibility: opportunity.eligibility,
-          discipline: opportunity.discipline,
-          type: opportunity.type,
-        })
-      )
-      .catch((error) => console.log(error));
-  }, [id]);
+    if (opportunity) {
+      console.log("Opportunity loaded:", opportunity);
+      setOpportunityDetails(opportunity);
+    }
+  }, [opportunity]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) {
+    return (
+      <p>
+        Error loading opportunity details:{" "}
+        {error.message || "An error occurred."}
+      </p>
+    );
+  }
 
   const handleCancle = (event) => {
     event.preventDefault();
-    navigate("/dashboard");
+    navigate("/");
   };
+
   const handleChange = (event) => {
     const { id, value } = event.target;
-    // console.log(event.target.value);
     setOpportunityDetails((prevOpportunityDetails) => ({
       ...prevOpportunityDetails,
       [id]: value,
     }));
-    console.log(opportunityDetails);
+  };
+
+  const handleMultiSelectChange = (e, fieldName) => {
+    const selectedValue = parseInt(e.target.value);
+
+    setOpportunityDetails((prevOpportunityDetails) => ({
+      ...prevOpportunityDetails,
+      [fieldName]: [selectedValue],
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -67,35 +76,33 @@ export default function EditOpportunityForm(opportunityId) {
       opportunityDetails.description &&
       opportunityDetails.opportunity_url &&
       opportunityDetails.amount &&
-      opportunityDetails.is_open &&
       opportunityDetails.open_date &&
       opportunityDetails.close_date &&
-      opportunityDetails.is_archive &&
-      opportunityDetails.location &&
       opportunityDetails.attendance_mode &&
-      opportunityDetails.type &&
+      opportunityDetails.location &&
+      opportunityDetails.eligibility &&
       opportunityDetails.discipline &&
-      opportunityDetails.eligibility
+      opportunityDetails.type
     ) {
       putOpportunity(
         id,
-        opportunityDetails.title &&
-          opportunityDetails.description &&
-          opportunityDetails.opportunity_url &&
-          opportunityDetails.amount &&
-          opportunityDetails.is_open &&
-          opportunityDetails.open_date &&
-          opportunityDetails.close_date &&
-          opportunityDetails.is_archive &&
-          opportunityDetails.location &&
-          opportunityDetails.attendance_mode
-        // opportunityDetails.type &&
-        // opportunityDetails.discipline &&
-        // opportunityDetails.eligibility
+        opportunityDetails.title,
+        opportunityDetails.description,
+        opportunityDetails.opportunity_url,
+        opportunityDetails.amount,
+        opportunityDetails.open_date,
+        opportunityDetails.close_date,
+        opportunityDetails.attendance_mode,
+        opportunityDetails.location,
+        opportunityDetails.eligibility,
+        opportunityDetails.discipline,
+        opportunityDetails.type
       ).then(() => {
-        navigate("/");
+        // navigate("/");
         console.log("Form Data Submitted:", opportunityDetails);
       });
+    } else {
+      alert("Please fill in all required fields.");
     }
   };
 
@@ -159,7 +166,7 @@ export default function EditOpportunityForm(opportunityId) {
           value={opportunityDetails.location}
         >
           <option value="" disabled>
-            {opportunityDetails.state}
+            {opportunityDetails.location}
           </option>
           <option value="ACT">ACT</option>
           <option value="NSW">NSW</option>
@@ -192,52 +199,52 @@ export default function EditOpportunityForm(opportunityId) {
           <option value="ONLINE">Online</option>
         </select>
       </div>
-      {/* <div>
-        <label htmlFor="type">Type: </label>
-        <DropDown
-          options={typeOptions}
-          value={opportunity.type}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              type: event.target.value ? [parseInt(event.target.value)] : [],
-            }))
-          }
-          placeholder="Select a type"
-        />
+      <div>
+        <label htmlFor="eligibility">Eligibility</label>
+        <select
+          onChange={(e) => handleMultiSelectChange(e, "eligibility")}
+          id="eligibility"
+        >
+          <option value="" disabled>
+            Select eligibility
+          </option>
+          {eligibilities.map((eligibilityData) => (
+            <option key={eligibilityData.id} value={eligibilityData.id}>
+              {eligibilityData.description}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
-        <label htmlFor="discipline">Discipline: </label>
-        <DropDown
-          options={disciplineOptions}
-          value={opportunity.discipline}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              discipline: event.target.value
-                ? [parseInt(event.target.value)]
-                : [],
-            }))
-          }
-          placeholder="Select a discipline"
-        />
+        <label htmlFor="discipline">Discipline</label>
+        <select
+          onChange={(e) => handleMultiSelectChange(e, "discipline")}
+          id="discipline"
+        >
+          <option value="" disabled>
+            Select discipline
+          </option>
+          {disciplines.map((disciplinesData) => (
+            <option key={disciplinesData.id} value={disciplinesData.id}>
+              {disciplinesData.description}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
-        <label htmlFor="eligibility">Eligibility: </label>
-        <DropDown
-          options={eligibilityOptions}
-          value={opportunity.eligibility}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              eligibility: event.target.value
-                ? [parseInt(event.target.value)]
-                : [],
-            }))
-          }
-          placeholder="Select eligibility"
-        />
-      </div> */}
+        <label htmlFor="type">Type</label>
+        <select onChange={(e) => handleMultiSelectChange(e, "type")} id="type">
+          <option value="" disabled>
+            Select type of opportunity
+          </option>
+          {types.map((typesData) => (
+            <option key={typesData.id} value={typesData.id}>
+              {typesData.description}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div>
         <button type="submit" onClick={handleSubmit}>
           Submit

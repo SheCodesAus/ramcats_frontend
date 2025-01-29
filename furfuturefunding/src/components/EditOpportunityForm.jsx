@@ -31,8 +31,17 @@ export default function EditOpportunityForm() {
 
   useEffect(() => {
     if (opportunity) {
-      console.log("Opportunity loaded:", opportunity);
-      setOpportunityDetails(opportunity);
+      setOpportunityDetails((prevDetails) => ({
+        ...prevDetails,
+        ...opportunity,
+        eligibility: opportunity.eligibility.map(
+          (eligibilityData) => eligibilityData.id
+        ),
+        discipline: opportunity.discipline.map(
+          (disciplineData) => disciplineData.id
+        ),
+        type: opportunity.type.map((typeData) => typeData.id),
+      }));
     }
   }, [opportunity]);
 
@@ -45,10 +54,11 @@ export default function EditOpportunityForm() {
       </p>
     );
   }
+  console.log("Opportunity loaded:", opportunity);
 
   const handleCancle = (event) => {
     event.preventDefault();
-    navigate("/");
+    navigate("/opportunities/" + id);
   };
 
   const handleChange = (event) => {
@@ -98,7 +108,7 @@ export default function EditOpportunityForm() {
         opportunityDetails.discipline,
         opportunityDetails.type
       ).then(() => {
-        // navigate("/");
+        navigate("/opportunities/" + id);
         console.log("Form Data Submitted:", opportunityDetails);
       });
     } else {
@@ -204,10 +214,8 @@ export default function EditOpportunityForm() {
         <select
           onChange={(e) => handleMultiSelectChange(e, "eligibility")}
           id="eligibility"
+          value={opportunityDetails.eligibility}
         >
-          <option value="" disabled>
-            Select eligibility
-          </option>
           {eligibilities.map((eligibilityData) => (
             <option key={eligibilityData.id} value={eligibilityData.id}>
               {eligibilityData.description}
@@ -220,10 +228,8 @@ export default function EditOpportunityForm() {
         <select
           onChange={(e) => handleMultiSelectChange(e, "discipline")}
           id="discipline"
+          value={opportunityDetails.discipline}
         >
-          <option value="" disabled>
-            Select discipline
-          </option>
           {disciplines.map((disciplinesData) => (
             <option key={disciplinesData.id} value={disciplinesData.id}>
               {disciplinesData.description}
@@ -233,10 +239,11 @@ export default function EditOpportunityForm() {
       </div>
       <div>
         <label htmlFor="type">Type</label>
-        <select onChange={(e) => handleMultiSelectChange(e, "type")} id="type">
-          <option value="" disabled>
-            Select type of opportunity
-          </option>
+        <select
+          onChange={(e) => handleMultiSelectChange(e, "type")}
+          id="type"
+          value={opportunityDetails.type}
+        >
           {types.map((typesData) => (
             <option key={typesData.id} value={typesData.id}>
               {typesData.description}

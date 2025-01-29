@@ -42,19 +42,6 @@ function CreateOpportunityForm() {
     }));
   };
 
-  // const onChangeHandler = (event) => {
-  //   const index = event.target.value;
-  //   opportunity.type = [parseInt(index)];
-  //   opportunity.eligibility = [parseInt(index)];
-  //   opportunity.discipline = [parseInt(index)];
-  //   console.log(
-  //     "Change is working:",
-  //     opportunity.type,
-  //     opportunity.discipline,
-  //     opportunity.eligibility
-  //   );
-  // };
-
   const onChangeHandler = (event) => {
     console.log("Full event target:", event.target);
     const { name, value } = event.target;
@@ -67,9 +54,13 @@ function CreateOpportunityForm() {
     console.log(`Updated ${name}:`, value);
   };
 
-  const handleSubmit = (event) => {
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log("Form Data All Here:", opportunity);
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form Data All Here:", opportunity);
+    console.log("Submitting form with:", opportunity);
+
     if (
       opportunity.title &&
       opportunity.description &&
@@ -78,7 +69,6 @@ function CreateOpportunityForm() {
       opportunity.is_open &&
       opportunity.open_date &&
       opportunity.close_date &&
-      opportunity.is_archive &&
       opportunity.location &&
       opportunity.attendance_mode &&
       opportunity.type &&

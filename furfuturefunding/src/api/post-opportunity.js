@@ -13,7 +13,7 @@ async function postOpportunity(
   discipline,
   eligibility
 ) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities/`;
+  const url = `${import.meta.env.VITE_API_URL}/opportunities`;
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -32,9 +32,9 @@ async function postOpportunity(
       is_archive: is_archive,
       location: location,
       attendance_mode: attendance_mode,
-      type: Array.isArray(type) ? type : [type],
-      discipline: Array.isArray(discipline) ? discipline : [discipline],
-      eligibility: Array.isArray(eligibility) ? eligibility : [eligibility],
+      type: type,
+      discipline: discipline,
+      eligibility: eligibility,
     }),
   });
 

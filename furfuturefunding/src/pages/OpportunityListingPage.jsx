@@ -11,12 +11,14 @@ function OpportunityListingPage() {
   const { id } = useParams();
   const opportunityId = id;
   const { opportunity, isLoading, error } = useOpportunity(opportunityId);
-
+  const userId = parseInt(window.localStorage.getItem("user_id"));
+  const [loggedinUserId, setLoggedinUserId] = useState(null);
   const [archive, setArchive] = useState({ is_archive: false });
 
   useEffect(() => {
     if (opportunity) {
       setArchive(opportunity.is_archive);
+      setLoggedinUserId(opportunity.owner);
     }
   }, [opportunity]);
 
@@ -70,16 +72,20 @@ function OpportunityListingPage() {
       </div>
       <button className="apply_button">Apply Now</button>
       <div>
-        <span>
-          {
-            <Link to={`/opportunities/edit/${opportunityId}`}>
-              Edit project detail
-            </Link>
-          }
-        </span>
-        <button onClick={handleArchive}>
-          {archive ? "Unarchive" : "Archive"}
-        </button>
+        {userId === loggedinUserId ? (
+          <span>
+            {
+              <Link to={`/opportunities/edit/${opportunityId}`}>
+                Edit project detail
+              </Link>
+            }
+          </span>
+        ) : null}
+        {userId === loggedinUserId ? (
+          <button onClick={handleArchive}>
+            {archive ? "Unarchive" : "Archive"}
+          </button>
+        ) : null}
       </div>
     </div>
   );

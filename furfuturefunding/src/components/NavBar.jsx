@@ -9,6 +9,7 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const handleLogout = () => {
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user_id");
     setAuth({ token: null });
   };
 

@@ -16,10 +16,6 @@ function CreateOpportunityForm() {
   const { eligibilities } = useEligibilities();
   const { types } = useTypes();
 
-  if (!auth.token) {
-    return navigate("/login");
-  }
-
   const [opportunity, setOpportunity] = useState({
     title: "",
     description: "",

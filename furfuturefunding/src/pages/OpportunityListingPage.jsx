@@ -5,25 +5,31 @@ import { Link } from "react-router-dom";
 // import { useAuth } from "../hooks/use-auth";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function OpportunityListingPage() {
-  // const {auth, setAuth} = useAuth;
   const { id } = useParams();
   const opportunityId = id;
   const { opportunity, isLoading, error } = useOpportunity(opportunityId);
-  const [archive, setArchive] = useState({
-    is_archive: false,
-  });
+
+  const [archive, setArchive] = useState({ is_archive: false });
+
+  useEffect(() => {
+    if (opportunity) {
+      setArchive({ is_archive: opportunity.is_archive });
+    }
+  }, [opportunity]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message || "An error occurred."}</p>;
 
   const handleArchive = () => {
     setArchive((prevState) => {
       const updatedArchive = !prevState.is_archive;
-      archiveOpportunity(id, updatedArchive);
-      return {
-        ...prevState,
-        is_archive: updatedArchive,
-      };
+      archiveOpportunity(id, updatedArchive).then(() => {
+        alert("Archive status updated");
+      });
+      return { ...prevState, is_archive: updatedArchive };
     });
   };
 
@@ -32,14 +38,6 @@ function OpportunityListingPage() {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return date.toLocaleDateString(undefined, options);
   };
-
-  if (isLoading) {
-    return <p>loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error.message}</p>;
-  }
 
   return (
     <div>

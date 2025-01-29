@@ -24,7 +24,7 @@ function CreateOpportunityForm() {
     is_open: true,
     open_date: "",
     close_date: "",
-    is_archive: "",
+    is_archive: false,
     location: "",
     attendance_mode: "",
     type: [],
@@ -43,20 +43,16 @@ function CreateOpportunityForm() {
   };
 
   const onChangeHandler = (event) => {
-    console.log("Full event target:", event.target);
     const { name, value } = event.target;
+
     setOpportunity((prevOpportunity) => ({
       ...prevOpportunity,
       [name]: ["type", "discipline", "eligibility"].includes(name)
         ? [parseInt(value)] // Store as an array
         : value, // Store as a string for location & attendance_mode
     }));
-    console.log(`Updated ${name}:`, value);
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log("Form Data All Here:", opportunity);
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Submitting form with:", opportunity);
@@ -90,11 +86,12 @@ function CreateOpportunityForm() {
         opportunity.discipline,
         opportunity.eligibility
       ).then((response) => {
+        console.log("Response JSON:", response);
         window.localStorage.setItem("token", response.token);
         setAuth({
           token: response.token,
         });
-        navigate("/");
+        // navigate("/");
         console.log("Form Data Submitted Final:", opportunity);
       });
     }
@@ -182,8 +179,8 @@ function CreateOpportunityForm() {
           <option value="" disabled>
             --select an attendance mode--
           </option>
-          <option value="Face-to-Face">Face-to-Face</option>
-          <option value="Online">Online</option>
+          <option value="FACE_TO_FACE">Face to Face</option>
+          <option value="ONLINE">Online</option>
         </select>
       </div>
       <div>

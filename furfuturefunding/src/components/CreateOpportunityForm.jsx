@@ -16,6 +16,10 @@ function CreateOpportunityForm() {
   const { eligibilities } = useEligibilities();
   const { types } = useTypes();
 
+  if (!auth.token) {
+    return navigate("/login");
+  }
+
   const [opportunity, setOpportunity] = useState({
     title: "",
     description: "",
@@ -55,7 +59,6 @@ function CreateOpportunityForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting form with:", opportunity);
 
     if (
       opportunity.title &&
@@ -91,7 +94,7 @@ function CreateOpportunityForm() {
         setAuth({
           token: response.token,
         });
-        // navigate("/");
+        navigate("/");
         console.log("Form Data Submitted Final:", opportunity);
       });
     }

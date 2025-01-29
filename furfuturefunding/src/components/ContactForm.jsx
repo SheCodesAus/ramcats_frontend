@@ -1,6 +1,6 @@
 import React from "react";
 import "./ContactForm.css";
-import Swal from "sweetalert2";
+
 
 function ContactForm() {
   const [result, setResult] = React.useState("");
@@ -20,15 +20,7 @@ function ContactForm() {
     const data = await response.json();
 
     if (data.success) {
-      Swal.fire({
-        title: "Hooray!",
-        text: "Your message was sent successfully!",
-        icon: "success",
-      });
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+      return "Hooray! You submitted the form!";
     }
   };
 

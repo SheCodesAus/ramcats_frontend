@@ -1,6 +1,6 @@
 import React from "react";
 import "./ContactForm.css";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 function ContactForm() {
   const [result, setResult] = React.useState("");

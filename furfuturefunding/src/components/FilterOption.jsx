@@ -1,4 +1,3 @@
-// FilterOption.jsx
 import React, { useState } from 'react';
 import './FilterOption.css';
 
@@ -26,17 +25,29 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
   ];
 
   const typeOptions = [
-    { value: 'ONLINE', label: 'Online' },
-    { value: 'FACE_TO_FACE', label: 'Face to Face' }
+    { value: '1', label: 'Scholarship' },
+    { value: '2', label: 'Training course' },
+    { value: '3', label: 'Conference ticket' },
+    { value: '4', label: 'Event ticket' },
+    { value: '5', label: 'Mentor program' },
+    { value: '6', label: 'Other' }
+  ];
+
+  const attendanceModeOptions = [
+    { value: 'Online', label: 'Online' },
+    { value: 'Face to Face', label: 'Face to Face' },
+
   ];
 
   const disciplineOptions = [
-    { value: 'humanities', label: 'Humanities' },
-    { value: 'computer-science', label: 'Computer Science' },
-    { value: 'chemistry', label: 'Chemistry' },
-    { value: 'biology', label: 'Biology' },
-    { value: 'engineering', label: 'Engineering' },
-    { value: 'mathematics', label: 'Mathematics' }
+    { value: 'Humanities', label: 'Humanities' },
+    { value: 'Computer Science', label: 'Computer Science' },
+    { value: 'Chemistry', label: 'Chemistry' },
+    { value: 'Biology', label: 'Biology' },
+    { value: 'Engineering', label: 'Engineering' },
+    { value: 'Mathematics', label: 'Mathematics' },
+    { value: 'Physics', label: 'Physics' },
+    { value: 'Medicine', label: 'Medicine' }
   ];
 
   const handleSelectChange = (e, filterType) => {
@@ -52,7 +63,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
   };
 
   const handleReset = () => {
-    ['state', 'eligibility', 'type', 'discipline'].forEach(filterType => {
+    ['state', 'eligibility', 'type', 'attendance_mode', 'discipline'].forEach(filterType => {
       onFilterChange({
         type: filterType,
         value: ''
@@ -63,7 +74,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
 
   return (
     <div className={`filter-wrapper ${isOpen ? 'open' : ''}`}>
-      <button 
+      <button
         className="toggle-filters-btn"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -76,22 +87,22 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
       <div className="filter-container">
         <div className="filter-header">
           <h3>Filters</h3>
-          <button 
+          <button
             onClick={handleSortClick}
             className={`sort-button ${currentSort ? 'active' : ''}`}
             title={currentSort === 'newest' ? 'Showing newest first' : currentSort === 'oldest' ? 'Showing oldest first' : 'Sort by date'}
           >
             <span className="material-icons">sort</span>
             <span className="sort-label">
-              {currentSort === 'newest' ? 'Newest first' : 
-               currentSort === 'oldest' ? 'Oldest first' : 
-               'Sort by date'}
+              {currentSort === 'newest' ? 'Newest first' :
+                currentSort === 'oldest' ? 'Oldest first' :
+                  'Sort by date'}
             </span>
           </button>
         </div>
 
         <div className="dropdown-filters">
-          <select 
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'state')}
             value={currentFilters.state || ''}
@@ -104,7 +115,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
             ))}
           </select>
 
-          <select 
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'eligibility')}
             value={currentFilters.eligibility || ''}
@@ -117,7 +128,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
             ))}
           </select>
 
-          <select 
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'type')}
             value={currentFilters.type || ''}
@@ -130,7 +141,20 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
             ))}
           </select>
 
-          <select 
+          <select
+            className="filter-select"
+            onChange={(e) => handleSelectChange(e, 'attendance_mode')}
+            value={currentFilters.attendance_mode || ''}
+          >
+            <option value="">Select Attendance Mode</option>
+            {attendanceModeOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'discipline')}
             value={currentFilters.discipline || ''}

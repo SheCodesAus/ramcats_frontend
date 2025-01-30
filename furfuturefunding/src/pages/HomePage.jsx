@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
 import FilterOption from '../components/FilterOption';
-
+// import SortOption from '../components/SortOption';
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
   const [filters, setFilters] = useState({
     state: '',
-    eligibility: '',
-    type: '',
-    attendance_mode: '',
-    discipline: '',
+    eligibility: [],
+    attendance_mode: [],
+    discipline: []
   });
-  const [sortOrder, setSortOrder] = useState('');
+  // const [sortOrder, setSortOrder] = useState('');
 
   const handleFilterChange = ({ type, value }) => {
     setFilters(prev => ({
@@ -23,88 +22,58 @@ const Homepage = () => {
     }));
   };
 
-  const handleSortChange = (value) => {
-    setSortOrder(value);
-  };
+  // const handleSortChange = (order) => {
+  //   setSortOrder(order);
+  // };
 
-  // Filter and sort opportunities
-  const processedOpportunities = React.useMemo(() => {
-    let result = opportunities?.filter(opportunity => {
-      if (!opportunity) return false;
+  // Filter opportunities based on selected criteria
+  const filteredOpportunities = opportunities?.filter(opportunity => {
+    return (
+      (filters.state === '' || 
+       (opportunity.location && opportunity.location.includes(filters.state))) &&
+      (filters.eligibility.length === 0 || 
+       (opportunity.eligibility && 
+        opportunity.eligibility.some(e => filters.eligibility.includes(e.description)))) &&
+      (filters.attendance_mode.length === 0 || 
+       (opportunity.attendance_mode && 
+        filters.attendance_mode.includes(opportunity.attendance_mode.toLowerCase()))) &&
+      (filters.discipline.length === 0 || 
+       (opportunity.discipline && 
+        opportunity.discipline.some(d => filters.discipline.includes(d.description))))
+    );
+  });
 
-      // Check state filter
-      const stateMatch = !filters.state || 
-        opportunity.location?.toLowerCase() === filters.state.toLowerCase();
-
-      // Check eligibility filter
-      const eligibilityMatch = !filters.eligibility || 
-        (Array.isArray(opportunity.eligibility) && 
-         opportunity.eligibility.some(e => 
-           e.description?.toLowerCase() === filters.eligibility.toLowerCase()
-         ));
-
-      // Check type filter
-      const typeMatch = !filters.type || 
-        opportunity.type?.toString() === filters.type;
-
-      // Check attendance mode filter
-      const attendanceModeMatch = !filters.attendance_mode || 
-        opportunity.attendance_mode?.toLowerCase() === filters.attendance_mode.toLowerCase();
-
-      // Check discipline filter
-      const disciplineMatch = !filters.discipline || 
-        (Array.isArray(opportunity.discipline) && 
-         opportunity.discipline.some(d => 
-           d.description?.toLowerCase() === filters.discipline.toLowerCase()
-         ));
-
-      return stateMatch && eligibilityMatch && typeMatch && attendanceModeMatch && disciplineMatch;
-    }) || [];
-
-    // Sort by close_date if sort order is specified
-    if (sortOrder) {
-      result.sort((a, b) => {
-        const dateA = new Date(a.close_date);
-        const dateB = new Date(b.close_date);
-        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
-      });
-    }
-
-    return result;
-  }, [opportunities, filters, sortOrder]);
+  // Sort opportunities based on selected order
+  // const sortedOpportunities = [...filteredOpportunities].sort((a, b) => {
+  //   if (sortOrder === 'newest') {
+  //     return new Date(b.createdAt) - new Date(a.createdAt);
+  //   } else if (sortOrder === 'oldest') {
+  //     return new Date(a.createdAt) - new Date(b.createdAt);
+  //   }
+  //   return 0;
+  // });
 
   return (
     <div className="homepage">
       <HeroSection />
-      
       <div className="controls">
-        <FilterOption 
-          onFilterChange={handleFilterChange}
-          onSortChange={handleSortChange}
-          currentFilters={filters}
-          currentSort={sortOrder}
-        />
+        <FilterOption onFilterChange={handleFilterChange} />
+        {/* <SortOption onSortChange={handleSortChange} /> */}
       </div>
-
       <div className="opportunities-container">
         <h2 className="opportunities-title">
           Scholarship and Conference Opportunities
         </h2>
-
         <div className="opportunities-grid">
           {isLoading ? (
-            <div className="loading-state">
-              <p>Loading opportunities...</p>
-            </div>
+            <div>Loading...</div>
           ) : error ? (
-            <div className="error-state">
-              <p>Error: {error.message}</p>
-            </div>
-          ) : processedOpportunities.length > 0 ? (
-            processedOpportunities.map((opportunitiesData, key) => (
+            <div>Error: {error.message}</div>
+          ) : filteredOpportunities?.length > 0 ? (
+            filteredOpportunities.map((opportunity, key) => (
               <OpportunityCard
-                key={opportunitiesData.id || key}
-                opportunitiesData={opportunitiesData}
+                key={opportunity.id || key}
+                opportunity={opportunity}
               />
             ))
           ) : (

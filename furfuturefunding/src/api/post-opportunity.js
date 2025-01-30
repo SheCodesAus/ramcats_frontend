@@ -13,7 +13,8 @@ async function postOpportunity(
   discipline,
   eligibility
 ) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities`;
+  const url = `${import.meta.env.VITE_API_URL}/opportunities/`;
+  console.log("URL being used:", url);
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -32,11 +33,15 @@ async function postOpportunity(
       is_archive: is_archive,
       location: location,
       attendance_mode: attendance_mode,
-      type: Array.isArray(type) ? type : [type],
-      discipline: Array.isArray(discipline) ? discipline : [discipline],
-      eligibility: Array.isArray(eligibility) ? eligibility : [eligibility],
+      type: type,
+      discipline: discipline,
+      eligibility: eligibility,
     }),
   });
+
+  const responseText = await response.text(); // Read the response as text
+  console.log("Response Status:", response.status);
+  console.log("Response Body:", responseText);
 
   if (!response.ok) {
     const fallbackError = `Error trying to create an opportunity`;

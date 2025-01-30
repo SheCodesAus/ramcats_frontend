@@ -1,22 +1,21 @@
 import { useState } from "react";
-import DropDown from "./DropDown.jsx";
 import "./CreateOpportunityForm.css";
 import { useAuth } from "../hooks/use-auth";
 import { useParams } from "react-router-dom";
 import postOpportunity from "../api/post-opportunity.js";
 import { useNavigate } from "react-router-dom";
-import {
-  aus_states,
-  attendanceMode,
-  disciplineOptions,
-  typeOptions,
-  eligibilityOptions,
-} from "../data.js";
+import useDisciplines from "../hooks/use-disciplines";
+import useEligibilities from "../hooks/use-eligibilities";
+import useTypes from "../hooks/use-types.js";
 
 function CreateOpportunityForm() {
   const { id } = useParams();
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
+  const { disciplines } = useDisciplines();
+  const { eligibilities } = useEligibilities();
+  const { types } = useTypes();
+
   const [opportunity, setOpportunity] = useState({
     title: "",
     description: "",
@@ -25,7 +24,7 @@ function CreateOpportunityForm() {
     is_open: true,
     open_date: "",
     close_date: "",
-    is_archive: "",
+    is_archive: false,
     location: "",
     attendance_mode: "",
     type: [],
@@ -34,37 +33,45 @@ function CreateOpportunityForm() {
   });
 
   const handleChange = (event) => {
+    console.log("Handle change working:", event.target.value);
     const { id, value } = event.target;
-    console.log("Handle change working", opportunity),
-      setOpportunity((prevOpportunity) => ({
-        ...prevOpportunity,
 
-        [id]: value,
-      }));
+    setOpportunity((prevOpportunity) => ({
+      ...prevOpportunity,
+      [id]: value,
+    }));
   };
 
-  const handleSubmit = (event) => {
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+
+    setOpportunity((prevOpportunity) => ({
+      ...prevOpportunity,
+      [name]: ["type", "discipline", "eligibility"].includes(name)
+        ? [parseInt(value)] // Store as an array
+        : value, // Store as a string for location & attendance_mode
+    }));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting opportunity:", opportunity);
+
     if (
-      (opportunity.title &&
-        opportunity.description &&
-        opportunity.opportunity_url &&
-        opportunity.amount &&
-        opportunity.is_open &&
-        opportunity.open_date &&
-        opportunity.close_date &&
-        opportunity.is_archive &&
-        opportunity.location &&
-        opportunity.attendance_mode &&
-        opportunity.type &&
-        opportunity.discipline &&
-        opportunity.eligibility,
-      console.log("Form Data Submitted:", opportunity))
+      opportunity.title &&
+      opportunity.description &&
+      opportunity.opportunity_url &&
+      opportunity.amount &&
+      opportunity.is_open &&
+      opportunity.open_date &&
+      opportunity.close_date &&
+      opportunity.location &&
+      opportunity.attendance_mode &&
+      opportunity.type &&
+      opportunity.discipline &&
+      opportunity.eligibility
     ) {
       postOpportunity(
         opportunity.title,
-
         opportunity.description,
         opportunity.opportunity_url,
         opportunity.amount,
@@ -76,11 +83,15 @@ function CreateOpportunityForm() {
         opportunity.attendance_mode,
         opportunity.type,
         opportunity.discipline,
-        opportunity.eligibility,
-        console.log("Form Data Submitted:", opportunity)
-      ).then(() => {
+        opportunity.eligibility
+      ).then((response) => {
+        console.log("Response JSON:", response);
+        window.localStorage.setItem("token", response.token);
+        setAuth({
+          token: response.token,
+        });
         navigate("/");
-        console.log("Form Data Submitted:", opportunity);
+        console.log("Form Data Submitted Final:", opportunity);
       });
     }
   };
@@ -134,17 +145,19 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="location">Location: </label>
-        <DropDown
-          options={aus_states}
-          value={opportunity.location}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              location: event.target.value,
-            }))
-          }
-          placeholder="Select a state"
-        />
+        <select name="location" onChange={onChangeHandler} defaultValue="">
+          <option value="" disabled>
+            --select a state--
+          </option>
+          <option value="ACT">ACT</option>
+          <option value="NSW">NSW</option>
+          <option value="NT">NT</option>
+          <option value="QLD">QLD</option>
+          <option value="SA">SA</option>
+          <option value="TAS">TAS</option>
+          <option value="VIC">VIC</option>
+          <option value="WA">WA</option>
+        </select>
       </div>
       <div>
         <label htmlFor="amount">Scholarship value: </label>
@@ -157,63 +170,62 @@ function CreateOpportunityForm() {
       </div>
       <div>
         <label htmlFor="attendance_mode">Attendance mode: </label>
-        <DropDown
-          options={attendanceMode}
-          value={opportunity.attendance_mode}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              attendance_mode: event.target.value,
-            }))
-          }
-          placeholder="Select an attendance mode"
-        />
+        <select
+          name="attendance_mode"
+          onChange={onChangeHandler}
+          defaultValue=""
+        >
+          <option value="" disabled>
+            --select an attendance mode--
+          </option>
+          <option value="FACE_TO_FACE">Face to Face</option>
+          <option value="ONLINE">Online</option>
+        </select>
       </div>
       <div>
         <label htmlFor="type">Type: </label>
-        <DropDown
-          options={typeOptions}
-          value={opportunity.type}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              type: event.target.value ? [parseInt(event.target.value)] : [],
-            }))
-          }
-          placeholder="Select a type"
-        />
+        <select name="type" onChange={onChangeHandler} defaultValue="0">
+          <option value="0" disabled>
+            --select a type--
+          </option>
+          {types.map((typesData, key) => {
+            return (
+              <option value={typesData.id} key={key}>
+                {typesData.description}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div>
         <label htmlFor="discipline">Discipline: </label>
-        <DropDown
-          options={disciplineOptions}
-          value={opportunity.discipline}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              discipline: event.target.value
-                ? [parseInt(event.target.value)]
-                : [],
-            }))
-          }
-          placeholder="Select a discipline"
-        />
+        <select name="discipline" onChange={onChangeHandler} defaultValue="0">
+          <option value="0" disabled>
+            --select a discipline--
+          </option>
+          {disciplines.map((disciplinesData, key) => {
+            return (
+              <option value={disciplinesData.id} key={key}>
+                {disciplinesData.description}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div>
         <label htmlFor="eligibility">Eligibility: </label>
-        <DropDown
-          options={eligibilityOptions}
-          value={opportunity.eligibility}
-          onChange={(event) =>
-            setOpportunity((prev) => ({
-              ...prev,
-              eligibility: event.target.value
-                ? [parseInt(event.target.value)]
-                : [],
-            }))
-          }
-          placeholder="Select eligibility"
-        />
+        <select name="eligibility" onChange={onChangeHandler} defaultValue="0">
+          <option value="0" disabled>
+            --select an eligibility--
+          </option>
+          {eligibilities.map((eligibilitiesData, key) => {
+            return (
+              <option value={eligibilitiesData.id} key={key}>
+                {eligibilitiesData.description}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <button type="submit">Create </button>
     </form>

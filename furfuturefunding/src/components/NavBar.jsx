@@ -1,11 +1,17 @@
 // NavBar.jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import './NavBar.css';
-
+import "./NavBar.css";
+import useAuth from "../hooks/use-auth";
 
 function NavBar() {
+  const { auth, setAuth } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const handleLogout = () => {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user_id");
+    setAuth({ token: null });
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -30,18 +36,36 @@ function NavBar() {
             </Link>
           </div>
 
-          <button className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
+          <button
+            className={`hamburger ${isOpen ? "active" : ""}`}
+            onClick={toggleMenu}
+          >
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
           </button>
 
-          <div className={`nav-links ${isOpen ? 'active' : ''}`}>
+          <div className={`nav-links ${isOpen ? "active" : ""}`}>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/Login">Login</Link></li>
-              <li><Link to="/About">About</Link></li>
-              <li><Link to="/Contact">Contact</Link></li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                {" "}
+                {auth.token ? (
+                  <Link to="/" onClick={handleLogout}>
+                    Log Out
+                  </Link>
+                ) : (
+                  <Link to="/login">Login</Link>
+                )}
+              </li>
+              <li>
+                <Link to="/About">About</Link>
+              </li>
+              <li>
+                <Link to="/Contact">Contact</Link>
+              </li>
             </ul>
           </div>
         </nav>

@@ -71,6 +71,11 @@ const OpportunityCard = (props) => {
                     {disciplineData.description}
                   </span>
                 ))}
+                {opportunitiesData.type.map((typeData) => (
+                  <span key={typeData.id} className="tag">
+                    {typeData.description}
+                  </span>
+                ))}
               </div>
 
               <button className="apply-button">Find out more</button>

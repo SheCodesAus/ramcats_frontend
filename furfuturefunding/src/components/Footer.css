@@ -1,0 +1,180 @@
+.custom-footer {
+    background-image: url('src/assets/ramcats 1.png');
+    padding: 15px 0; /* Reduced padding for a smaller footer */
+    height: 18em; /* Let the content define the height */
+    margin-top: 5rem;
+}
+
+.custom-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.custom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 5px; /* Reduced spacing */
+}
+
+.custom-col {
+    flex: 1;
+    min-width: 100px;
+    margin-right: 20px;
+}
+
+.custom-col h6 {
+    font-size: 1.5rem;
+    margin-bottom: 10px; /* Adjusted spacing */
+    margin-left: 85px;
+}
+
+/* About Section Styling */
+.about-sectionfooter {
+    width: 1000%; /* Adjust the width to be responsive */
+    height: 140px; /* Allow the height to adjust dynamically */
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 12px; 
+    background-color: #f5f5f5;
+    border: 2px solid black;
+    margin-left: 0px;
+    text-align: left;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+.about-section::before {
+    display: none; /* Removes the unnecessary background overlay */
+}
+
+/* Footer Links */
+.custom-footer-links {
+    list-style: none;
+    padding: 0;
+    margin-right: -30rem; /* Adjust the alignment */
+}
+
+.custom-footer-links ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin-left: 90px;
+}
+
+.custom-footer-links li {
+    list-style: none; /* Remove any remaining bullets */
+    margin-bottom: 5px;
+}
+
+.custom-footer-links a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.custom-footer-links a:hover {
+    color: #116eac;
+}
+
+/* Divider Line */
+.custom-divider {
+    border-top: 1px solid #bbb;
+    opacity: 0.5;
+    margin: 10px 0;
+}
+
+/* Footer Bottom Section */
+.custom-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px; /* Reduce space below */
+}
+
+.custom-copyright {
+    font-size: 12px;
+}
+
+/* Social Media Icons */
+.custom-social-icons {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.custom-social-icons a {
+    background-color: #33353d;
+    color: #737373;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-social-icons a:hover {
+    background-color: #FF914D;
+    color: #fff;
+}
+/* Large Desktop Screens (1400px and above) */
+@media (min-width: 1400px) {
+    .custom-footer {
+        height: auto;
+    }
+
+    .about-sectionfooter {
+        max-width: 800px; /* Wider for large screens */
+    }
+}
+/* Responsive Styles */
+@media (max-width: 767px) {
+    .custom-footer {
+        text-align: center;
+    }
+
+    .custom-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .custom-footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .custom-footer-links {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .custom-social-icons {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .custom-footer {
+        padding: 10px 0;
+    }
+
+    .about-sectionfooter {
+        max-width: 90%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .custom-footer-links {
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .custom-social-icons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

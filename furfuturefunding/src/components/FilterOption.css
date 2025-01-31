@@ -2,7 +2,7 @@
   position: absolute;
   left: 0;
   top: 380px; /* Adjust based on your header height */
-  /* z-index: 1000; */
+  z-index: 1000;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
 }

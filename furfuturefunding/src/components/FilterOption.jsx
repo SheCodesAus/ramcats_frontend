@@ -25,44 +25,53 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
   ];
 
   const typeOptions = [
-    { value: '1', label: 'Scholarship' },
-    { value: '2', label: 'Training course' },
-    { value: '3', label: 'Conference ticket' },
-    { value: '4', label: 'Event ticket' },
-    { value: '5', label: 'Mentor program' },
-    { value: '6', label: 'Other' }
+    { value: 'Scholarship', label: 'Scholarship' },
+    { value: 'Training course', label: 'Training course' },
+    { value: 'Conference ticket', label: 'Conference ticket' },
+    { value: 'Event ticket', label: 'Event ticket' },
+    { value: 'Mentor program', label: 'Mentor program' },
+    { value: 'Other', label: 'Other' }
   ];
 
   const attendanceModeOptions = [
-    { value: 'Online', label: 'Online' },
-    { value: 'Face to Face', label: 'Face to Face' },
-
+    { value: 'ONLINE', label: 'Online' },
+    { value: 'FACE_TO_FACE', label: 'Face to Face' }
   ];
 
   const disciplineOptions = [
-    { value: 'Humanities', label: 'Humanities' },
-    { value: 'Computer Science', label: 'Computer Science' },
-    { value: 'Chemistry', label: 'Chemistry' },
-    { value: 'Biology', label: 'Biology' },
-    { value: 'Engineering', label: 'Engineering' },
-    { value: 'Mathematics', label: 'Mathematics' },
-    { value: 'Physics', label: 'Physics' },
-    { value: 'Medicine', label: 'Medicine' }
+    { value: 'humanities', label: 'Humanities' },
+    { value: 'computer-science', label: 'Computer Science' },
+    { value: 'chemistry', label: 'Chemistry' },
+    { value: 'biology', label: 'Biology' },
+    { value: 'engineering', label: 'Engineering' },
+    { value: 'mathematics', label: 'Mathematics' }
   ];
 
   const handleSelectChange = (e, filterType) => {
+    const selectedValue = e.target.value;
+    console.log(`Selected filter: ${filterType} = ${selectedValue}`); // Log selected filter and value
+
+    const backendFilterKey = {
+      type: 'type__description', // Map "type" to "type__description"
+      attendance_mode: 'attendance_mode', // Keep as-is
+    }[filterType] || filterType;
+
+    console.log(`Sending to backend: ${backendFilterKey} = ${selectedValue}`); // Log backend filter key and value
+
     onFilterChange({
-      type: filterType,
-      value: e.target.value
+      type: backendFilterKey,
+      value: selectedValue
     });
   };
 
   const handleSortClick = () => {
     const nextSort = !currentSort || currentSort === 'oldest' ? 'newest' : 'oldest';
+    console.log(`Sorting by: ${nextSort}`); // Log sorting option
     onSortChange(nextSort);
   };
 
   const handleReset = () => {
+    console.log('Resetting filters'); // Log reset action
     ['state', 'eligibility', 'type', 'attendance_mode', 'discipline'].forEach(filterType => {
       onFilterChange({
         type: filterType,
@@ -170,6 +179,15 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
           <button onClick={handleReset} className="reset-button">
             Reset Filters
           </button>
+        </div>
+
+        <div className="selected-filters">
+          <h4>Selected Filters:</h4>
+          <ul>
+            {Object.entries(currentFilters).map(([key, value]) => (
+              value && <li key={key}>{`${key}: ${value}`}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

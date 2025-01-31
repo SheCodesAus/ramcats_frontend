@@ -1,96 +1,92 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
 import FilterOption from '../components/FilterOption';
-// import SortOption from '../components/SortOption';
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
+
+  // State for filters and sorting
   const [filters, setFilters] = useState({
     state: '',
-    eligibility: [],
-    attendance_mode: [],
-    discipline: []
+    eligibility: '',
+    type: '',
+    discipline: '',
   });
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
 
+  const [sortOrder, setSortOrder] = useState('');
+
+  // Function to update filters
   const handleFilterChange = ({ type, value }) => {
     setFilters(prev => ({
       ...prev,
       [type]: value
     }));
-    setCurrentPage(1); // Reset to first page on filter change
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  // Function to update sorting order
+  const handleSortChange = (value) => {
+    setSortOrder(value);
   };
 
-  // Filter opportunities based on selected criteria
-  const filteredOpportunities = opportunities?.filter(opportunity => {
-    return (
-      (filters.state === '' || 
-       (opportunity.location && opportunity.location.includes(filters.state))) &&
-      (filters.eligibility.length === 0 || 
-       (opportunity.eligibility && 
-        opportunity.eligibility.some(e => filters.eligibility.includes(e.description)))) &&
-      (filters.attendance_mode.length === 0 || 
-       (opportunity.attendance_mode && 
-        filters.attendance_mode.includes(opportunity.attendance_mode.toLowerCase()))) &&
-      (filters.discipline.length === 0 || 
-       (opportunity.discipline && 
-        opportunity.discipline.some(d => filters.discipline.includes(d.description))))
-    );
-  });
+  // Filtering and sorting logic (memoized for performance)
+  const processedOpportunities = useMemo(() => {
+    let result = opportunities?.filter(opportunity => {
+      if (!opportunity) return false;
+      return (
+        (filters.state === '' || opportunity.location === filters.state) &&
+        (filters.eligibility === '' || 
+          (Array.isArray(opportunity.eligibility) && 
+           opportunity.eligibility.some(e => e.description === filters.eligibility))) &&
+        (filters.type === '' || opportunity.attendance_mode === filters.type) &&
+        (filters.discipline === '' || 
+          (Array.isArray(opportunity.discipline) && 
+           opportunity.discipline.some(d => d.description === filters.discipline)))
+      );
+    }) || [];
 
-  // Pagination logic
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredOpportunities?.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredOpportunities?.length / itemsPerPage);
+    // Sorting by closing date
+    if (sortOrder) {
+      result.sort((a, b) => {
+        const dateA = new Date(a.close_date);
+        const dateB = new Date(b.close_date);
+        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+      });
+    }
+
+    return result;
+  }, [opportunities, filters, sortOrder]);
 
   return (
     <div className="homepage">
       <HeroSection />
       <div className="controls">
-        <FilterOption onFilterChange={handleFilterChange} />
-        {/* <SortOption onSortChange={handleSortChange} /> */}
+        {/* Integrated filter + sorting inside FilterOption */}
+        <FilterOption 
+          onFilterChange={handleFilterChange} 
+          onSortChange={handleSortChange} 
+          currentSort={sortOrder}
+        />
       </div>
       <div className="opportunities-container">
-        <h2 className="opportunities-title">
-          Scholarship and Conference Opportunities
-        </h2>
-        <div className="opportunities-grid">
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : error ? (
-            <div>Error: {error.message}</div>
-          ) : currentItems?.length > 0 ? (
-            currentItems.map((opportunity, key) => (
-              <OpportunityCard
-                key={opportunity.id || key}
-                opportunity={opportunity}
-              />
-            ))
-          ) : (
-            <div className="no-results">
-              <p>No opportunities match your selected filters.</p>
-            </div>
-          )}
-        </div>
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? 'active' : ''}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+        <h2 className="opportunities-title">Scholarship and Conference Opportunities</h2>
+
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Error: {error.message}</div>
+        ) : processedOpportunities.length > 0 ? (
+          <div className="opportunities-grid">
+            {processedOpportunities.map((opportunity, key) => (
+              <OpportunityCard key={opportunity.id || key} opportunity={opportunity} />
+            ))}
+          </div>
+        ) : (
+          <div className="no-results">
+            <p>No opportunities match your selected filters.</p>
+          </div>
+        )}
       </div>
     </div>
   );

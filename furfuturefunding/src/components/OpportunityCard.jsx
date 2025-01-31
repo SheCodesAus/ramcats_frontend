@@ -34,6 +34,13 @@ const OpportunityCard = ({ opportunity }) => {
           </div>
 
           <div className="info-row">
+            <span className="material-icons">category</span>
+            <span>
+              {opportunity.type?.map(typeData => typeData.description).join(', ')}
+            </span>
+          </div>
+
+          <div className="info-row">
             <span className="material-icons">school</span>
             <span>{opportunity.attendance_mode}</span>
           </div>

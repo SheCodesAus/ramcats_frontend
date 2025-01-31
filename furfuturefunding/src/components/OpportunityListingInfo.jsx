@@ -1,4 +1,5 @@
 import React from 'react';
+import "./OpportunityListingInfo.css";
 
 function OpportunityListingInfo({ opportunity }) {
   if (!opportunity) return null;
@@ -10,22 +11,23 @@ function OpportunityListingInfo({ opportunity }) {
   };
 
   return (
-    <div>
-      <h2>{opportunity.title || ''}</h2>
-      <h3>About the opportunity:</h3>
-      <p>{opportunity.description || ''}</p>
+    <div className="opportunity-container">
+      <h2 className="opportunity-title">{opportunity.title || ''}</h2>
       
-      <h4>Applications open:</h4>
-      <p>{opportunity.open_date ? formatDate(opportunity.open_date) : ''}</p>
+      <h3 className="opportunity-subtitle">About the opportunity:</h3>
+      <p className="opportunity-description">{opportunity.description || ''}</p>
       
-      <h4>Applications close:</h4>
-      <p>{opportunity.close_date ? formatDate(opportunity.close_date) : ''}</p>
+      <h4 className="opportunity-heading">Applications open:</h4>
+      <p className="opportunity-date">{opportunity.open_date ? formatDate(opportunity.open_date) : ''}</p>
       
-      <h4>Important information:</h4>
-      <p>{`Scholarship type: ${opportunity.type || ''}`}</p>
-      <p>{`Field of study: ${opportunity.discipline || ''}`}</p>
-      <p>{`Study mode: ${opportunity.attendance_mode || ''}`}</p>
-      <p>{`Location: ${opportunity.location || ''}`}</p>
+      <h4 className="opportunity-heading">Applications close:</h4>
+      <p className="opportunity-date">{opportunity.close_date ? formatDate(opportunity.close_date) : ''}</p>
+      
+      <h4 className="opportunity-heading">Important information:</h4>
+      <p className="opportunity-info">{`Scholarship type: ${opportunity.type || ''}`}</p>
+      <p className="opportunity-info">{`Field of study: ${opportunity.discipline || ''}`}</p>
+      <p className="opportunity-info">{`Study mode: ${opportunity.attendance_mode || ''}`}</p>
+      <p className="opportunity-info">{`Location: ${opportunity.location || ''}`}</p>
     </div>
   );
 }

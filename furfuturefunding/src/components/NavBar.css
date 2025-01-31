@@ -4,6 +4,20 @@ body {
   overflow-x: hidden;
 }
 
+.logo-nav {
+  position: absolute;
+  top: 50px; 
+  left: 60px;
+  height: auto;
+  width: 150px; 
+  max-width: 200px; 
+  z-index: 1001; 
+}
+.mobile-logo {
+  display: none;
+}
+
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -91,10 +105,7 @@ nav {
   .desktop-logo {
     display: none;
   }
-  nav {
-    height: 240px; /* Increase height */
-    padding: 1rem; /* Ensure proper padding */
-  }
+  
   .mobile-logo {
     display: block;
     height: 50px;

@@ -40,6 +40,8 @@ const AboutUs = () => {
    <div className="about-section">
      <h1>Meet Our Team</h1>
      <p>Hack lick human with sandpaper tongue or lick plastic bags, i bet my nine lives on you-oooo-ooo-hooo for have my breakfast spaghetti yarn so cough furball and leave hair on owner's clothes. Scratch leg; meow for can opener to feed me allways wanting food yet while happily ignoring when being called </p>
+     <div className="swirl-background"></div>
+
      <div className="team-grid">
        {team.map((member, i) => (
          <div key={i} className="team-member">

@@ -45,7 +45,28 @@ export default function EditOpportunityForm() {
     }
   }, [opportunity]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <img
+          src="https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif"
+          alt="Loading..."
+          style={{
+            border: "3px solid navy",
+            borderRadius: "10px",
+            width: "300px",
+          }}
+        />
+      </div>
+    );
+  }
   if (error) {
     return (
       <p>

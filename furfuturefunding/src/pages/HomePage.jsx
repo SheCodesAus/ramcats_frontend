@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
-import FilterOption from '../components/FilterOption';
+import FilterOption from "../components/FilterOption";
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
+
   const [filters, setFilters] = useState({
-    state: '',
-    eligibility: '',
-    type: '',
-    discipline: '',
+    state: "",
+    eligibility: "",
+    type: "",
+    discipline: "",
   });
-  const [sortOrder, setSortOrder] = useState('');
+
+  const [sortOrder, setSortOrder] = useState("");
 
   const handleFilterChange = ({ type, value }) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
-      [type]: value
+      [type]: value,
     }));
   };
 
@@ -27,38 +29,66 @@ const Homepage = () => {
 
   // Filter and sort opportunities
   const processedOpportunities = React.useMemo(() => {
-    let result = opportunities?.filter(opportunity => {
-      if (!opportunity) return false;
+    let result =
+      opportunities?.filter((opportunity) => {
+        if (!opportunity) return false;
 
-      return (
-        (filters.state === '' || opportunity.location === filters.state) &&
-        (filters.eligibility === '' || 
-          (Array.isArray(opportunity.eligibility) && 
-           opportunity.eligibility.some(e => e.description === filters.eligibility))) &&
-        (filters.type === '' || opportunity.attendance_mode === filters.type) &&
-        (filters.discipline === '' || 
-          (Array.isArray(opportunity.discipline) && 
-           opportunity.discipline.some(d => d.description === filters.discipline)))
-      );
-    }) || [];
+        return (
+          (filters.state === "" || opportunity.location === filters.state) &&
+          (filters.eligibility === "" ||
+            (Array.isArray(opportunity.eligibility) &&
+              opportunity.eligibility.some(
+                (e) => e.description === filters.eligibility
+              ))) &&
+          (filters.type === "" ||
+            opportunity.attendance_mode === filters.type) &&
+          (filters.discipline === "" ||
+            (Array.isArray(opportunity.discipline) &&
+              opportunity.discipline.some(
+                (d) => d.description === filters.discipline
+              )))
+        );
+      }) || [];
 
     // Sort by close_date if sort order is specified
     if (sortOrder) {
       result.sort((a, b) => {
         const dateA = new Date(a.close_date);
         const dateB = new Date(b.close_date);
-        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+        return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
       });
     }
 
     return result;
   }, [opportunities, filters, sortOrder]);
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <img
+          src="https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif"
+          alt="Loading..."
+          style={{
+            border: "3px solid navy",
+            borderRadius: "10px",
+            width: "300px",
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="homepage">
       <HeroSection />
       <div className="controls">
-        <FilterOption 
+        <FilterOption
           onFilterChange={handleFilterChange}
           onSortChange={handleSortChange}
           currentFilters={filters}

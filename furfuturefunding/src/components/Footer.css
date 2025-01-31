@@ -33,7 +33,7 @@
 
 /* About Section Styling */
 .about-sectionfooter {
-    width: 1000%; /* Adjust the width to be responsive */
+    width: 100%; /* Adjust the width to be responsive */
     height: 140px; /* Allow the height to adjust dynamically */
     font-size: 1rem;
     line-height: 1.5;
@@ -131,50 +131,72 @@
         max-width: 800px; /* Wider for large screens */
     }
 }
+
 /* Responsive Styles */
 @media (max-width: 767px) {
     .custom-footer {
-        text-align: center;
+        text-align: left; /* Aligns text to the left */
     }
 
-    .custom-row {
-        flex-direction: column;
-        align-items: center;
+    .about-sectionfooter {
+        display: none; /* Hides on mobile */
     }
 
     .custom-footer-bottom {
-        flex-direction: column;
-        text-align: center;
+        display: flex;
+        flex-direction: row; /* Ensure elements are side by side */
+        justify-content: space-between; /* Space between Quick Links & Social Icons */
+        align-items: center;
+        padding-top: 10px;
     }
 
     .custom-footer-links {
-        margin-left: 0;
-        text-align: center;
+        text-align: left; /* Align Quick Links to the left */
+        margin-left:15px; /* Push it to the left */
+    }
+
+    .custom-footer-links ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .custom-footer-links li {
+        list-style: none; /* Remove bullet points */
+        margin-bottom: 5px;
     }
 
     .custom-social-icons {
-        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end; /* Move icons to the right */
+        margin-right: 10px; /* Align them properly */
     }
 }
 
+/* Mobile View - Align Quick Links Left & Social Icons Right */
 @media (max-width: 375px) {
     .custom-footer {
         padding: 10px 0;
     }
 
     .about-sectionfooter {
-        max-width: 90%;
-        padding: 10px;
-        font-size: 0.9rem;
+        display: none;
+    }
+
+    .custom-footer-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Pushes Quick Links left, Social Icons right */
+        align-items: center;
     }
 
     .custom-footer-links {
-        text-align: center;
+        text-align: left;
         font-size: 0.9rem;
+        margin-left: 90px; /* Ensures left alignment */
     }
 
     .custom-social-icons {
-        justify-content: center;
-        margin-top: 10px;
+        justify-content: flex-end;
+        margin-right: 10px; /* Ensures right alignment */
     }
 }

@@ -3,7 +3,7 @@ import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
 import FilterOption from '../components/FilterOption';
-import Footer from '../components/Footer'; // Import the Footer component
+import Footer from '../components/Footer'; 
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
@@ -115,7 +115,7 @@ const Homepage = () => {
           ))}
         </div>
       </div>
-      <Footer /> {/* Add the Footer component here */}
+      <Footer /> 
     </div>
   );
 };

@@ -7,12 +7,18 @@ const Footer = () => {
     <footer className="custom-footer">
       <div className="custom-container">
         <div className="custom-row">
+          
+          {/* This section will be hidden on mobile */}
           <div className="custom-col about-sectionfooter">
             <p className="custom-text">
-            FurFuture Funding is committed to helping aspiring professionals secure funding for their career growth. We provide valuable insights, expert resources, and continuous support to connect individuals with the best scholarships, grants, and sponsorships available. Our mission is to empower talented individuals by bridging financial gaps and ensuring access to opportunities that foster learning, career advancement, and long-term success.
+              FurFuture Funding is committed to helping aspiring professionals secure funding for their career growth. 
+              We provide valuable insights, expert resources, and continuous support to connect individuals with the best 
+              scholarships, grants, and sponsorships available. Our mission is to empower talented individuals by bridging 
+              financial gaps and ensuring access to opportunities that foster learning, career advancement, and long-term success.
             </p>
           </div>
 
+          {/* Quick Links */}
           <div className="custom-col custom-footer-links">
             <h6>Quick Links</h6>
             <ul>
@@ -24,8 +30,10 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+
         <hr className="custom-divider" />
 
+        {/* Footer Bottom Section */}
         <div className="custom-footer-bottom">
           <p className="custom-copyright">
             Copyright &copy; 2025 FurFuture Funding. All Rights Reserved.

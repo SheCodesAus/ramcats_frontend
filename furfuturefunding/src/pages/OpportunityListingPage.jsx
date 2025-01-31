@@ -1,4 +1,3 @@
-// import { oneOpportunity } from "../data";
 import { useParams } from "react-router-dom";
 import useOpportunity from "../hooks/use-opportunity";
 import { Link } from "react-router-dom";

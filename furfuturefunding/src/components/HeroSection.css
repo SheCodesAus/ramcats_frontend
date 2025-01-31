@@ -42,6 +42,7 @@
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    margin-top: 3rem;
   }
 
   .headline {
@@ -67,6 +68,7 @@
     line-height: 1.2;
     margin-top: 20px;
   }
+  
 }
 
 @media (max-width: 1200px) {

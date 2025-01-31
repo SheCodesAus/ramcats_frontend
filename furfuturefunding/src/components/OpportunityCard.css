@@ -11,8 +11,8 @@
   flex-wrap: wrap;
   gap: 24px;
   padding: 20px;
-  justify-content: flex-end;
-  margin-left: 7rem; 
+  justify-content: flex-end; /* Default to flex-end for desktop */
+  margin-left: 7rem; /* Default margin for desktop */
 }
 
 /* Base card styles */
@@ -207,8 +207,15 @@
     padding: 15px;
   }
 
-  .opportunity-card {
-    flex-basis: calc(50% - 24px);
+  .opportunities-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px;
+    justify-content: center;
+    margin-left: 0.5rem;
+    width: 100%;
+    align-items: center;
   }
 
   .header-section h2 {
@@ -227,26 +234,26 @@
     width: 100%;
     max-width: 375px;
     padding: 10px;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .opportunities-grid {
-    /* Inherit the base styles but override specific properties for mobile */
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    padding: 0;
-    margin-right: 17rem; /* This will now inherit from the base styles */
+    gap: 16px;
+    padding: 10px;
+    justify-content: center !important; /* Mobile: center */
+    margin-left: 5rem !important; /* Mobile: 2rem */
     width: 100%;
     align-items: center;
-    gap: 16px;
   }
 
   .opportunity-card {
-    width: calc(100% - 20px);
-    max-width: 335px;
-    margin: 0 auto;
+    width: 335px;
+    margin: 0;
     min-width: unset;
+    max-width: none;
+    padding: 1.2rem;
   }
 
   .card-content {

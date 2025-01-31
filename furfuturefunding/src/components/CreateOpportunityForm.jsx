@@ -84,9 +84,10 @@ function CreateOpportunityForm() {
         opportunity.discipline,
         opportunity.eligibility
       ).then((response) => {
-        setAuth({
-          token: response.token,
-        });
+        setAuth((prevAuth) => ({
+          ...prevAuth,
+          token: response.token || prevAuth.token,
+        }));
         navigate("/");
       });
     }

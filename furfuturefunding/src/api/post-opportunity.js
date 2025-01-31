@@ -38,6 +38,7 @@ async function postOpportunity(
     }),
   });
   console.log("Response Status:", response.status);
+  console.log(response);
 
   if (!response.ok) {
     const fallbackError = `Error trying to create an opportunity`;

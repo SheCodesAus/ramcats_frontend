@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function OpportunityListingPage() {
   const { id } = useParams();
   const opportunityId = id;
+  const navigate = useNavigate();
   const { opportunity, isLoading, error } = useOpportunity(opportunityId);
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const [loggedinUserId, setLoggedinUserId] = useState(null);
@@ -44,7 +46,9 @@ function OpportunityListingPage() {
       </div>
     );
   }
-  if (error) return <p>Error: {error.message || "An error occurred."}</p>;
+  if (error) {
+    return navigate("*");
+  }
 
   const handleArchive = async () => {
     const updatedArchive = !archive;

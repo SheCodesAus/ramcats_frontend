@@ -13,18 +13,20 @@ const Homepage = () => {
     attendance_mode: [],
     discipline: []
   });
-  // const [sortOrder, setSortOrder] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   const handleFilterChange = ({ type, value }) => {
     setFilters(prev => ({
       ...prev,
       [type]: value
     }));
+    setCurrentPage(1); // Reset to first page on filter change
   };
 
-  // const handleSortChange = (order) => {
-  //   setSortOrder(order);
-  // };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   // Filter opportunities based on selected criteria
   const filteredOpportunities = opportunities?.filter(opportunity => {
@@ -43,15 +45,11 @@ const Homepage = () => {
     );
   });
 
-  // Sort opportunities based on selected order
-  // const sortedOpportunities = [...filteredOpportunities].sort((a, b) => {
-  //   if (sortOrder === 'newest') {
-  //     return new Date(b.createdAt) - new Date(a.createdAt);
-  //   } else if (sortOrder === 'oldest') {
-  //     return new Date(a.createdAt) - new Date(b.createdAt);
-  //   }
-  //   return 0;
-  // });
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredOpportunities?.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredOpportunities?.length / itemsPerPage);
 
   return (
     <div className="homepage">
@@ -69,8 +67,8 @@ const Homepage = () => {
             <div>Loading...</div>
           ) : error ? (
             <div>Error: {error.message}</div>
-          ) : filteredOpportunities?.length > 0 ? (
-            filteredOpportunities.map((opportunity, key) => (
+          ) : currentItems?.length > 0 ? (
+            currentItems.map((opportunity, key) => (
               <OpportunityCard
                 key={opportunity.id || key}
                 opportunity={opportunity}
@@ -81,6 +79,17 @@ const Homepage = () => {
               <p>No opportunities match your selected filters.</p>
             </div>
           )}
+        </div>
+        <div className="pagination">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              className={currentPage === index + 1 ? 'active' : ''}
+            >
+              {index + 1}
+            </button>
+          ))}
         </div>
       </div>
     </div>

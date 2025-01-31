@@ -60,11 +60,17 @@ function NavBar() {
                   <Link to="/login">Login</Link>
                 )}
               </li>
+
               <li>
                 <Link to="/About">About</Link>
               </li>
               <li>
                 <Link to="/Contact">Contact</Link>
+              </li>
+              <li>
+                {auth.token ? (
+                  <Link to="/create-opportunity">Create An Opportunity</Link>
+                ) : null}
               </li>
             </ul>
           </div>

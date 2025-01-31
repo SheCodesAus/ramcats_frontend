@@ -38,10 +38,7 @@ async function postOpportunity(
       eligibility: eligibility,
     }),
   });
-
-  const responseText = await response.text(); // Read the response as text
   console.log("Response Status:", response.status);
-  console.log("Response Body:", responseText);
 
   if (!response.ok) {
     const fallbackError = `Error trying to create an opportunity`;

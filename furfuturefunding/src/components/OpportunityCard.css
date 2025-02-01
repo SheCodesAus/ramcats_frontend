@@ -1,19 +1,22 @@
 /* Grid Container styles */
 .opportunities-container {
-  width: 100rem;
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
-  overflow-x: hidden;
+  position: relative;
+  overflow: visible;
 }
 
 .opportunities-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 400px));
+  gap: 20px;
   padding: 20px;
-  justify-content: flex-end; /* Default to flex-end for desktop */
-  margin-left: 7rem; /* Default margin for desktop */
-}
+  width: 100%;
+  justify-content:flex-end;
+  margin-left:3rem;
+  }
 
 /* Base card styles */
 .opportunity-card {
@@ -357,4 +360,4 @@ color: #000000;
     font-size: 1.2rem;
     line-height: 1.3;
   }
-}
+};

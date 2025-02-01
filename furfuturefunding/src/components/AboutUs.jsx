@@ -12,7 +12,7 @@ const AboutUs = () => {
    {
      name: "Amber Nguyen",
      position: "Backend Boss",
-     bio: "20+ years experience in tech leadershipAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
+     bio: " An aspiring software developer who likes solving meaningful problems and enjoys climbing rocks.",
      image: Amber
    },
    {
@@ -30,13 +30,13 @@ const AboutUs = () => {
    {
      name: "Christin Estrella",
      position: "Frontend Guru",
-     bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
+     bio: "A passionate developer in progress, driven by curiosity, storytelling, and problem-solving who likes to eat breakfast for dinner.",
      image: Christin
    },
    {
      name: "Rishika Arora",
      position: "Backend Pro",
-     bio: "sdfsdxcgAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
+     bio: " Technical Support CSR at Aussie Broadband and loves to spend time with family and friends during free time.",
      image: Rishika
    }
  ];

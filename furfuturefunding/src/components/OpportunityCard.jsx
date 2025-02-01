@@ -17,7 +17,7 @@ const OpportunityCard = (props) => {
             <div className="header-section">
               <div className="image-container">
                 <img
-                  src={opportunitiesData.image}
+                  src={opportunitiesData.organisation.logo}
                   alt={opportunitiesData.title}
                   className="card-image"
                 />

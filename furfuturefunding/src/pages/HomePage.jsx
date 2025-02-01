@@ -3,17 +3,16 @@ import HeroSection from "../components/HeroSection";
 import OpportunityCard from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
 import FilterOption from '../components/FilterOption';
-import Footer from '../components/Footer'; 
+import Footer from '../components/Footer';
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
   const [filters, setFilters] = useState({
     state: '',
     eligibility: [],
-    attendance_mode: [],
     discipline: []
   });
-  const [sortOrder, setSortOrder] = useState(''); // 🔹 Add sorting state
+  const [sortOrder, setSortOrder] = useState('date');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -22,62 +21,62 @@ const Homepage = () => {
       ...prev,
       [type]: value
     }));
-    setCurrentPage(1); // Reset to first page on filter change
+    setCurrentPage(1);
   };
 
   const handleSortChange = (value) => {
-    setSortOrder(value); // 🔹 Update sorting state when changed
+    setSortOrder(value);
   };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // 🔹 Filter and sort opportunities
   const processedOpportunities = React.useMemo(() => {
     let result = opportunities?.filter(opportunity => {
-      return (
-        (filters.state === '' || 
-         (opportunity.location && opportunity.location.includes(filters.state))) &&
-        (filters.eligibility.length === 0 || 
-         (opportunity.eligibility && 
-          opportunity.eligibility.some(e => filters.eligibility.includes(e.description)))) &&
-        (filters.attendance_mode.length === 0 || 
-         (opportunity.attendance_mode && 
-          filters.attendance_mode.includes(opportunity.attendance_mode.toLowerCase()))) &&
-        (filters.discipline.length === 0 || 
-         (opportunity.discipline && 
-          opportunity.discipline.some(d => filters.discipline.includes(d.description))))
-      );
+      const stateMatch = !filters.state || 
+        (opportunity.location && opportunity.location.includes(filters.state));
+        
+      const eligibilityMatch = filters.eligibility.length === 0 || 
+        (opportunity.eligibility && opportunity.eligibility.some(e => 
+          filters.eligibility.includes(e.value)));
+          
+      const disciplineMatch = filters.discipline.length === 0 || 
+        (opportunity.discipline && opportunity.discipline.some(d => 
+          filters.discipline.includes(d.value)));
+
+      return stateMatch && eligibilityMatch && disciplineMatch;
     }) || [];
 
-    // 🔹 Apply sorting by closing date
     if (sortOrder) {
       result.sort((a, b) => {
-        const dateA = new Date(a.close_date);
-        const dateB = new Date(b.close_date);
-        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+        if (sortOrder === 'date') {
+          const dateA = new Date(a.close_date);
+          const dateB = new Date(b.close_date);
+          return dateA - dateB;
+        } else {
+          return a.title.localeCompare(b.title);
+        }
       });
     }
 
     return result;
   }, [opportunities, filters, sortOrder]);
 
-  // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = processedOpportunities?.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(processedOpportunities?.length / itemsPerPage);
+  const totalPages = Math.ceil((processedOpportunities?.length || 0) / itemsPerPage);
 
   return (
     <div className="homepage">
       <HeroSection />
       <div className="controls">
         <FilterOption 
-          onFilterChange={handleFilterChange} 
-          onSortChange={handleSortChange} // 🔹 Pass `onSortChange`
-          currentFilters={filters} 
-          currentSort={sortOrder} // 🔹 Pass `currentSort`
+          onFilterChange={handleFilterChange}
+          onSortChange={handleSortChange}
+          currentFilters={filters}
+          currentSort={sortOrder}
         />
       </div>
       <div className="opportunities-container">
@@ -90,9 +89,9 @@ const Homepage = () => {
           ) : error ? (
             <div>Error: {error.message}</div>
           ) : currentItems?.length > 0 ? (
-            currentItems.map((opportunity, key) => (
+            currentItems.map((opportunity) => (
               <OpportunityCard
-                key={opportunity.id || key}
+                key={opportunity.id}
                 opportunity={opportunity}
               />
             ))
@@ -102,20 +101,22 @@ const Homepage = () => {
             </div>
           )}
         </div>
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? 'active' : ''}
-              disabled={currentPage === index + 1}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+        {totalPages > 1 && (
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                className={currentPage === index + 1 ? 'active' : ''}
+                disabled={currentPage === index + 1}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
-      <Footer /> 
+      <Footer />
     </div>
   );
 };

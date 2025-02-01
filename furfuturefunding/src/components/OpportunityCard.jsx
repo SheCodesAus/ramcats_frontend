@@ -5,21 +5,26 @@ import { Link } from "react-router-dom";
 const OpportunityCard = (props) => {
   const { opportunitiesData } = props;
   const opportunityLink = `opportunities/${opportunitiesData.id}`;
-
+  console.log(opportunitiesData.eligibility);
   return (
-    <Link to={opportunityLink}>
-      <div className="card">
-        <div className="header-section">
-          <div className="image-container">
-            <img
-              src={opportunitiesData.image}
-              alt={opportunitiesData.title}
-              className="card-image"
-            />
-          </div>
-          <h2>{opportunitiesData.title}</h2>
-        </div>
-        <div className="card-content">
+    <div className="opportunities-container">
+      {/* <h2 className="opportunities-title">
+        Scholarship and Conference Opportunities
+      </h2> */}
+      <div className="opportunities-grid">
+        <Link to={opportunityLink}>
+          <div className="card">
+            <div className="header-section">
+              <div className="image-container">
+                <img
+                  src={opportunitiesData.image}
+                  alt={opportunitiesData.title}
+                  className="card-image"
+                />
+              </div>
+              <h2>{opportunitiesData.title}</h2>
+            </div>
+            <div className="card-content">
               <div className="info-row">
                 <span className="material-icons">business</span>
                 <span>{opportunitiesData.description}</span>
@@ -66,12 +71,19 @@ const OpportunityCard = (props) => {
                     {disciplineData.description}
                   </span>
                 ))}
+                {opportunitiesData.type.map((typeData) => (
+                  <span key={typeData.id} className="tag">
+                    {typeData.description}
+                  </span>
+                ))}
               </div>
 
               <button className="apply-button">Find out more</button>
             </div>
           </div>
-      </Link>
+        </Link>
+      </div>
+    </div>
   );
 };
 

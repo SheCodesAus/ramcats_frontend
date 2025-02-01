@@ -14,7 +14,7 @@ function OpportunityListingInfo({ opportunity }) {
     <div className="opportunity-container">
       <h2 className="opportunity-title">{opportunity.title || ''}</h2>
       
-      <h3 className="opportunity-subtitle">About the opportunity:</h3>
+      <h3 className="opportunity-subtitle">About the opportunity</h3>
       <p className="opportunity-description">{opportunity.description || ''}</p>
       
       <h4 className="opportunity-heading">Applications open:</h4>
@@ -28,7 +28,10 @@ function OpportunityListingInfo({ opportunity }) {
       <p className="opportunity-info">{`Field of study: ${opportunity.discipline || ''}`}</p>
       <p className="opportunity-info">{`Study mode: ${opportunity.attendance_mode || ''}`}</p>
       <p className="opportunity-info">{`Location: ${opportunity.location || ''}`}</p>
+    <div className="opportunity-actions">
+      <button className="apply-button">Apply Now</button>
     </div>
+  </div>
   );
 }
 

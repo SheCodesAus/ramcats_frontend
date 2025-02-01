@@ -19,6 +19,7 @@
   color: #000000;
   text-align: center;
   margin-bottom: 10px;
+  background-color: #FF914D;
 }
 
 /* Subtitle Styling */
@@ -47,6 +48,27 @@
   margin-top: 15px;
 }
 
+.opportunity-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.apply-button {
+  padding: 10px 20px;
+  background-color: #FF914D;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.apply-button:hover {
+  background-color: #8A887E;
+  color: #000000;
+}
 /* Date Styling */
 .opportunity-date {
   font-size: 1rem;

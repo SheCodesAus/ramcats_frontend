@@ -1,10 +1,18 @@
 import React from 'react';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import backgroundImage from '../img/ramcats_1.png'; // Adjust the path according to your project structure
 
 const Footer = () => {
+  const footerStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  };
+
   return (
-    <footer className="custom-footer">
+    <footer className="custom-footer" style={footerStyle}>
       <div className="custom-container">
         <div className="custom-row">
           

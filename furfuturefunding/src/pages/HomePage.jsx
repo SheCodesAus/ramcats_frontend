@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
-import OpportunityCard from "../components/OpportunityCard";
+import OpportunityCards from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
 import FilterOption from '../components/FilterOption';
+import Footer from "../components/Footer";
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
@@ -65,29 +66,23 @@ const Homepage = () => {
           currentSort={sortOrder}
         />
       </div>
-      <div className="opportunities-container">
+      <div className="opportunities-section">
         <h2 className="opportunities-title">
           Scholarship and Conference Opportunities
         </h2>
-        <div className="opportunities-grid">
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : error ? (
-            <div>Error: {error.message}</div>
-          ) : processedOpportunities.length > 0 ? (
-            processedOpportunities.map((opportunitiesData, key) => (
-              <OpportunityCard
-                key={opportunitiesData.id || key}
-                opportunitiesData={opportunitiesData}
-              />
-            ))
-          ) : (
-            <div className="no-results">
-              <p>No opportunities match your selected filters.</p>
-            </div>
-          )}
-        </div>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Error: {error.message}</div>
+        ) : processedOpportunities.length > 0 ? (
+          <OpportunityCards opportunities={processedOpportunities} />
+        ) : (
+          <div className="no-results">
+            <p>No opportunities match your selected filters.</p>
+          </div>
+        )}
       </div>
+      <Footer />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./NavBar.css";
 import useAuth from "../hooks/use-auth";
+import logo_typography from "../img/logo_typography.png";
 
 function NavBar() {
   const { auth, setAuth } = useAuth();

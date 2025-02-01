@@ -2,6 +2,7 @@ import React from "react";
 import "./ContactForm.css";
 import Swal from "sweetalert2";
 
+
 function ContactForm() {
   const [result, setResult] = React.useState("");
 
@@ -38,7 +39,7 @@ function ContactForm() {
           text: data.message || 'Something went wrong',
           icon: 'error',
           confirmButtonText: 'Try Again',
-          confirmButtonColor: '#130265',
+          confirmButtonCoeventor: '#130265',
         });
       }
     } catch (error) {

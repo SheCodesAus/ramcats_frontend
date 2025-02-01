@@ -1,6 +1,6 @@
 .contact-page {
     min-height: 100vh;
-    background-image: url('src/assets/ramcats 1.png');
+    
     position: relative;
     overflow: hidden;
     z-index: 0; /* Added to ensure proper stacking */

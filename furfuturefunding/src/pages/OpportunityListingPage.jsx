@@ -1,16 +1,13 @@
-import React from 'react';
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from "react-router-dom";
 import useOpportunity from "../hooks/use-opportunity";
-import { Link } from "react-router-dom";
-// import { useAuth } from "../hooks/use-auth";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
-import { useEffect, useState } from "react";
+import OpportunityListingInfo from "../components/OpportunityListingInfo";
 
 function OpportunityListingPage() {
   const { id } = useParams();
-  const opportunityId = id;
-  const { opportunity, isLoading, error } = useOpportunity(opportunityId);
+  const { opportunity, isLoading, error } = useOpportunity(id);
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const [loggedinUserId, setLoggedinUserId] = useState(null);
   const [archive, setArchive] = useState({ is_archive: false });
@@ -24,6 +21,7 @@ function OpportunityListingPage() {
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message || "An error occurred."}</p>;
+  if (!opportunity) return null;
 
   const handleArchive = async () => {
     const updatedArchive = !archive;
@@ -37,56 +35,30 @@ function OpportunityListingPage() {
     }
   };
 
-  const formatDate = (isoString) => {
-    const date = new Date(isoString);
-    const options = { day: "numeric", month: "long", year: "numeric" };
-    return date.toLocaleDateString(undefined, options);
-  };
-
   return (
     <div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <div>
-        <h2>{opportunity.title}</h2>
-        <h3>About the opportunity:</h3>
-        <p>{opportunity.description}</p>
-        <h4>Applications open:</h4>
-        <p>{formatDate(opportunity.open_date)}</p>
-        <h4>Applications close:</h4>
-        <p>{formatDate(opportunity.close_date)}</p>
-        <h4>Important information:</h4>
-        <p>{`Scholarship type: ${opportunity.type.map(
-          (typesData) => typesData.description
-        )}`}</p>
-        <p>{`Field of study: ${opportunity.discipline.map(
-          (disciplineData) => disciplineData.description
-        )}`}</p>
-        <p>{`Study mode: ${opportunity.attendance_mode}`}</p>
-        <p>{`Location: ${opportunity.location}`}</p>
-      </div>
-      <div>
-        <OrganisationCard organisation={opportunity.organisation} />
-      </div>
-      <button className="apply_button">Apply Now</button>
-      <div>
-        {userId === loggedinUserId ? (
-          <span>
-            {
-              <Link to={`/opportunities/edit/${opportunityId}`}>
-                Edit project detail
-              </Link>
-            }
-          </span>
-        ) : null}
-        {userId === loggedinUserId ? (
-          <button onClick={handleArchive}>
-            {archive ? "Unarchive" : "Archive"}
-          </button>
-        ) : null}
-      </div>
+      <OpportunityListingInfo opportunity={opportunity} />
+      <OrganisationCard organisation={opportunity.organisation} />
+      <OpportunityActions 
+        userId={userId} 
+        loggedinUserId={loggedinUserId} 
+        id={id} 
+        archive={archive} 
+        handleArchive={handleArchive} 
+      />
+    </div>
+  );
+}
+
+function OpportunityActions({ userId, loggedinUserId, id, archive, handleArchive }) {
+  return (
+    <div>
+      {userId === loggedinUserId && (
+        <div>
+          <Link to={`/opportunities/edit/${id}`}>Edit project detail</Link>
+          <button onClick={handleArchive}>{archive ? "Unarchive" : "Archive"}</button>
+        </div>
+      )}
     </div>
   );
 }

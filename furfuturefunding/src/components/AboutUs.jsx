@@ -8,31 +8,31 @@ const AboutUs = () => {
      name: "Amber Nguyen",
      position: "Backend Boss",
      bio: "20+ years experience in tech leadershipAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "/src/assets/Amber.jpg"
+     image: "/src/img/Amber.jpg"
    },
    {
      name: "Brooke Pierson", 
      position: "Git Gladiator",
      bio: "Software developer in training who enjoys long walks on the beach, beautiful sunsets, and yodelling to Celine Dion in her down time.",
-     image: "src/assets/Brooke.jpg"
+     image: "src/img/Brooke.jpg"
    },
    {
      name: "Catherine Blentweyne",
      position: "Project Manager Whiz",
      bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/assets/Catherine.jpg" 
+     image: "src/img/Catherine.jpg" 
    },
    {
      name: "Christin Estrella",
      position: "Frontend Guru",
      bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/assets/Christin.jpg"
+     image: "src/img/Christin.jpg"
    },
    {
      name: "Rishika Arora",
      position: "Backend Pro",
      bio: "sdfsdxcgAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/assets/Rishika.jpg"
+     image: "src/img/Rishika.jpg"
    }
  ];
 

@@ -45,7 +45,7 @@ function SignupForm() {
     <div className="signup-page">
       <div className="signup-container">
         <div className="catmascot">
-          <img src="/src/assets/ramcats-mascot.png" alt="Cat paw" className="paw" />
+          <img src="/src/img/ramcats-mascot.png" alt="Cat paw" className="paw" />
         </div>
         <h1>Sign up</h1>
         <form onSubmit={handleSubmit}>

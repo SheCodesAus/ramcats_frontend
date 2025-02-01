@@ -17,7 +17,7 @@ const OpportunityCard = (props) => {
             <div className="header-section">
               <div className="image-container">
                 <img
-                  src={opportunitiesData.image}
+                  src={opportunitiesData.organisation.logo}
                   alt={opportunitiesData.title}
                   className="card-image"
                 />
@@ -69,6 +69,11 @@ const OpportunityCard = (props) => {
                 {opportunitiesData.discipline.map((disciplineData) => (
                   <span key={disciplineData.id} className="tag">
                     {disciplineData.description}
+                  </span>
+                ))}
+                {opportunitiesData.type.map((typeData) => (
+                  <span key={typeData.id} className="tag">
+                    {typeData.description}
                   </span>
                 ))}
               </div>

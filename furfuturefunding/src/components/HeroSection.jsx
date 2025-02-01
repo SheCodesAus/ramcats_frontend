@@ -11,7 +11,7 @@ const HeroSection = () => {
       <div className="logo-section">
         <div className="logo-container">
           <img 
-            src="/src/assets/furfuturefunding_logo.png"
+            src="/src/img/furfuturefunding_logo.png"
             alt="FurFuture Funding Logo" 
           />
         </div>

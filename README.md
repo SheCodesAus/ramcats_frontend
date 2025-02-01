@@ -285,7 +285,7 @@ Public website
 ### Database Schema
 
 > [!NOTE]  
-> Insert an image of your database schema (could be a photo of a hand-drawn schema or a screenshot of a schema created using a tool such as ​​https://drawsql.app/). Example below.
+> 
 
 ![Our database schema](./img/schema.png)
 

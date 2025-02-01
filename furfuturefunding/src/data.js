@@ -27,14 +27,14 @@ export const oneOpportunity = {
 };
 
 export const aus_states = [
-  { value: 1, label: "New South Wales" },
-  { value: 2, label: "Victoria" },
-  { value: 3, label: "Queensland" },
-  { value: 4, label: "South Australia" },
-  { value: 5, label: "Western Australia" },
-  { value: 6, label: "Tasmania" },
-  { value: 7, label: "Northern Territory" },
-  { value: 8, label: "Australian Capital Territory" },
+  { value: "NSW", label: "New South Wales" },
+  { value: "VIC", label: "Victoria" },
+  { value: "QLD", label: "Queensland" },
+  { value: "SA", label: "South Australia" },
+  { value: "WA", label: "Western Australia" },
+  { value: "TAS", label: "Tasmania" },
+  { value: "NT", label: "Northern Territory" },
+  { value: "ACT", label: "Australian Capital Territory" },
 ];
 
 export const disciplineOptions = [

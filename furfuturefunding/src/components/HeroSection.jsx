@@ -1,6 +1,7 @@
 // HeroSection.jsx
 import React from 'react';
 import './HeroSection.css';
+import furfuturefunding_logo from "../img/furfuturefunding_logo.png";
 
 const HeroSection = () => {
   return (
@@ -11,7 +12,7 @@ const HeroSection = () => {
       <div className="logo-section">
         <div className="logo-container">
           <img 
-            src="/src/assets/furfuturefunding_logo.png"
+            src={furfuturefunding_logo}
             alt="FurFuture Funding Logo" 
           />
         </div>

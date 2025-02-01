@@ -1,47 +1,42 @@
-async function postOpportunity(
+async function putOpportunity(
+  opportunityId,
   title,
   description,
   opportunity_url,
   amount,
-  is_open,
   open_date,
   close_date,
-  is_archive,
-  location,
   attendance_mode,
-  type,
+  location,
+  eligibility,
   discipline,
-  eligibility
+  type
 ) {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities/`;
-  console.log("URL being used:", url);
+  const url = `${import.meta.env.VITE_API_URL}/opportunities/${opportunityId}`;
+  const token = window.localStorage.getItem("token");
   const response = await fetch(url, {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${window.localStorage.getItem("token")}`,
+      Authorization: `Token ${token}`,
     },
-
     body: JSON.stringify({
       title: title,
       description: description,
       opportunity_url: opportunity_url,
       amount: amount,
-      is_open: is_open,
       open_date: open_date,
       close_date: close_date,
-      is_archive: is_archive,
-      location: location,
       attendance_mode: attendance_mode,
-      type: type,
-      discipline: discipline,
+      location: location,
       eligibility: eligibility,
+      discipline: discipline,
+      type: type,
     }),
   });
-  console.log("Response Status:", response.status);
 
   if (!response.ok) {
-    const fallbackError = `Error trying to create an opportunity`;
+    const fallbackError = `Error saving the edit project`;
 
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
@@ -54,4 +49,4 @@ async function postOpportunity(
   return await response.json();
 }
 
-export default postOpportunity;
+export default putOpportunity;

@@ -4,7 +4,7 @@ import useEligibilities from "../hooks/use-eligibilities";
 import useTypes from "../hooks/use-types";
 import "./DropDown.css";
 
-function DropDown({ label, options = [], value, onChange, placeholder }) {
+function DropDown({ id, label, options = [], value, onChange, placeholder }) {
   const { eligibilities } = useEligibilities();
   const { disciplines } = useDisciplines();
   const { types } = useTypes();
@@ -32,8 +32,8 @@ function DropDown({ label, options = [], value, onChange, placeholder }) {
 
   return (
     <div>
-      {label && <label htmlFor="dropdown">{label}</label>}
-      <select id="dropdown" value={value} onChange={onChange}>
+      {label && <label htmlFor={id}>{label}</label>}
+      <select id={id} value={value} onChange={onChange}>
         <option value="" disabled>
           {placeholder || "Select an option"}
         </option>

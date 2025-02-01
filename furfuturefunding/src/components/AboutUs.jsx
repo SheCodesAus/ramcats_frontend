@@ -1,6 +1,11 @@
 // AboutUs.jsx
 import React from 'react';
 import './AboutUs.css';
+import Brooke from "../img/Brooke.jpg";
+import Amber from "../img/Amber.jpg";
+import Catherine from "../img/Catherine.jpg";
+import Christin from "../img/Christin.jpg";
+import Rishika from "../img/Rishika.jpg";
 
 const AboutUs = () => {
  const team = [
@@ -8,31 +13,31 @@ const AboutUs = () => {
      name: "Amber Nguyen",
      position: "Backend Boss",
      bio: "20+ years experience in tech leadershipAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "/src/img/Amber.jpg"
+     image: Amber
    },
    {
      name: "Brooke Pierson", 
      position: "Git Gladiator",
      bio: "Software developer in training who enjoys long walks on the beach, beautiful sunsets, and yodelling to Celine Dion in her down time.",
-     image: "src/img/Brooke.jpg"
+     image: Brooke
    },
    {
      name: "Catherine Blentweyne",
      position: "Project Manager Whiz",
      bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/img/Catherine.jpg" 
+     image: Catherine
    },
    {
      name: "Christin Estrella",
      position: "Frontend Guru",
      bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/img/Christin.jpg"
+     image: Christin
    },
    {
      name: "Rishika Arora",
      position: "Backend Pro",
      bio: "sdfsdxcgAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/img/Rishika.jpg"
+     image: Rishika
    }
  ];
 

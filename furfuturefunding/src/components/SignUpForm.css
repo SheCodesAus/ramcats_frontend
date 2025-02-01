@@ -1,6 +1,6 @@
 .signup-page {
     min-height: 100vh;
-    background-image: url('src/assets/ramcats_1.png');
+    background-image: url('src/img/ramcats_1.png');
     position: relative;
     overflow: hidden;
 }

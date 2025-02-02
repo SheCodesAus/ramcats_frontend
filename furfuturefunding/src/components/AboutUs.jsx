@@ -1,4 +1,3 @@
-// AboutUs.jsx
 import React from 'react';
 import './AboutUs.css';
 import Brooke from "../img/Brooke.jpg";
@@ -6,7 +5,7 @@ import Amber from "../img/Amber.jpg";
 import Catherine from "../img/Catherine.jpg";
 import Christin from "../img/Christin.jpg";
 import Rishika from "../img/Rishika.jpg";
-import Swirl from "../img/orange_swirl.png"
+import Swirl from "../img/orange_swirl.png";
 
 const AboutUs = () => {
  const team = [
@@ -43,24 +42,26 @@ const AboutUs = () => {
  ];
 
  return (
-   <div className="about-section">
-     <h1>Meet Our Team</h1>
-     <p>Hack lick human with sandpaper tongue or lick plastic bags, i bet my nine lives on you-oooo-ooo-hooo for have my breakfast spaghetti yarn so cough furball and leave hair on owner's clothes. Scratch leg; meow for can opener to feed me allways wanting food yet while happily ignoring when being called </p>
-     <div className="swirl-background"></div>
-
-     <div className="team-grid">
-       {team.map((member, i) => (
-         <div key={i} className="team-member">
-           <div className="member-image">
-             <img src={member.image} alt={member.name} />
+   <div className="about-container">
+     <div className="about-section-members">
+       <h1>Meet Our Team</h1>
+       <p>Hack lick human with sandpaper tongue or lick plastic bags, i bet my nine lives on you-oooo-ooo-hooo for have my breakfast spaghetti yarn so cough furball and leave hair on owner's clothes. Scratch leg; meow for can opener to feed me allways wanting food yet while happily ignoring when being called </p>
+       
+       <img src={Swirl} alt="decorative swirl" className="top-swirl-image" />
+       <div className="team-grid">
+         {team.map((member, i) => (
+           <div key={i} className="team-member">
+             <div className="member-image">
+               <img src={member.image} alt={member.name} />
+             </div>
+             <div className="member-info">
+               <h3>{member.name}</h3>
+               <p className="position">{member.position}</p>
+               <p className="bio">{member.bio}</p>
+             </div>
            </div>
-           <div className="member-info">
-             <h3>{member.name}</h3>
-             <p className="position">{member.position}</p>
-             <p className="bio">{member.bio}</p>
-           </div>
-         </div>
-       ))}
+         ))}
+       </div>
      </div>
    </div>
  );

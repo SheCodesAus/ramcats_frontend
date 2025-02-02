@@ -3,15 +3,7 @@
     height: 18em;
     margin-top: 5rem;
     width: 100%;
-    /* Remove background from inline style */
-    background: linear-gradient(135deg, 
-        rgba(255, 145, 77, 0.1) 25%,
-        rgba(169, 169, 169, 0.1) 25%,
-        rgba(169, 169, 169, 0.1) 50%,
-        rgba(255, 145, 77, 0.1) 50%,
-        rgba(255, 145, 77, 0.1) 75%,
-        rgba(169, 169, 169, 0.1) 75%
-    );
+
     position: relative;
     bottom: 0;
 }
@@ -150,7 +142,6 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding-top: 10px;
     }
 
     .custom-footer-links {

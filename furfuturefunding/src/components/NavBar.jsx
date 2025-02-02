@@ -26,12 +26,12 @@ function NavBar() {
             <Link to="/">
               <img
                 className="logo-nav desktop-logo"
-                src="src/img/logo_typography.png"
+                src={logo_typography}
                 alt="FurFuture Funding Logo"
               />
               <img
                 className="logo-nav mobile-logo"
-                src="src/img/typoicon.png"
+                src={logo_typography}
                 alt="FurFuture Funding Logo Mobile"
               />
             </Link>

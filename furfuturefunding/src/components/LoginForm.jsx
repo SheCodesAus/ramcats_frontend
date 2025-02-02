@@ -5,6 +5,8 @@ import postLogin from "../api/post-login";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/use-auth";
 import "./LoginForm.css"; 
+import hellocat from "../img/hellocat.png";
+import ramcats_1 from "../img/ramcats_1.png";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -48,9 +50,10 @@ function LoginForm() {
 
   return (
     <div className="login-background">
+      <img src={ramcats_1} alt="Cat" className="cat-icon"  />
       <div className="login-container">
         <div className="cat-container">
-          <img src="src/img/14.png" alt="Cat" className="cat-icon" />
+         <img src={hellocat} alt="Cat" className="cat-icon"  />
         </div>
         <h1 className="login-title">Login</h1>
         <form onSubmit={handleSubmit}>

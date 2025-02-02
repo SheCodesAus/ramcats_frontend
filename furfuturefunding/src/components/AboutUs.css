@@ -52,8 +52,9 @@
 }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   max-width: 1400px;
   width: 100%;
@@ -62,6 +63,8 @@
 }
 
 .team-member {
+  flex: 1 1 calc(20% - 20px);
+  min-width: 200px;
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
@@ -126,6 +129,10 @@ p.bio {
   color: black;
 }
 
+@media (max-width: 1024px) {
+  .team-member {
+    flex: 1 1 calc(33.33% - 20px); 
+  }
 
 @media (max-width: 768px) {
   .about-section {
@@ -153,6 +160,10 @@ p.bio {
     gap: 20px;
     max-width: 400px;
     margin: 0 auto;
+  }
+
+  .team-member {
+    flex: 1 1 calc(50% - 20px);
   }
 
   .member-info h3 {
@@ -187,6 +198,7 @@ p.bio {
   }
 
   .team-member {
+    flex: 1 1 100%;
     max-width: 400px;
     margin: 0 auto;
   }
@@ -212,4 +224,5 @@ p.bio {
   p.bio {
     font-size: 0.8rem;
   }
+}
 }

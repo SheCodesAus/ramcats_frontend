@@ -1,9 +1,8 @@
-// FilterOption.jsx
 import React, { useState } from 'react';
 import './FilterOption.css';
 
-const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, currentSort = '' }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {} }) => {
+  const [sortByDate, setSortByDate] = useState(true);
 
   const stateOptions = [
     { value: 'ACT', label: 'Australian Capital Territory' },
@@ -17,17 +16,12 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
   ];
 
   const eligibilityOptions = [
-    { value: 'Women in STEM', label: 'Women in STEM' },
-    { value: 'Aboriginal and Torres Strait Islander peoples', label: 'Aboriginal and Torres Strait Islander peoples' },
-    { value: 'Refugees and Asylum Seekers', label: 'Refugees and Asylum Seekers' },
-    { value: 'People with Disability', label: 'People with Disability' },
-    { value: 'Low-income Families', label: 'Low-income Families' },
-    { value: 'First Generation University Students', label: 'First Generation University Students' }
-  ];
-
-  const typeOptions = [
-    { value: 'ONLINE', label: 'Online' },
-    { value: 'FACE_TO_FACE', label: 'Face to Face' }
+    { value: 'women-in-stem', label: 'Women in STEM' },
+    { value: 'aboriginal-and-torres-strait-islander', label: 'Aboriginal and Torres Strait Islander peoples' },
+    { value: 'refugees-and-asylum-seekers', label: 'Refugees and Asylum Seekers' },
+    { value: 'people-with-disability', label: 'People with Disability' },
+    { value: 'low-income', label: 'Low-income Families' },
+    { value: 'first-generation', label: 'First Generation University Students' }
   ];
 
   const disciplineOptions = [
@@ -40,61 +34,57 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
   ];
 
   const handleSelectChange = (e, filterType) => {
+    const value = e.target.value;
     onFilterChange({
       type: filterType,
-      value: e.target.value
+      value: value
     });
   };
 
-  const handleSortClick = () => {
-    const nextSort = !currentSort || currentSort === 'oldest' ? 'newest' : 'oldest';
-    onSortChange(nextSort);
-  };
-
   const handleReset = () => {
-    ['state', 'eligibility', 'type', 'discipline'].forEach(filterType => {
+    ['state', 'eligibility', 'discipline'].forEach(filterType => {
       onFilterChange({
         type: filterType,
         value: ''
       });
     });
-    onSortChange('');
+    setSortByDate(true);
+    if (onSortChange) {
+      onSortChange('date');
+    }
   };
 
-  return (
-    <div className={`filter-wrapper ${isOpen ? 'open' : ''}`}>
-      <button 
-        className="toggle-filters-btn"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="material-icons">
-          {isOpen ? 'close' : 'filter_list'}
-        </span>
-        {isOpen ? 'Hide Filters' : 'Show Filters'}
-      </button>
+  const handleSortClick = () => {
+    const newSortValue = !sortByDate;
+    setSortByDate(newSortValue);
+    if (onSortChange) {
+      onSortChange(newSortValue ? 'date' : 'name');
+    }
+  };
 
+  // Ensure we have string values or empty strings
+  const disciplineValue = currentFilters?.discipline || '';
+  const stateValue = currentFilters?.state || '';
+  const eligibilityValue = currentFilters?.eligibility || '';
+
+  return (
+    <div className="filter-wrapper">
       <div className="filter-container">
         <div className="filter-header">
           <h3>Filters</h3>
           <button 
+            className="sort-button"
             onClick={handleSortClick}
-            className={`sort-button ${currentSort ? 'active' : ''}`}
-            title={currentSort === 'newest' ? 'Showing newest first' : currentSort === 'oldest' ? 'Showing oldest first' : 'Sort by date'}
           >
-            <span className="material-icons">sort</span>
-            <span className="sort-label">
-              {currentSort === 'newest' ? 'Newest first' : 
-               currentSort === 'oldest' ? 'Oldest first' : 
-               'Sort by date'}
-            </span>
+            Sort by {sortByDate ? 'date' : 'name'}
           </button>
         </div>
 
         <div className="dropdown-filters">
-          <select 
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'state')}
-            value={currentFilters.state || ''}
+            value={stateValue}
           >
             <option value="">Select State</option>
             {stateOptions.map((option) => (
@@ -104,10 +94,10 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
             ))}
           </select>
 
-          <select 
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'eligibility')}
-            value={currentFilters.eligibility || ''}
+            value={eligibilityValue}
           >
             <option value="">Select Eligibility</option>
             {eligibilityOptions.map((option) => (
@@ -117,23 +107,10 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
             ))}
           </select>
 
-          <select 
-            className="filter-select"
-            onChange={(e) => handleSelectChange(e, 'type')}
-            value={currentFilters.type || ''}
-          >
-            <option value="">Select Type</option>
-            {typeOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-
-          <select 
+          <select
             className="filter-select"
             onChange={(e) => handleSelectChange(e, 'discipline')}
-            value={currentFilters.discipline || ''}
+            value={disciplineValue}
           >
             <option value="">Select Discipline</option>
             {disciplineOptions.map((option) => (
@@ -142,11 +119,11 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, curre
               </option>
             ))}
           </select>
-
-          <button onClick={handleReset} className="reset-button">
-            Reset Filters
-          </button>
         </div>
+
+        <button onClick={handleReset} className="reset-button">
+          Reset Filters
+        </button>
       </div>
     </div>
   );

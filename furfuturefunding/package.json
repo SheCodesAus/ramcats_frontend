@@ -13,7 +13,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
+<<<<<<< HEAD
     "react-router-dom": "^7.1.2",
+=======
+    "react-router-dom": "^7.1.5",
+    "react-select": "^5.10.0",
+>>>>>>> develop
     "sweetalert2": "^6.6.1"
   },
   "devDependencies": {

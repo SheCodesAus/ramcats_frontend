@@ -7,6 +7,14 @@ import Footer from "../components/Footer";
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
+  const [filters, setFilters] = useState({
+    state: '',
+    eligibility: '',
+    type: '',
+    discipline: '',
+  });
+  const [sortOrder, setSortOrder] = useState('');
+
   React.useEffect(() => {
     if (opportunities?.length > 0) {
       console.log('Sample opportunity data:', {
@@ -16,13 +24,6 @@ const Homepage = () => {
       });
     }
   }, [opportunities]);
-  const [filters, setFilters] = useState({
-    state: '',
-    eligibility: '',
-    type: '',
-    discipline: '',
-  });
-  const [sortOrder, setSortOrder] = useState('');
 
   const handleFilterChange = ({ type, value }) => {
     console.log('Filter changed:', { type, value });
@@ -41,7 +42,7 @@ const Homepage = () => {
     if (!opportunities) return [];
 
     let result = opportunities.filter(opportunity => {
-
+      // Moved the logging to only include defined values
       console.log('Filtering opportunity:', {
         id: opportunity.id,
         eligibilityValues: opportunity.eligibility?.map(e => e.description),
@@ -50,7 +51,7 @@ const Homepage = () => {
         filterDiscipline: filters.discipline
       });
 
-      const stateMatch = filters.state === '' || opportunity.location === filters.state;
+      const stateMatch = !filters.state || opportunity.location === filters.state;
 
       // Check eligibility
       const eligibilityMatch = filters.eligibility === '' || 
@@ -86,7 +87,8 @@ const Homepage = () => {
     return result;
   }, [opportunities, filters, sortOrder]);
 
-  const hasResults = processedOpportunities.length > 0;
+  const filtersApplied = Object.values(filters).some(value => value !== '');
+  const hasResults = processedOpportunities.length > 0 || !filtersApplied; 
 
   return (
     <div className="homepage">
@@ -98,6 +100,7 @@ const Homepage = () => {
           currentFilters={filters}
           currentSort={sortOrder}
           hasResults={hasResults}
+          filtersApplied={filtersApplied}
         />
       </div>
       <div className="opportunities-section">

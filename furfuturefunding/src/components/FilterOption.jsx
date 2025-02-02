@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FilterOption.css';
 
-const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasResults = true }) => {
+const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasResults = true, filtersApplied }) => {
   const [sortByDate, setSortByDate] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
@@ -38,7 +38,8 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
   React.useEffect(() => {
     if (!hasResults) {
       setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 5000);
+    } else {
+      setShowNotification(false);
     }
   }, [hasResults]);
 
@@ -146,7 +147,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
       </div>
 
 
-      {!hasResults && (
+      {!hasResults && filtersApplied && (
         <div className="notification-container">
           <h4 className="notification-title">No Matching Results</h4>
           <p className="notification-message">

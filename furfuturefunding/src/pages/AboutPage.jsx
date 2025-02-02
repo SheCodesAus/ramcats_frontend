@@ -5,10 +5,11 @@ import Footer from '../components/Footer';
 function AboutPage() {
   useDocumentTitle("About");
   return (
-    <h1>
-      <AboutUs />
-      <Footer />
-    </h1>
+    
+  <div>
+    <AboutUs />
+    <Footer />
+  </div>
   );
 }
 

@@ -1,9 +1,24 @@
+// Footer.jsx
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import backgroundImage from '../img/ramcats_1.png';
 
 const Footer = () => {
+  // Get the current location using useLocation hook
+  const location = useLocation();
+  
+  // Function to determine the page type
+  const getPageType = () => {
+    const path = location.pathname.toLowerCase();
+    if (path.includes('opportunitylistingpage')) return 'opportunity-listing-page';
+    if (path.includes('login')) return 'login-page';
+    return '';
+  };
+
+  const pageClassName = getPageType();
+
   const footerStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
@@ -12,7 +27,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="custom-footer" style={footerStyle}>
+    <footer className={`custom-footer ${pageClassName}`} style={footerStyle}>
       <div className="custom-container">
         <div className="custom-row">
           <div className="custom-col about-sectionfooter">
@@ -54,7 +69,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-
-

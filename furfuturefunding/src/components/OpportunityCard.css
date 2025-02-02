@@ -10,7 +10,7 @@
   grid-template-columns: repeat(3, minmax(300px, 400px));
   gap:15px;
   padding: 10px;
-  width: 95%;
+  width:95%;
   margin-left:2rem;
   }
 
@@ -261,4 +261,75 @@ a {
   .opp-card-apply-button {
     font-size: 0.875rem;
   }
+
+  /* Desktop and Laptop (1024px to 1399px) */
+@media (max-width: 1399px) and (min-width: 1024px) {
+  .content-wrapper {
+    grid-template-columns: 1fr 300px;
+    gap: 1.5rem;
+  }
+}
+
+/* Tablet Landscape (768px to 1023px) */
+@media (max-width: 1023px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .organisation-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    grid-row: 1;
+  }
+}
+
+/* Tablet Portrait and Mobile (up to 767px) */
+@media (max-width: 767px) {
+  .content-wrapper {
+    padding: 0 1rem;
+  }
+
+  .organisation-card {
+    width: calc(100% - 2rem);
+    margin: 1.5rem auto;
+    padding: 1.25rem;
+  }
+
+  .organisation-name {
+    font-size: 1.1rem;
+  }
+
+  .organisation-section-title {
+    font-size: 0.95rem;
+  }
+
+  .organisation-description {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small Mobile (up to 375px) */
+@media (max-width: 375px) {
+  .organisation-card {
+    width: calc(100% - 1rem);
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .organisation-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .organisation-name {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .organisation-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
 }

@@ -2,6 +2,8 @@ import React from "react";
 import "./ContactForm.css";
 import Swal from "sweetalert2";
 import ramcats_1 from "../img/ramcats_1.png";
+import ramcats3 from "../img/ramcats3.png";
+
 
 
 function ContactForm() {
@@ -49,14 +51,17 @@ function ContactForm() {
     }
   };
 
+  
   return (
-    <div className="contact-page">
-      <div className="contact-container">
-        <div className="contact-cat-container">
-          <img src={ramcats_1} alt="Cat Mascot" className="contact-cat-icon" />
-        </div>
-        <h2 className="contact-title">Contact Us</h2>
-        <form className="contact-form" onSubmit={onSubmit}>
+    <div className="page-container">
+      <img src={ramcats_1} alt="Background pattern" className="background-pattern" />
+      <div className="main-content-contact">
+        <div className="contact-container">
+          <div className="cat-container-contact">
+            <img src={ramcats3} alt="Cat" className="cat-icon-contact" />
+          </div>
+          <h2 className="contact-title">Contact Us</h2>
+          <form className="contact-form" onSubmit={onSubmit}>
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="firstName">
@@ -96,13 +101,13 @@ function ContactForm() {
             </div>
             <div className="form-group">
               <label htmlFor="phone">
-                Phone <span className="required">*</span>
+                Phone <span className="phone"></span>
               </label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
-                required
+                
               />
             </div>
           </div>
@@ -131,7 +136,8 @@ function ContactForm() {
 
           <button type="submit">Send Message</button>
           {result && <span className="result-message">{result}</span>}
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -52,8 +52,8 @@ function LoginForm() {
     <div className="login-page">
       <img src={ramcats_1} alt="Background pattern" className="background-pattern" />
       <div className="login-container">
-        <div className="cat-container">
-          <img src={hellocat} alt="Cat" className="cat-icon" />
+        <div className="cat-container-login">
+          <img src={hellocat} alt="Cat" className="cat-icon-login" />
         </div>
         <h1 className="login-title">Login</h1>
         <form onSubmit={handleSubmit}>

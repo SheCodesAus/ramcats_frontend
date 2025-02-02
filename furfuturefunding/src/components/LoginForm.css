@@ -1,9 +1,13 @@
 
+.cat-icon-login{
+  height: 180px;
+ 
+ 
+}
 
-
-.cat-container {
+.cat-container-login {
   position: absolute;
-  top: -90px;
+  top: -109px;
   left: 65%;
   transform: translateX(-50%);
   z-index: 2;
@@ -12,9 +16,7 @@
   justify-content: flex-end;
   padding-right: 2rem;
 }
-.cat-icon {
-  height: 150px;
-}
+
 
 
 .background-pattern {
@@ -36,7 +38,7 @@
   border: 2px solid #000000;
   border-radius: 8px;
   position: relative;
-  margin-top: 7rem; 
+  margin-top: 9rem; 
   justify-content: center;
   align-items: center;
   

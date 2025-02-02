@@ -7,6 +7,7 @@ function AboutPage() {
   return (
     <h1>
       <AboutUs />
+      <Footer />
     </h1>
   );
 }

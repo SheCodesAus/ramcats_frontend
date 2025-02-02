@@ -1,14 +1,26 @@
 .custom-footer {
-    padding: 15px 0; /* Reduced padding for a smaller footer */
-    height: 18em; /* Let the content define the height */
+    padding: 15px 0;
+    height: 18em;
     margin-top: 5rem;
+    width: 100%;
+    /* Remove background from inline style */
+    background: linear-gradient(135deg, 
+        rgba(255, 145, 77, 0.1) 25%,
+        rgba(169, 169, 169, 0.1) 25%,
+        rgba(169, 169, 169, 0.1) 50%,
+        rgba(255, 145, 77, 0.1) 50%,
+        rgba(255, 145, 77, 0.1) 75%,
+        rgba(169, 169, 169, 0.1) 75%
+    );
+    position: relative;
+    bottom: 0;
 }
 
 .custom-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
-    
+    position: relative;
 }
 
 .custom-row {
@@ -16,7 +28,8 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 5px; /* Reduced spacing */
+    margin-bottom: 5px;
+    position: relative;
 }
 
 .custom-col {
@@ -27,18 +40,18 @@
 
 .custom-col h6 {
     font-size: 1.5rem;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     margin-left: 85px;
 }
 
 /* About Section Styling */
 .about-sectionfooter {
-    width: 100%; 
-    height: 140px; 
+    width: 100%;
+    height: 140px;
     font-size: 1rem;
     line-height: 1.5;
-    padding: 12px; 
-    background-color: #f5f5f5;
+    padding: 12px;
+    background-color: rgba(245, 245, 245, 0.95);
     border: 2px solid black;
     margin-left: 0px;
     text-align: left;
@@ -46,25 +59,21 @@
     margin-right: 20px;
 }
 
-.about-section::before {
-    display: none; 
-}
-
 /* Footer Links */
 .custom-footer-links {
     list-style: none;
     padding: 0;
-    margin-right: -30rem; 
+    margin-right: -30rem;
 }
 
 .custom-footer-links ul {
-    list-style: none; 
+    list-style: none;
     padding: 0;
     margin-left: 90px;
 }
 
 .custom-footer-links li {
-    list-style: none; 
+    list-style: none;
     margin-bottom: 5px;
 }
 
@@ -90,7 +99,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 5px; /* Reduce space below */
+    padding-top: 5px;
 }
 
 .custom-copyright {
@@ -102,6 +111,8 @@
     display: flex;
     gap: 10px;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .custom-social-icons a {
@@ -121,38 +132,28 @@
     background-color: #FF914D;
     color: #fff;
 }
-/* Large Desktop Screens (1400px and above) */
-@media (min-width: 1400px) {
-    .custom-footer {
-        height: auto;
-    }
-
-    .about-sectionfooter {
-        max-width: 800px; /* Wider for large screens */
-    }
-}
 
 /* Responsive Styles */
 @media (max-width: 767px) {
     .custom-footer {
-        text-align: left; /* Aligns text to the left */
+        text-align: left;
     }
 
     .about-sectionfooter {
-        display: none; /* Hides on mobile */
+        display: none;
     }
 
     .custom-footer-bottom {
         display: flex;
-        flex-direction: row; /* Ensure elements are side by side */
-        justify-content: space-between; /* Space between Quick Links & Social Icons */
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
         padding-top: 10px;
     }
 
     .custom-footer-links {
-        text-align: left; /* Align Quick Links to the left */
-        margin-left:15px; /* Push it to the left */
+        text-align: left;
+        margin-left: 15px;
     }
 
     .custom-footer-links ul {
@@ -161,18 +162,16 @@
     }
 
     .custom-footer-links li {
-        list-style: none; /* Remove bullet points */
+        list-style: none;
         margin-bottom: 5px;
     }
 
     .custom-social-icons {
-        display: flex;
-        justify-content: flex-end; /* Move icons to the right */
-        margin-right: 10px; /* Align them properly */
+        justify-content: flex-end;
+        margin-right: 10px;
     }
 }
 
-/* Mobile View - Align Quick Links Left & Social Icons Right */
 @media (max-width: 375px) {
     .custom-footer {
         padding: 10px 0;
@@ -183,20 +182,19 @@
     }
 
     .custom-footer-bottom {
-        display: flex;
         flex-direction: row;
-        justify-content: space-between; /* Pushes Quick Links left, Social Icons right */
+        justify-content: space-between;
         align-items: center;
     }
 
     .custom-footer-links {
         text-align: left;
         font-size: 0.9rem;
-        margin-left: 90px; /* Ensures left alignment */
+        margin-left: 90px;
     }
 
     .custom-social-icons {
         justify-content: flex-end;
-        margin-right: 10px; /* Ensures right alignment */
+        margin-right: 10px;
     }
 }

@@ -6,6 +6,7 @@ import archiveOpportunity from "../api/put-opportunity-archive";
 import OpportunityListingInfo from "../components/OpportunityListingInfo";
 import Footer from '../components/Footer';
 import { useNavigate } from "react-router-dom";
+import '../components/OpportunityListingPage.css';
 
 function OpportunityListingPage() {
   const { id } = useParams();
@@ -62,19 +63,22 @@ function OpportunityListingPage() {
   };
 
   return (
-    <div>
-      <OpportunityListingInfo opportunity={opportunity} />
-      <OrganisationCard organisation={opportunity.organisation} />
-      <OpportunityActions
-        userId={userId}
-        loggedinUserId={loggedinUserId}
-        id={id}
-        archive={archive}
-        handleArchive={handleArchive}
-      />
-      {/* <Footer /> */}
+    <div className="page-container">
+      <main className="main-content">
+        <div>
+          <OpportunityListingInfo opportunity={opportunity} />
+          <OrganisationCard organisation={opportunity.organisation} />
+          <OpportunityActions
+            userId={userId}
+            loggedinUserId={loggedinUserId}
+            id={id}
+            archive={archive}
+            handleArchive={handleArchive}
+          />
+        </div>
+      </main>
+      <Footer />
     </div>
-    
   );
 }
 

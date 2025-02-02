@@ -3,9 +3,11 @@ import Footer from '../components/Footer';
 
 function LoginPage() {
   return (
-    <div>
-      <LoginForm />
-      {/* <Footer /> */}
+    <div className="page-container">
+      <main className="main-content-login">
+        <LoginForm />
+      </main>
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,6 @@
+
+
+
 .cat-container {
   position: absolute;
   top: -90px;
@@ -13,20 +16,16 @@
   height: 150px;
 }
 
-.login-background {
-  background-size:auto;
-  background-position: center;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
+
+.background-pattern {
+  position: absolute;
+  top: 20;
   left: 0;
- }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 
  .login-container {
   width: 100%;
@@ -37,7 +36,10 @@
   border: 2px solid #000000;
   border-radius: 8px;
   position: relative;
-  margin-top: 8rem; 
+  margin-top: 7rem; 
+  justify-content: center;
+  align-items: center;
+  
  }
 
 .login-title {
@@ -108,6 +110,21 @@ input[type="email"] {
   color: #000000;
 }
 
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content-login {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-bottom: 0rem;
+}
 /* Mobile styles */
 @media (max-width: 375px) {
 

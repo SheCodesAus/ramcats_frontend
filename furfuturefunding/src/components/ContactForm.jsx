@@ -1,6 +1,7 @@
 import React from "react";
 import "./ContactForm.css";
 import Swal from "sweetalert2";
+import ramcats_1 from "../img/ramcats_1.png";
 
 
 function ContactForm() {
@@ -52,7 +53,7 @@ function ContactForm() {
     <div className="contact-page">
       <div className="contact-container">
         <div className="contact-cat-container">
-          <img src="src/img/ramcats3.png" alt="Cat Mascot" className="contact-cat-icon" />
+          <img src={ramcats_1} alt="Cat Mascot" className="contact-cat-icon" />
         </div>
         <h2 className="contact-title">Contact Us</h2>
         <form className="contact-form" onSubmit={onSubmit}>

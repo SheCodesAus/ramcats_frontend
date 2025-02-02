@@ -115,7 +115,7 @@ const OpportunityCard = ({ opportunitiesData }) => {
               ))}
           </div>
 
-          <button className="apply-button">Find out more</button>
+          <button className="opp-card-apply-button">Find out more</button>
         </div>
       </div>
     </Link>

@@ -4,6 +4,7 @@ import useOpportunity from "../hooks/use-opportunity";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
 import OpportunityListingInfo from "../components/OpportunityListingInfo";
+import Footer from '../components/Footer';
 
 function OpportunityListingPage() {
   const { id } = useParams();
@@ -46,6 +47,7 @@ function OpportunityListingPage() {
         archive={archive} 
         handleArchive={handleArchive} 
       />
+      <Footer />
     </div>
   );
 }

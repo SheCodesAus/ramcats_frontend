@@ -1,8 +1,9 @@
 /* FilterOption.css */
 .filter-wrapper {
-  position: absolute;
+  position: fixed;
   left: 0px;
-  top: 412px;
+  top: 410px;
+  bottom: 200px;
   z-index: 1000;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
@@ -10,21 +11,23 @@
 
 .filter-wrapper.open {
   transform: translateX(0);
+  top: 290px;
+  bottom: 0px;
 }
 
 .toggle-filters-btn {
-  position: absolute;
+  position: fixed;
   right: -100px;
-  top: 0;
+  top: 1px;
   background-color: #130265;
+  border: solid 2px#130265;
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 0 4px 4px 0;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
   font-size: 14px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1001;
@@ -33,6 +36,44 @@
 .toggle-filters-btn:hover {
   background-color: #FF914D;
   color: #000000;
+}
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  border: 2px solid #FF914D;
+  border-radius: 8px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto; /* Centers it on the page */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification-title {
+  font-weight: 600;
+  color: #130265;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.notification-message {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.opportunities-title {
+  display: none;
+}
+
+.no-results-gif {
+  width: 100%;
+  max-width: 250px;
+  margin-top: 10px;
+  border-radius: 8px;
 }
 
 .filter-container {

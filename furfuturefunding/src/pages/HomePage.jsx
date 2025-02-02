@@ -72,7 +72,7 @@ const Homepage = () => {
         disciplineMatch,
         typeMatch
       }); 
-      
+
       return stateMatch && eligibilityMatch && typeMatch && disciplineMatch;
     }) || [];
 
@@ -88,6 +88,8 @@ const Homepage = () => {
     return result;
   }, [opportunities, filters, sortOrder]);
 
+  const hasResults = processedOpportunities.length > 0;
+
   return (
     <div className="homepage">
       <HeroSection />
@@ -97,6 +99,7 @@ const Homepage = () => {
           onSortChange={handleSortChange}
           currentFilters={filters}
           currentSort={sortOrder}
+          hasResults={hasResults}
         />
       </div>
       <div className="opportunities-section">
@@ -111,7 +114,6 @@ const Homepage = () => {
           <OpportunityCards opportunities={processedOpportunities} />
         ) : (
           <div className="no-results">
-            <p>No opportunities match your selected filters.</p>
           </div>
         )}
       </div>

@@ -1,0 +1,175 @@
+.edit-opportunity-page {
+  min-height: 100vh;
+  background-image: url("../img/ramcats_1.png");
+  position: relative;
+  overflow: hidden;
+  margin-top: 6rem;
+}
+
+h1 {
+  color: #1a0f4d;
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.opportunity-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.opportunity-form-group input,
+.opportunity-form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+}
+
+.opportunity-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.edit-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #1a0f4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.75rem;
+  transition: all 0.2s;
+}
+
+.submit-btn:hover {
+  background: #ff914d;
+  transform: translateY(-2px);
+}
+
+.catmascot {
+  position: absolute;
+  top: 60px;
+  right: -145px;
+  z-index: 2;
+}
+
+.paw {
+  width: 200px;
+  height: auto;
+}
+
+.edit-opportunity-container {
+  width: 600px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 8rem auto;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.5rem;
+}
+.opportunity-form-group select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  color: #333;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.opportunity-form-group select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='%231a0f4d'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+}
+
+.opportunity-form-group select:focus {
+  border-color: #1a0f4d;
+  outline: none;
+  box-shadow: 0 0 5px rgba(26, 15, 77, 0.3);
+}
+
+.opportunity-form-group select option {
+  background: white;
+  color: #333;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+@media (max-width: 375px) {
+  .edit-opportunity-container {
+    width: 85%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .opportunity-form-group {
+    gap: 0.75rem;
+  }
+
+  .opportunity-form-group input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .opportunity-form-group textarea {
+    min-height: 60px;
+  }
+
+  .edit-opportunity-container {
+    margin-top: 3rem;
+  }
+
+  .opportunity-form-group select {
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+
+  .opportunity-form-group select option {
+    font-size: 1.4rem;
+    padding: 1.75rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-opportunity-container {
+    width: 90%;
+  }
+
+  .catmascot {
+    display: none;
+  }
+  .opportunity-form-group select {
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    text-align: center;
+    text-align-last: center;
+  }
+
+  .opportunity-form-group select option {
+    font-size: 1.2rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+}

@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
 import OpportunityCards from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
-import FilterOption from '../components/FilterOption';
+import FilterOption from "../components/FilterOption";
 import Footer from "../components/Footer";
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
+
   const [filters, setFilters] = useState({
-    state: '',
-    eligibility: '',
-    type: '',
-    discipline: '',
+    state: "",
+    eligibility: "",
+    type: "",
+    discipline: "",
   });
   const [sortOrder, setSortOrder] = useState('');
 
@@ -26,10 +27,9 @@ const Homepage = () => {
   }, [opportunities]);
 
   const handleFilterChange = ({ type, value }) => {
-    console.log('Filter changed:', { type, value });
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
-      [type]: value
+      [type]: value,
     }));
   };
 
@@ -39,53 +39,60 @@ const Homepage = () => {
 
   // Filter and sort opportunities
   const processedOpportunities = React.useMemo(() => {
-    if (!opportunities) return [];
+    let result =
+      opportunities?.filter((opportunity) => {
+        if (!opportunity) return false;
 
-    let result = opportunities.filter(opportunity => {
-      // Moved the logging to only include defined values
-      console.log('Filtering opportunity:', {
-        id: opportunity.id,
-        eligibilityValues: opportunity.eligibility?.map(e => e.description),
-        disciplineValues: opportunity.discipline?.map(d => d.description),
-        filterEligibility: filters.eligibility,
-        filterDiscipline: filters.discipline
-      });
-
-      const stateMatch = !filters.state || opportunity.location === filters.state;
-
-      // Check eligibility
-      const eligibilityMatch = filters.eligibility === '' || 
-        (opportunity.eligibility && 
-          opportunity.eligibility.some(e => e.description.toLowerCase() === filters.eligibility.toLowerCase()));
-
-      // Check discipline
-      const disciplineMatch = filters.discipline === '' || 
-        (opportunity.discipline && 
-          opportunity.discipline.some(d => d.description.toLowerCase() === filters.discipline.toLowerCase()));
-
-      // Check type/attendance mode
-      const typeMatch = filters.type === '' || opportunity.attendance_mode === filters.type;
-
-      console.log('Filter matches:', {
-        opportunity: opportunity.title,
-        stateMatch,
-        eligibilityMatch,
-        disciplineMatch,
-        typeMatch
-      }); 
-
-      return stateMatch && eligibilityMatch && typeMatch && disciplineMatch;
-    }) || [];
+        return (
+          (filters.state === "" || opportunity.location === filters.state) &&
+          (filters.eligibility === "" ||
+            (Array.isArray(opportunity.eligibility) &&
+              opportunity.eligibility.some(
+                (e) => e.description === filters.eligibility
+              ))) &&
+          (filters.type === "" ||
+            opportunity.attendance_mode === filters.type) &&
+          (filters.discipline === "" ||
+            (Array.isArray(opportunity.discipline) &&
+              opportunity.discipline.some(
+                (d) => d.description === filters.discipline
+              )))
+        );
+      }) || [];
 
     // Sort by close_date if sort order is specified
-    if (sortOrder === 'closing_date') {
-      result.sort((a, b) => new Date(a.close_date) - new Date(b.close_date));
-    } else if (sortOrder === 'closing_date_reverse') {
-      result.sort((a, b) => new Date(b.close_date) - new Date(a.close_date));
+    if (sortOrder) {
+      result.sort((a, b) => {
+        const dateA = new Date(a.close_date);
+        const dateB = new Date(b.close_date);
+        return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+      });
     }
   
     return result;
   }, [opportunities, filters, sortOrder]);
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <img
+          src="https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif"
+          alt="Loading..."
+          style={{
+            border: "3px solid navy",
+            borderRadius: "10px",
+            width: "300px",
+          }}
+        />
+      </div>
+    );
+  }
 
   const filtersApplied = Object.values(filters).some(value => value !== '');
   const hasResults = processedOpportunities.length > 0 || !filtersApplied; 

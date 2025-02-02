@@ -1,0 +1,61 @@
+.organisation-card {
+  width: 300px;
+  align-self: flex-end;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 2px solid black;
+  margin-left: 55rem;
+  margin-top:-33.5rem;
+}
+
+.organisation-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border: 2px solid black;
+}
+
+.organisation-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+  background-color: #FF914D;
+}
+
+.organisation-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.organisation-description {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.organisation-website {
+  color: #1a0f4d;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 1rem;
+}
+
+.organisation-website:hover {
+  color: #FF914D;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .organisation-card {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}

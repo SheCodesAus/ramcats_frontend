@@ -6,6 +6,7 @@ import Amber from "../img/Amber.jpg";
 import Catherine from "../img/Catherine.jpg";
 import Christin from "../img/Christin.jpg";
 import Rishika from "../img/Rishika.jpg";
+import Swirl from "../img/orange_swirl.png"
 
 const AboutUs = () => {
  const team = [

@@ -72,8 +72,9 @@ function OpportunityListingPage() {
         archive={archive}
         handleArchive={handleArchive}
       />
-      <Footer />
+      {/* <Footer /> */}
     </div>
+    
   );
 }
 

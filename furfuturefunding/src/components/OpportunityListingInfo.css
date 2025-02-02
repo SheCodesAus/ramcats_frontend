@@ -86,7 +86,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .opportunity-container {
-      max-width: 95%;
+      max-width: 90%;
       padding: 15px;
   }
 
@@ -109,7 +109,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 375px) {
   .opportunity-container {
       padding: 10px;
   }

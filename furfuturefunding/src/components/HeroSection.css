@@ -42,12 +42,13 @@
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    margin-top: 3rem;
+    margin-top: 4rem;
   }
 
   .headline {
     width: 100%;
     padding: 24px;
+    margin-top: 48px;
   }
 
   .headline h1 {

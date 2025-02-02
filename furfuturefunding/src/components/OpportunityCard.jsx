@@ -7,7 +7,6 @@ const OpportunityCards = ({ opportunities = [] }) => {
   const cardsPerPage = 6;
 
   if (!Array.isArray(opportunities)) {
-    console.error("Expected an array but received:", opportunities);
     return <p>Invalid opportunities data.</p>;
   }
 

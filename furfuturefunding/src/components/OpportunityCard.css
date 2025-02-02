@@ -40,8 +40,8 @@
   line-height: 1.2;
   color: #000000;
   margin-bottom: 1rem;
-  margin-top: 1.5rem;
-  margin:auto;
+  margin-top: 2rem;
+  
 }
 
 /* Header section */
@@ -229,7 +229,7 @@ a {
   }
 
   .opportunities-title {
-    margin-left: 0;
+    line-height: 1.8rem;
   }
 }
 

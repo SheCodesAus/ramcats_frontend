@@ -7,6 +7,15 @@ import Footer from "../components/Footer";
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
+  React.useEffect(() => {
+    if (opportunities?.length > 0) {
+      console.log('Sample opportunity data:', {
+        firstOpportunity: opportunities[0],
+        eligibility: opportunities[0].eligibility,
+        discipline: opportunities[0].discipline
+      });
+    }
+  }, [opportunities]);
   const [filters, setFilters] = useState({
     state: '',
     eligibility: '',
@@ -16,6 +25,7 @@ const Homepage = () => {
   const [sortOrder, setSortOrder] = useState('');
 
   const handleFilterChange = ({ type, value }) => {
+    console.log('Filter changed:', { type, value });
     setFilters(prev => ({
       ...prev,
       [type]: value
@@ -28,19 +38,42 @@ const Homepage = () => {
 
   // Filter and sort opportunities
   const processedOpportunities = React.useMemo(() => {
-    let result = opportunities?.filter(opportunity => {
-      if (!opportunity) return false;
+    if (!opportunities) return [];
 
-      return (
-        (filters.state === '' || opportunity.location === filters.state) &&
-        (filters.eligibility === '' ||
-          (Array.isArray(opportunity.eligibility) &&
-            opportunity.eligibility.some(e => e.description === filters.eligibility))) &&
-        (filters.type === '' || opportunity.attendance_mode === filters.type) &&
-        (filters.discipline === '' ||
-          (Array.isArray(opportunity.discipline) &&
-            opportunity.discipline.some(d => d.description === filters.discipline)))
-      );
+    let result = opportunities.filter(opportunity => {
+
+      console.log('Filtering opportunity:', {
+        id: opportunity.id,
+        eligibilityValues: opportunity.eligibility?.map(e => e.description),
+        disciplineValues: opportunity.discipline?.map(d => d.description),
+        filterEligibility: filters.eligibility,
+        filterDiscipline: filters.discipline
+      });
+
+      const stateMatch = filters.state === '' || opportunity.location === filters.state;
+
+      // Check eligibility
+      const eligibilityMatch = filters.eligibility === '' || 
+        (opportunity.eligibility && 
+          opportunity.eligibility.some(e => e.description.toLowerCase() === filters.eligibility.toLowerCase()));
+
+      // Check discipline
+      const disciplineMatch = filters.discipline === '' || 
+        (opportunity.discipline && 
+          opportunity.discipline.some(d => d.description.toLowerCase() === filters.discipline.toLowerCase()));
+
+      // Check type/attendance mode
+      const typeMatch = filters.type === '' || opportunity.attendance_mode === filters.type;
+
+      console.log('Filter matches:', {
+        opportunity: opportunity.title,
+        stateMatch,
+        eligibilityMatch,
+        disciplineMatch,
+        typeMatch
+      }); 
+      
+      return stateMatch && eligibilityMatch && typeMatch && disciplineMatch;
     }) || [];
 
     // Sort by close_date if sort order is specified

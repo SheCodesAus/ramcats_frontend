@@ -1,38 +1,43 @@
 // AboutUs.jsx
 import React from 'react';
 import './AboutUs.css';
+import Brooke from "../img/Brooke.jpg";
+import Amber from "../img/Amber.jpg";
+import Catherine from "../img/Catherine.jpg";
+import Christin from "../img/Christin.jpg";
+import Rishika from "../img/Rishika.jpg";
 
 const AboutUs = () => {
  const team = [
    {
      name: "Amber Nguyen",
      position: "Backend Boss",
-     bio: "20+ years experience in tech leadershipAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "/src/img/Amber.jpg"
+     bio: " An aspiring software developer who likes solving meaningful problems and enjoys climbing rocks.",
+     image: Amber
    },
    {
      name: "Brooke Pierson", 
      position: "Git Gladiator",
      bio: "Software developer in training who enjoys long walks on the beach, beautiful sunsets, and yodelling to Celine Dion in her down time.",
-     image: "src/img/Brooke.jpg"
+     image: Brooke
    },
    {
      name: "Catherine Blentweyne",
      position: "Project Manager Whiz",
      bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/img/Catherine.jpg" 
+     image: Catherine
    },
    {
      name: "Christin Estrella",
      position: "Frontend Guru",
-     bio: "Aspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/img/Christin.jpg"
+     bio: "A passionate developer in progress, driven by curiosity, storytelling, and problem-solving who likes to eat breakfast for dinner.",
+     image: Christin
    },
    {
      name: "Rishika Arora",
      position: "Backend Pro",
-     bio: "sdfsdxcgAspiring product manager and novice powerlifter, who invented 'musical Friday' as an excuse to listen to Broadway musicals at work.",
-     image: "src/img/Rishika.jpg"
+     bio: " Technical Support CSR at Aussie Broadband and loves to spend time with family and friends during free time.",
+     image: Rishika
    }
  ];
 
@@ -40,6 +45,8 @@ const AboutUs = () => {
    <div className="about-section">
      <h1>Meet Our Team</h1>
      <p>Hack lick human with sandpaper tongue or lick plastic bags, i bet my nine lives on you-oooo-ooo-hooo for have my breakfast spaghetti yarn so cough furball and leave hair on owner's clothes. Scratch leg; meow for can opener to feed me allways wanting food yet while happily ignoring when being called </p>
+     <div className="swirl-background"></div>
+
      <div className="team-grid">
        {team.map((member, i) => (
          <div key={i} className="team-member">

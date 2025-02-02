@@ -67,7 +67,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
     const newSortValue = !sortByDate;
     setSortByDate(newSortValue);
     if (onSortChange) {
-      onSortChange(newSortValue ? 'date' : 'name');
+      onSortChange(newSortValue ? 'closing_date' : 'closing_date_reverse');
     }
   };
 
@@ -93,7 +93,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
               onClick={handleSortClick}
             >
               <span className="sort-label">
-                Sort by {sortByDate ? 'date' : 'name'}
+                Sort by Date {sortByDate ? '(Ascending)' : '(Descending)'}
               </span>
             </button>
           </div>

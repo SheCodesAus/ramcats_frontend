@@ -37,6 +37,7 @@
   background-color: #FF914D;
   color: #000000;
 }
+
 .notification-container {
   display: flex;
   flex-direction: column;
@@ -48,7 +49,8 @@
   padding: 20px;
   width: 80%;
   max-width: 600px;
-  margin: 20px auto; /* Centers it on the page */
+  margin: 20px auto;
+  /* Centers it on the page */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -147,8 +149,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.5rem;
+  border: 2px solid #130265;
   border-radius: 0.375rem;
   background-color: white;
   color: #374151;

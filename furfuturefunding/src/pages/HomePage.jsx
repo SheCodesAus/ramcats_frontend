@@ -77,14 +77,12 @@ const Homepage = () => {
     }) || [];
 
     // Sort by close_date if sort order is specified
-    if (sortOrder) {
-      result.sort((a, b) => {
-        const dateA = new Date(a.close_date);
-        const dateB = new Date(b.close_date);
-        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
-      });
+    if (sortOrder === 'closing_date') {
+      result.sort((a, b) => new Date(a.close_date) - new Date(b.close_date));
+    } else if (sortOrder === 'closing_date_reverse') {
+      result.sort((a, b) => new Date(b.close_date) - new Date(a.close_date));
     }
-
+  
     return result;
   }, [opportunities, filters, sortOrder]);
 

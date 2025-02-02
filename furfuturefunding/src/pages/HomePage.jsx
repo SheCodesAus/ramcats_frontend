@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
-import OpportunityCard from "../components/OpportunityCard";
+import OpportunityCards from "../components/OpportunityCard";
 import useOpportunities from "../hooks/use-opportunities";
 import FilterOption from '../components/FilterOption';
+import Footer from "../components/Footer";
 
 const Homepage = () => {
   const { opportunities, isLoading, error } = useOpportunities();
@@ -32,13 +33,13 @@ const Homepage = () => {
 
       return (
         (filters.state === '' || opportunity.location === filters.state) &&
-        (filters.eligibility === '' || 
-          (Array.isArray(opportunity.eligibility) && 
-           opportunity.eligibility.some(e => e.description === filters.eligibility))) &&
+        (filters.eligibility === '' ||
+          (Array.isArray(opportunity.eligibility) &&
+            opportunity.eligibility.some(e => e.description === filters.eligibility))) &&
         (filters.type === '' || opportunity.attendance_mode === filters.type) &&
-        (filters.discipline === '' || 
-          (Array.isArray(opportunity.discipline) && 
-           opportunity.discipline.some(d => d.description === filters.discipline)))
+        (filters.discipline === '' ||
+          (Array.isArray(opportunity.discipline) &&
+            opportunity.discipline.some(d => d.description === filters.discipline)))
       );
     }) || [];
 
@@ -58,36 +59,30 @@ const Homepage = () => {
     <div className="homepage">
       <HeroSection />
       <div className="controls">
-        <FilterOption 
+        <FilterOption
           onFilterChange={handleFilterChange}
           onSortChange={handleSortChange}
           currentFilters={filters}
           currentSort={sortOrder}
         />
       </div>
-      <div className="opportunities-container">
+      <div className="opportunities-section">
         <h2 className="opportunities-title">
           Scholarship and Conference Opportunities
         </h2>
-        <div className="opportunities-grid">
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : error ? (
-            <div>Error: {error.message}</div>
-          ) : processedOpportunities.length > 0 ? (
-            processedOpportunities.map((opportunitiesData, key) => (
-              <OpportunityCard
-                key={opportunitiesData.id || key}
-                opportunitiesData={opportunitiesData}
-              />
-            ))
-          ) : (
-            <div className="no-results">
-              <p>No opportunities match your selected filters.</p>
-            </div>
-          )}
-        </div>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Error: {error.message}</div>
+        ) : processedOpportunities.length > 0 ? (
+          <OpportunityCards opportunities={processedOpportunities} />
+        ) : (
+          <div className="no-results">
+            <p>No opportunities match your selected filters.</p>
+          </div>
+        )}
       </div>
+      <Footer />
     </div>
   );
 };

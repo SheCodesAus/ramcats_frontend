@@ -50,7 +50,7 @@ function LoginForm() {
     <div className="login-background">
       <div className="login-container">
         <div className="cat-container">
-          <img src="src/assets/14.png" alt="Cat" className="cat-icon" />
+          <img src="src/img/14.png" alt="Cat" className="cat-icon" />
         </div>
         <h1 className="login-title">Login</h1>
         <form onSubmit={handleSubmit}>

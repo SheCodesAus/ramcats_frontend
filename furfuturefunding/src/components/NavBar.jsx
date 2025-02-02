@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./NavBar.css";
 import useAuth from "../hooks/use-auth";
+import logo_typography from "../img/logo_typography.png";
 
 function NavBar() {
   const { auth, setAuth } = useAuth();
@@ -25,12 +26,12 @@ function NavBar() {
             <Link to="/">
               <img
                 className="logo-nav desktop-logo"
-                src="src/assets/logo_typography.png"
+                src="src/img/logo_typography.png"
                 alt="FurFuture Funding Logo"
               />
               <img
                 className="logo-nav mobile-logo"
-                src="src/assets/typoicon.png"
+                src="src/img/typoicon.png"
                 alt="FurFuture Funding Logo Mobile"
               />
             </Link>

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import useOpportunity from "../hooks/use-opportunity";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
 import OpportunityListingInfo from "../components/OpportunityListingInfo";
+import Footer from '../components/Footer';
+import { useNavigate } from "react-router-dom";
 
 function OpportunityListingPage() {
   const { id } = useParams();
-  const { opportunity, isLoading, error } = useOpportunity(id);
+  const opportunityId = id;
+  const navigate = useNavigate();
+  const { opportunity, isLoading, error } = useOpportunity(opportunityId);
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const [loggedinUserId, setLoggedinUserId] = useState(null);
   const [archive, setArchive] = useState({ is_archive: false });
@@ -19,9 +23,31 @@ function OpportunityListingPage() {
     }
   }, [opportunity]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message || "An error occurred."}</p>;
-  if (!opportunity) return null;
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <img
+          src="https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif"
+          alt="Loading..."
+          style={{
+            border: "3px solid navy",
+            borderRadius: "10px",
+            width: "300px",
+          }}
+        />
+      </div>
+    );
+  }
+  if (error) {
+    return navigate("*");
+  }
 
   const handleArchive = async () => {
     const updatedArchive = !archive;
@@ -39,24 +65,33 @@ function OpportunityListingPage() {
     <div>
       <OpportunityListingInfo opportunity={opportunity} />
       <OrganisationCard organisation={opportunity.organisation} />
-      <OpportunityActions 
-        userId={userId} 
-        loggedinUserId={loggedinUserId} 
-        id={id} 
-        archive={archive} 
-        handleArchive={handleArchive} 
+      <OpportunityActions
+        userId={userId}
+        loggedinUserId={loggedinUserId}
+        id={id}
+        archive={archive}
+        handleArchive={handleArchive}
       />
+      <Footer />
     </div>
   );
 }
 
-function OpportunityActions({ userId, loggedinUserId, id, archive, handleArchive }) {
+function OpportunityActions({
+  userId,
+  loggedinUserId,
+  id,
+  archive,
+  handleArchive,
+}) {
   return (
     <div>
       {userId === loggedinUserId && (
         <div>
           <Link to={`/opportunities/edit/${id}`}>Edit project detail</Link>
-          <button onClick={handleArchive}>{archive ? "Unarchive" : "Archive"}</button>
+          <button onClick={handleArchive}>
+            {archive ? "Unarchive" : "Archive"}
+          </button>
         </div>
       )}
     </div>

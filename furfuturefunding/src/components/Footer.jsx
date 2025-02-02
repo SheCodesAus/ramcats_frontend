@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import backgroundImage from '../img/ramcats_1.png'; // Adjust the path according to your project structure
+import backgroundImage from '../img/ramcats_1.png';
 
 const Footer = () => {
   const footerStyle = {
@@ -15,8 +15,6 @@ const Footer = () => {
     <footer className="custom-footer" style={footerStyle}>
       <div className="custom-container">
         <div className="custom-row">
-          
-          {/* This section will be hidden on mobile */}
           <div className="custom-col about-sectionfooter">
             <p className="custom-text">
               FurFuture Funding is committed to helping aspiring professionals secure funding for their career growth. 
@@ -26,7 +24,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div className="custom-col custom-footer-links">
             <h6>Quick Links</h6>
             <ul>
@@ -41,10 +38,9 @@ const Footer = () => {
 
         <hr className="custom-divider" />
 
-        {/* Footer Bottom Section */}
         <div className="custom-footer-bottom">
           <p className="custom-copyright">
-            Copyright &copy; 2025 FurFuture Funding. All Rights Reserved.
+            Copyright © 2025 FurFuture Funding. All Rights Reserved.
           </p>
           <ul className="custom-social-icons">
             <li><a href="#"><FaFacebookF /></a></li>
@@ -58,3 +54,7 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+
+

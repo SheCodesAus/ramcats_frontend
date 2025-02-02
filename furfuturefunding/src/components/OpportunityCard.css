@@ -11,13 +11,12 @@
   gap:15px;
   padding: 10px;
   width: 95%;
-  justify-content:flex-end;
-  margin-left:6rem;
+  margin-left:2rem;
   }
 
 /* Base card styles */
 .opportunity-card {
-  background-color: #cc7b49;
+  background-color: #FF914D;
   border-radius: 8px;
   box-shadow: 0 8px 2px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -41,8 +40,7 @@
   line-height: 1.2;
   color: #000000;
   margin-bottom: 1rem;
-  margin-top: 1.5rem;
-  margin-left: 9rem;
+  margin-top: 2rem;
 }
 
 /* Header section */
@@ -145,7 +143,7 @@ a {
 }
 
 
-.apply-button {
+.opp-card-apply-button {
   width: 100%;
   padding: 12px;
   background-color: #130265;
@@ -156,10 +154,10 @@ a {
   font-size: 1rem;
   font-weight: 500;
   margin-top: auto;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
-.apply-button:hover {
+.opp-card-apply-button:hover {
   background-color: #F5F5F5;
   color: #000000;
 }
@@ -191,187 +189,76 @@ a {
   color: #000000;
 }
 
-/* Desktop styles (1400px and above) */
-@media (min-width: 1400px) {
+/* Desktop (1400px and above) */
+@media (max-width: 1400px) {
   .opportunities-container {
     max-width: 1400px;
-    overflow-x: visible;
-    position: relative; /* Add this */
+    margin-left: 4rem;
   }
 
   .opportunities-grid {
-    justify-content: flex-end;
-    margin-left: auto;
-    margin-right: -22rem;
-    width: 100%;
-    position: relative; /* Add this */
-    right: 0;  /* Add this */
-  }
-
-  .opportunity-card {
-    flex-basis: calc(33.333% - 24px);
-    max-width: calc(33.333% - 24px);
+    grid-template-columns: repeat(3, minmax(300px, 400px));
+    justify-content: center;
   }
 }
 
-.pagination {
-  position: absolute;
-  left: 75%;
-  transform: translateX(-50%);
-  margin-top: 2rem; /* Add more space above pagination */
-  width: 100%;
-  
-}
-
-/* Container needs relative positioning for absolute positioning to work */
-.opportunities-container {
-  position: relative;
-}
-
-
-.pagination button {
-background-color: #130265;
-color: white;
-border: none;
-padding: 0.5rem 1rem;
-margin: 0 0.25rem;
-border-radius: 0.375rem;
-cursor: pointer;
-transition: background-color 0.2s;
-margin-bottom: 2rem;
-}
-
-.pagination button.active {
-background-color: #FF914D;
-color: #000000;
-}
-
-/* Laptop styles (up to 1399px) */
+/* Laptop/Smaller Desktop (up to 1399px) */
 @media (max-width: 1399px) {
   .opportunities-container {
-    max-width: 1200px;
-  
-    overflow: visible;
-    position: relative;
-  }
-  }
-
-  .opportunity-card {
-    flex-basis: calc(33.333% - 24px);
-    max-width: calc(33.333% - 24px); /* Add this to maintain consistent width */
-  }
-
-
-.pagination {
-  position: absolute;
-  left: 50%; /* Center for laptop */
-  transform: translateX(-50%);
-  margin-top: 2rem;
-  width: 100%;
-}
-
-/* Tablet styles (up to 768px) */
-@media screen and (max-width: 768px) {
-  .opportunities-container {
-    width: 90%;
-    padding: 15px;
+    max-width: 1399px;
   }
 
   .opportunities-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 10px;
-    justify-content: center;
-    margin-left: 0.5rem;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+}
+
+/* Tablet (up to 768px) */
+@media (max-width: 768px) {
+  .opportunities-grid {
+    grid-template-columns: 1fr; 
+    
+    
+  }
+  .opportunity-card {
+    min-width: unset;  
+    width: 80%;
+    margin: 0 auto;
+    margin-right: 4rem;
+  }
+
+  .opportunities-title {
+    line-height: 1.8rem;
+  }
+}
+
+/* Mobile (up to 375px) */
+@media (max-width: 375px) {
+  .opportunities-grid {
+    grid-template-columns: 1fr;
+    margin-left: 3.5rem;  
+  }
+
+  .opportunity-card {
+    min-width: unset;  
     width: 100%;
-    align-items: center;
+    margin: 0 auto;
+  }
+
+  .opportunities-title {
+    font-size: 1.5rem;
+    margin-left: 0;
   }
 
   .header-section h2 {
     font-size: 1.25rem;
   }
 
-  .image-container {
-    width: 80px;
-    height: 80px;
+  .info-row {
+    font-size: 0.875rem;
+  }
+
+  .opp-card-apply-button {
+    font-size: 0.875rem;
   }
 }
-
-
-/* Mobile styles (up to 375px) */
-@media screen and (max-width: 375px) {
-  .opportunities-container {
-    width: 100%;
-    max-width: 375px;
-    padding: 10px;
-    margin: 0;
-  }
-
-  .opportunities-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 10px;
-    justify-content: center !important; /* Mobile: center */
-    margin-left: 5rem !important; /* Mobile: 2rem */
-    width: 100%;
-    align-items: center;
-  }
-
-  .opportunity-card {
-    width: 335px;
-    margin: 0;
-    min-width: unset;
-    max-width: none;
-    padding: 1.2rem;
-  }
-
-  .card-content {
-    gap: 12px;
-  }
-
-  .info-row {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    padding-right: 8px;
-  }
-
-  .info-row.description {
-    min-height: 40px;
-    margin-bottom: 8px;
-  }
-
-  .tags {
-    gap: 6px;
-    margin: 12px 0;
-    padding-right: 2px;
-  }
-
-  .tag {
-    font-size: 0.8rem;
-    max-width: calc(100% - 12px);
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .apply-button {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-  }
-
-  .header-section {
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .image-container {
-    width: 80px;
-    height: 80px;
-  }
-
-  .header-section h2 {
-    font-size: 1.2rem;
-    line-height: 1.3;
-  }
-};

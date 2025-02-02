@@ -4,7 +4,6 @@ import useOpportunity from "../hooks/use-opportunity";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
 import OpportunityListingInfo from "../components/OpportunityListingInfo";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function OpportunityListingPage() {

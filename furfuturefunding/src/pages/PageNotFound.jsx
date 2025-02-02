@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/furfuturefunding_logo.png";
+import Logo from "../img/furfuturefunding_logo.png";
 import { Link } from "react-router-dom";
 
 function PageNotFound() {

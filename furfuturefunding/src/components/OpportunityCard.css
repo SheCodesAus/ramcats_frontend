@@ -1,23 +1,21 @@
 .opportunities-container {
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
 }
 
+.opportunities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  width: 95%;
+  max-width: 1440px; 
+}
 
 /* .opportunities-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 400px));
-  gap:15px;
-  padding: 10px;
-  width:95%;
-  margin-left:2rem;
-  padding-right: 1rem;
-  } */
-
-.opportunities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 33px;
@@ -26,7 +24,7 @@
   width:85%;
   margin: 0 auto;
   text-align: left;
-}
+} */
 
 /* Base card styles */
 .opportunity-card {
@@ -37,9 +35,10 @@
   border: 2px solid #000000;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-width: 320px;
-  position: relative;
+  justify-content: space-between; 
+  flex: 1 1 30%; 
+  width: 320px;
+  max-width:480px;
   height: 550px;
 }
 
@@ -85,6 +84,7 @@
   font-size: 1.5rem;
   line-height: 1.2;
   color: #130265;
+  text-align: left;
 }
 
 a {
@@ -106,14 +106,17 @@ a {
   font-size: 1rem;
   line-height: 1.3rem;
   margin-top: 1px;
+  text-align: left;
 }
 
 .info-row.description {
-  line-height: 1.3rem;
   font-size: 1rem;
+  line-height: 1.3rem;
   color: #000000;
   margin-bottom: 6px;
   min-height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .info-row .material-icons {
@@ -156,7 +159,6 @@ a {
   margin: 5px 0;
 
 }
-
 
 .opp-card-apply-button {
   width: 100%;
@@ -213,7 +215,7 @@ a {
     width: 60px;
     height: 60px;
   }
-  
+
   .header-section h2 {
     font-size: 1.25rem;
   }
@@ -236,3 +238,35 @@ a {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
   } */
+
+/* 💻 Desktop & Laptop Screens (Always 3 Columns) */
+@media (min-width: 1025px) {
+  .opportunity-card {
+    flex: 1 1 calc(33.333% - 20px); /* Guarantees 3 columns */
+  }
+}
+
+/* 📱 Tablets/iPads (2 Columns) */
+@media (max-width: 1024px) {
+  .opportunity-card {
+    flex: 1 1 calc(50% - 20px); /* Switches to 2 columns */
+  }
+}
+
+/* 📱 Mobile Phones (1 Column) */
+@media (max-width: 768px) {
+  .opportunity-card {
+    flex: 1 1 100%; /* Switches to 1 column */
+    max-width: 100%;
+  }
+}
+
+/* 📱 Very Small Mobile Phones (Full Width) */
+@media (max-width: 375px) {
+  .opportunity-card {
+    flex: 1 1 100%;
+    max-width: 95%;
+    gap: 10px;
+    padding: 5px;
+  }
+}

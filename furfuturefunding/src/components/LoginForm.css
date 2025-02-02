@@ -14,7 +14,7 @@
 }
 
 .login-background {
-  background-image: url('src/img/ramcats_1.png');
+  background-image: url("src/img/ramcats_1.png");
   background-size: cover;
   background-position: center;
   width: 100vw;
@@ -27,9 +27,9 @@
   position: fixed;
   top: 0;
   left: 0;
- }
+}
 
- .login-container {
+.login-container {
   width: 100%;
   max-width: 500px;
   padding: 2rem;
@@ -38,8 +38,8 @@
   border: 2px solid #000000;
   border-radius: 8px;
   position: relative;
-  margin-top: 8rem; 
- }
+  margin-top: 8rem;
+}
 
 .login-title {
   text-align: center;
@@ -52,16 +52,15 @@
 .login-form-group,
 .form-group {
   margin-bottom: 2rem;
-
 }
 
 .form-group input:first-child {
   margin-bottom: 1rem;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
   width: 27rem;
   padding: 1rem;
   border: 2px solid #ddd;
@@ -70,6 +69,7 @@ input[type="email"] {
   background-color: #f8f8f8;
   display: block;
   margin: 0 auto;
+  margin-bottom: 2rem;
 }
 
 .primary-button {
@@ -82,11 +82,10 @@ input[type="email"] {
   border-radius: 8px;
   display: block;
   margin: 0 auto 1rem auto;
-
 }
 
 .primary-button:hover {
-  background-color: #FF914D;
+  background-color: #ff914d;
   transform: translateY(-2px);
   color: #f5f5f5;
 }
@@ -104,14 +103,13 @@ input[type="email"] {
 }
 
 .secondary-button:hover {
-  background-color: #FF914D;
+  background-color: #ff914d;
   transform: translateY(-2px);
   color: #000000;
 }
 
 /* Mobile styles */
 @media (max-width: 375px) {
-
   .login-container {
     width: 85%;
     padding: 1.5rem;
@@ -127,9 +125,9 @@ input[type="email"] {
   .cat-icon {
     height: 80px;
   }
- }
+}
 
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   .login-container {
     max-width: 90%;
     margin-top: 6rem;

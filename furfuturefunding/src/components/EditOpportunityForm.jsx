@@ -8,7 +8,7 @@ import useEligbilities from "../hooks/use-eligibilities";
 import useTypes from "../hooks/use-types";
 import useDisciplines from "../hooks/use-disciplines";
 import "./EditOpportunityForm.css";
-import Catmaskot from "../../src/img/ramcats-mascot.png";
+import Catmaskot from "../../src/img/ramcats_mascot.png";
 
 export default function EditOpportunityForm() {
   const navigate = useNavigate();

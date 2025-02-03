@@ -28,7 +28,7 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
 
   const disciplineOptions = [
     { value: 'Humanities', label: 'Humanities' },
-    { value: 'Computer Science', label: 'Computer Science' },
+    { value: 'Computer science', label: 'Computer Science' },
     { value: 'Chemistry', label: 'Chemistry' },
     { value: 'Biology', label: 'Biology' },
     { value: 'Engineering', label: 'Engineering' },
@@ -45,12 +45,12 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
 
   const handleSelectChange = (e, filterType) => {
     const value = e.target.value;
-    console.log(`Filter applied: ${filterType} = ${value}`); 
     onFilterChange({
       type: filterType,
-      value: value
+      value: value,
     });
-  }
+  };
+
   const handleReset = () => {
     ['state', 'eligibility', 'discipline'].forEach(filterType => {
       onFilterChange({
@@ -66,10 +66,10 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
   };
 
   const handleSortClick = () => {
-    const newSortValue = !sortByDate;
-    setSortByDate(newSortValue);
+    const newSortValue = !sortByDate ? "-close_date" : "close_date";
+    setSortByDate(!sortByDate);
     if (onSortChange) {
-      onSortChange(newSortValue ? 'closing_date' : 'closing_date_reverse');
+      onSortChange(newSortValue);
     }
   };
   

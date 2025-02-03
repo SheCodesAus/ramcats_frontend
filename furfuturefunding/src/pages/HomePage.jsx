@@ -6,7 +6,8 @@ import FilterOption from "../components/FilterOption";
 import Footer from "../components/Footer";
 
 const Homepage = () => {
-  const { opportunities, isLoading, error } = useOpportunities();
+  const [sortOrder, setSortOrder] = useState("close_date");
+  const { opportunities, isLoading: initialLoading, error } = useOpportunities();
 
   const [filters, setFilters] = useState({
     state: "",
@@ -14,14 +15,13 @@ const Homepage = () => {
     type: "",
     discipline: "",
   });
-  const [sortOrder, setSortOrder] = useState('');
 
   React.useEffect(() => {
     if (opportunities?.length > 0) {
-      console.log('Sample opportunity data:', {
+      console.log("Sample opportunity data:", {
         firstOpportunity: opportunities[0],
         eligibility: opportunities[0].eligibility,
-        discipline: opportunities[0].discipline
+        discipline: opportunities[0].discipline,
       });
     }
   }, [opportunities]);
@@ -39,39 +39,40 @@ const Homepage = () => {
 
   // Filter and sort opportunities
   const processedOpportunities = React.useMemo(() => {
-    let result =
-      opportunities?.filter((opportunity) => {
-        if (!opportunity) return false;
+    if (!opportunities) return [];
 
-        return (
-          (filters.state === "" || opportunity.location === filters.state) &&
-          (filters.eligibility === "" ||
-            (Array.isArray(opportunity.eligibility) &&
-              opportunity.eligibility.some(
-                (e) => e.description === filters.eligibility
-              ))) &&
-          (filters.type === "" ||
-            opportunity.attendance_mode === filters.type) &&
-          (filters.discipline === "" ||
-            (Array.isArray(opportunity.discipline) &&
-              opportunity.discipline.some(
-                (d) => d.description === filters.discipline
-              )))
-        );
-      }) || [];
+    let result = opportunities.filter((opportunity) => {
+      if (!opportunity) return false;
 
-    // Sort by close_date if sort order is specified
-    if (sortOrder) {
-      result.sort((a, b) => {
-        const dateA = new Date(a.close_date);
-        const dateB = new Date(b.close_date);
-        return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
-      });
-    }
-  
+      return (
+        (filters.state === "" || opportunity.location === filters.state) &&
+        (filters.eligibility === "" ||
+          (Array.isArray(opportunity.eligibility) &&
+            opportunity.eligibility.some(
+              (e) => e.description === filters.eligibility
+            ))) &&
+        (filters.type === "" || opportunity.attendance_mode === filters.type) &&
+        (filters.discipline === "" ||
+          (Array.isArray(opportunity.discipline) &&
+            opportunity.discipline.some(
+              (d) => d.description === filters.discipline
+            )))
+      );
+    });
+
+    // Sort the filtered results
+    result.sort((a, b) => {
+      const dateA = new Date(a.close_date);
+      const dateB = new Date(b.close_date);
+      return sortOrder.startsWith("-") ? 
+        dateB - dateA : // Descending
+        dateA - dateB;  // Ascending
+    });
+
     return result;
   }, [opportunities, filters, sortOrder]);
-  if (isLoading) {
+
+  if (initialLoading) {
     return (
       <div
         style={{
@@ -94,8 +95,8 @@ const Homepage = () => {
     );
   }
 
-  const filtersApplied = Object.values(filters).some(value => value !== '');
-  const hasResults = processedOpportunities.length > 0 || !filtersApplied; 
+  const filtersApplied = Object.values(filters).some((value) => value !== "");
+  const hasResults = processedOpportunities.length > 0 || !filtersApplied;
 
   return (
     <div className="homepage">
@@ -114,15 +115,12 @@ const Homepage = () => {
         <h2 className="opportunities-title">
           Scholarship and Conference Opportunities
         </h2>
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : error ? (
+        {error ? (
           <div>Error: {error.message}</div>
         ) : processedOpportunities.length > 0 ? (
           <OpportunityCards opportunities={processedOpportunities} />
         ) : (
-          <div className="no-results">
-          </div>
+          <div className="no-results"></div>
         )}
       </div>
       <Footer />

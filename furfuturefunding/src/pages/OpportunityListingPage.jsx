@@ -92,9 +92,14 @@ function OpportunityActions({
   return (
     <div>
       {userId === loggedinUserId && (
-        <div>
-          <Link to={`/opportunities/edit/${id}`}>Edit project detail</Link>
-          <button onClick={handleArchive}>
+        <div className="opportunity-actions">
+          <Link to={`/opportunities/edit/${id}`} className="edit-button">
+            Edit project detail
+          </Link>
+          <button 
+            className="archive-button"
+            onClick={handleArchive}
+          >
             {archive ? "Unarchive" : "Archive"}
           </button>
         </div>

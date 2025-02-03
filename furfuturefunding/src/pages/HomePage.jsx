@@ -6,7 +6,8 @@ import FilterOption from "../components/FilterOption";
 import Footer from "../components/Footer";
 
 const Homepage = () => {
-  const { opportunities, isLoading, error } = useOpportunities();
+  const [sortOrder, setSortOrder] = useState("close_date");
+  const { opportunities, isLoading, error } = useOpportunities(sortOrder);
 
   const [filters, setFilters] = useState({
     state: "",
@@ -14,14 +15,13 @@ const Homepage = () => {
     type: "",
     discipline: "",
   });
-  const [sortOrder, setSortOrder] = useState('');
 
   React.useEffect(() => {
     if (opportunities?.length > 0) {
-      console.log('Sample opportunity data:', {
+      console.log("Sample opportunity data:", {
         firstOpportunity: opportunities[0],
         eligibility: opportunities[0].eligibility,
-        discipline: opportunities[0].discipline
+        discipline: opportunities[0].discipline,
       });
     }
   }, [opportunities]);
@@ -60,17 +60,8 @@ const Homepage = () => {
         );
       }) || [];
 
-    // Sort by close_date if sort order is specified
-    if (sortOrder) {
-      result.sort((a, b) => {
-        const dateA = new Date(a.close_date);
-        const dateB = new Date(b.close_date);
-        return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
-      });
-    }
-  
     return result;
-  }, [opportunities, filters, sortOrder]);
+  }, [opportunities, filters]);
   if (isLoading) {
     return (
       <div
@@ -94,8 +85,8 @@ const Homepage = () => {
     );
   }
 
-  const filtersApplied = Object.values(filters).some(value => value !== '');
-  const hasResults = processedOpportunities.length > 0 || !filtersApplied; 
+  const filtersApplied = Object.values(filters).some((value) => value !== "");
+  const hasResults = processedOpportunities.length > 0 || !filtersApplied;
 
   return (
     <div className="homepage">
@@ -121,8 +112,7 @@ const Homepage = () => {
         ) : processedOpportunities.length > 0 ? (
           <OpportunityCards opportunities={processedOpportunities} />
         ) : (
-          <div className="no-results">
-          </div>
+          <div className="no-results"></div>
         )}
       </div>
       <Footer />

@@ -1,5 +1,7 @@
-async function getOpportunities() {
-  const url = `${import.meta.env.VITE_API_URL}/opportunities`;
+async function getOpportunities(sortOrder = "close_date") {
+  const url = `${
+    import.meta.env.VITE_API_URL
+  }/opportunities/?ordering=${sortOrder}`;
   const response = await fetch(url, { method: "GET" });
   if (!response.ok) {
     const fallbackError = "Can't fetch the opportunities";

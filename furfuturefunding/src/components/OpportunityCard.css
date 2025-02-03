@@ -55,7 +55,10 @@
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
-
+.opportunities-container h1{
+  background-color: white;
+  font-size: 2rem;
+}
 /* Header section */
 .header-section {
   display: flex;

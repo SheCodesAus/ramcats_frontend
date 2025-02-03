@@ -6,6 +6,7 @@ import archiveOpportunity from "../api/put-opportunity-archive";
 import OpportunityListingInfo from "../components/OpportunityListingInfo";
 import Footer from '../components/Footer';
 import { useNavigate } from "react-router-dom";
+import '../components/OpportunityListingPage.css';
 
 function OpportunityListingPage() {
   const { id } = useParams();
@@ -62,19 +63,22 @@ function OpportunityListingPage() {
   };
 
   return (
-    <div>
-      <OpportunityListingInfo opportunity={opportunity} />
-      <OrganisationCard organisation={opportunity.organisation} />
-      <OpportunityActions
-        userId={userId}
-        loggedinUserId={loggedinUserId}
-        id={id}
-        archive={archive}
-        handleArchive={handleArchive}
-      />
-      {/* <Footer /> */}
+    <div className="page-container">
+      <main className="main-content">
+        <div>
+          <OpportunityListingInfo opportunity={opportunity} />
+          <OrganisationCard organisation={opportunity.organisation} />
+          <OpportunityActions
+            userId={userId}
+            loggedinUserId={loggedinUserId}
+            id={id}
+            archive={archive}
+            handleArchive={handleArchive}
+          />
+        </div>
+      </main>
+      <Footer />
     </div>
-    
   );
 }
 
@@ -88,9 +92,14 @@ function OpportunityActions({
   return (
     <div>
       {userId === loggedinUserId && (
-        <div>
-          <Link to={`/opportunities/edit/${id}`}>Edit project detail</Link>
-          <button onClick={handleArchive}>
+        <div className="opportunity-actions">
+          <Link to={`/opportunities/edit/${id}`} className="edit-button">
+            Edit project detail
+          </Link>
+          <button 
+            className="archive-button"
+            onClick={handleArchive}
+          >
             {archive ? "Unarchive" : "Archive"}
           </button>
         </div>

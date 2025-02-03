@@ -1,6 +1,6 @@
-.create-opportunity-page {
+.edit-opportunity-page {
   min-height: 100vh;
-  background-image: url("src/img/ramcats_1.png");
+  background-image: url("../img/ramcats_1.png");
   position: relative;
   overflow: hidden;
   margin-top: 6rem;
@@ -37,7 +37,7 @@ h1 {
   resize: vertical;
 }
 
-.submit-btn {
+.edit-submit-btn {
   width: 100%;
   padding: 1rem;
   background: #1a0f4d;
@@ -46,6 +46,7 @@ h1 {
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
+  margin-bottom: 1.75rem;
   transition: all 0.2s;
 }
 
@@ -66,7 +67,7 @@ h1 {
   height: auto;
 }
 
-.create-opportunity-container {
+.edit-opportunity-container {
   width: 600px;
   background: white;
   border: 2px solid black;
@@ -75,7 +76,6 @@ h1 {
   margin: 8rem auto;
   position: relative;
   z-index: 1;
-  margin-bottom: 0.5rem;
 }
 .opportunity-form-group select {
   width: 100%;
@@ -112,7 +112,7 @@ h1 {
 }
 
 @media (max-width: 375px) {
-  .create-opportunity-container {
+  .edit-opportunity-container {
     width: 85%;
     margin: 1rem auto;
     padding: 1rem;
@@ -135,7 +135,7 @@ h1 {
     min-height: 60px;
   }
 
-  .create-opportunity-container {
+  .edit-opportunity-container {
     margin-top: 3rem;
   }
 
@@ -152,7 +152,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  .create-opportunity-container {
+  .edit-opportunity-container {
     width: 90%;
   }
 

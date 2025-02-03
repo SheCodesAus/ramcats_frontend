@@ -2,7 +2,6 @@ import React from "react";
 import "./ContactForm.css";
 import Swal from "sweetalert2";
 
-
 function ContactForm() {
   const [result, setResult] = React.useState("");
 
@@ -25,21 +24,21 @@ function ContactForm() {
           title: "Success!",
           text: "Your message was sent successfully!",
           icon: "success",
-          confirmButtonColor: '#130265',
+          confirmButtonColor: "#130265",
           timer: 3000,
           customClass: {
-            popup: 'my-custom-popup-class',
-            confirmButton: 'my-custom-button-class'
-          }
+            popup: "my-custom-popup-class",
+            confirmButton: "my-custom-button-class",
+          },
         });
         event.target.reset();
       } else {
         Swal.fire({
-          title: 'Error!',
-          text: data.message || 'Something went wrong',
-          icon: 'error',
-          confirmButtonText: 'Try Again',
-          confirmButtonCoeventor: '#130265',
+          title: "Error!",
+          text: data.message || "Something went wrong",
+          icon: "error",
+          confirmButtonText: "Try Again",
+          confirmButtonCoeventor: "#130265",
         });
       }
     } catch (error) {
@@ -52,61 +51,45 @@ function ContactForm() {
     <div className="contact-page">
       <div className="contact-container">
         <div className="contact-cat-container">
-          <img src="src/img/ramcats3.png" alt="Cat Mascot" className="contact-cat-icon" />
+          <img
+            src="src/img/ramcats3.png"
+            alt="Cat Mascot"
+            className="contact-cat-icon"
+          />
         </div>
         <h2 className="contact-title">Contact Us</h2>
         <form className="contact-form" onSubmit={onSubmit}>
           <div className="form-row">
-            <div className="form-group">
+            <div className="contact-form-group">
               <label htmlFor="firstName">
                 Given Name <span className="required">*</span>
               </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                required
-              />
+              <input type="text" id="firstName" name="firstName" required />
             </div>
-            <div className="form-group">
+            <div className="contact-form-group">
               <label htmlFor="lastName">
                 Last Name <span className="required">*</span>
               </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                required
-              />
+              <input type="text" id="lastName" name="lastName" required />
             </div>
           </div>
 
           <div className="form-row">
-            <div className="form-group">
+            <div className="contact-form-group">
               <label htmlFor="email">
                 Email <span className="required">*</span>
               </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-              />
+              <input type="email" id="email" name="email" required />
             </div>
-            <div className="form-group">
+            <div className="contact-form-group">
               <label htmlFor="phone">
                 Phone <span className="required">*</span>
               </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                required
-              />
+              <input type="tel" id="phone" name="phone" required />
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="contact-form-group">
             <label htmlFor="preferredContact">Preferred Contact Method</label>
             <select id="preferredContact" name="preferredContact">
               <option value="">Select preferred contact method</option>
@@ -116,16 +99,11 @@ function ContactForm() {
             </select>
           </div>
 
-          <div className="form-group">
+          <div className="contact-form-group">
             <label htmlFor="message">
               Message <span className="required">*</span>
             </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="5"
-            ></textarea>
+            <textarea id="message" name="message" required rows="5"></textarea>
           </div>
 
           <button type="submit">Send Message</button>

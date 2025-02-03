@@ -1,6 +1,9 @@
 import React from "react";
 import "./ContactForm.css";
 import Swal from "sweetalert2";
+import ramcats_1 from "../img/ramcats_1.png";
+import ramcats3 from "../img/ramcats3.png";
+
 
 function ContactForm() {
   const [result, setResult] = React.useState("");
@@ -47,7 +50,9 @@ function ContactForm() {
     }
   };
 
+  
   return (
+
     <div className="contact-page">
       <div className="contact-container">
         <div className="contact-cat-container">
@@ -59,6 +64,7 @@ function ContactForm() {
         </div>
         <h2 className="contact-title">Contact Us</h2>
         <form className="contact-form" onSubmit={onSubmit}>
+
           <div className="form-row">
             <div className="contact-form-group">
               <label htmlFor="firstName">
@@ -83,9 +89,11 @@ function ContactForm() {
             </div>
             <div className="contact-form-group">
               <label htmlFor="phone">
-                Phone <span className="required">*</span>
+                Phone <span className="phone"></span>
               </label>
+
               <input type="tel" id="phone" name="phone" required />
+
             </div>
           </div>
 
@@ -108,7 +116,8 @@ function ContactForm() {
 
           <button type="submit">Send Message</button>
           {result && <span className="result-message">{result}</span>}
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useState } from "react";
 import postLogin from "../api/post-login";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/use-auth";
-import "./LoginForm.css"; 
+import "./LoginForm.css";
 import hellocat from "../img/hellocat.png";
 import ramcats_1 from "../img/ramcats_1.png";
 
@@ -50,7 +50,6 @@ function LoginForm() {
 
   return (
     <div className="login-page">
-      <img src={ramcats_1} alt="Background pattern" className="background-pattern" />
       <div className="login-container">
         <div className="cat-container-login">
           <img src={hellocat} alt="Cat" className="cat-icon-login" />

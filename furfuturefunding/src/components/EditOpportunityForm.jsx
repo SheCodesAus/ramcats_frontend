@@ -9,6 +9,7 @@ import useTypes from "../hooks/use-types";
 import useDisciplines from "../hooks/use-disciplines";
 import "./EditOpportunityForm.css";
 import Catmaskot from "../../src/img/ramcats_mascot.png";
+import Footer from "./Footer";
 
 export default function EditOpportunityForm() {
   const navigate = useNavigate();
@@ -277,6 +278,7 @@ export default function EditOpportunityForm() {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

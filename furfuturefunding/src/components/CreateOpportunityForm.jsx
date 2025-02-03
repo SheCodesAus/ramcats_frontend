@@ -8,6 +8,7 @@ import useDisciplines from "../hooks/use-disciplines";
 import useEligibilities from "../hooks/use-eligibilities";
 import useTypes from "../hooks/use-types.js";
 import Catmaskot from "../../src/img/ramcats_mascot.png";
+import Footer from "./Footer.jsx";
 
 function CreateOpportunityForm() {
   const { id } = useParams();
@@ -226,6 +227,7 @@ function CreateOpportunityForm() {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -113,7 +113,7 @@ function ContactForm() {
           {result && <span className="result-message">{result}</span>}
         </form>
       </div>
-    </div>
+ 
   );
 }
 

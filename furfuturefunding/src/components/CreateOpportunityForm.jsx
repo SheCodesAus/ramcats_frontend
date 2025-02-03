@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useDisciplines from "../hooks/use-disciplines";
 import useEligibilities from "../hooks/use-eligibilities";
 import useTypes from "../hooks/use-types.js";
-import Catmaskot from "../../src/img/ramcats-mascot.png";
+import Catmaskot from "../../src/img/ramcats_mascot.png";
 
 function CreateOpportunityForm() {
   const { id } = useParams();

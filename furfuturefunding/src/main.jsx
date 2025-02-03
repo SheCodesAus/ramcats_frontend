@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import EditPage from "./pages/EditPage.jsx";
+import PageNotFound from "./pages/PageNotFound.jsx";
 
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import "./style.css";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/signup", element: <SignUpPage /> },
       { path: "opportunities/edit/:id", element: <EditPage /> },
+      { path: "*", element: <PageNotFound /> },
     ],
   },
 ]);

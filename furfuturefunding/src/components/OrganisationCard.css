@@ -1,14 +1,21 @@
 .organisation-card {
   width: 300px;
   align-self: flex-end;
-  background-color: #f8f8f8;
+  background-color: #FF914D;
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   border: 2px solid black;
   margin-left: 55rem;
-  margin-top:-33.5rem;
+  margin-top:-45rem;
 }
+
+
+.organisation-card img {
+  border: 2px solid #FF914D;
+  border-radius: 8px;
+}
+
 
 .organisation-logo {
   width: 80px;
@@ -53,9 +60,53 @@
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+/* Tablet and below */
+@media (max-width: 1024px) {
+  .opportunity-container {
+    grid-template-columns: 1fr;
+  }
+
   .organisation-card {
     width: 100%;
-    margin-top: 1.5rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    position: static;
+  }
+}
+
+/* Mobile specific */
+@media (max-width: 768px) {
+  .opportunity-container {
+    padding: 15px;
+  }
+
+  .organisation-card {
+    width: 80%;
+    max-width: 500px;
+    margin: 2rem auto;
+    position: static;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 375px) {
+  .opportunity-container {
+    padding: 80px;
+  }
+
+  .organisation-card {
+    width: 10%;
+    width: 400px;
+    margin: 2rem auto;
+    position: static;
+  }
+
+  .organisation-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .organisation-name {
+    font-size: 1.1rem;
   }
 }

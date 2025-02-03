@@ -7,7 +7,6 @@ const OpportunityCards = ({ opportunities = [] }) => {
   const cardsPerPage = 6;
 
   if (!Array.isArray(opportunities)) {
-    console.error("Expected an array but received:", opportunities);
     return <p>Invalid opportunities data.</p>;
   }
 
@@ -115,7 +114,7 @@ const OpportunityCard = ({ opportunitiesData }) => {
               ))}
           </div>
 
-          <button className="apply-button">Find out more</button>
+          <button className="opp-card-apply-button">Find out more</button>
         </div>
       </div>
     </Link>

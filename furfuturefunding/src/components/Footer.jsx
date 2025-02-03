@@ -1,9 +1,24 @@
+// Footer.jsx
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import backgroundImage from '../img/ramcats_1.png'; // Adjust the path according to your project structure
+import backgroundImage from '../img/ramcats_1.png';
 
 const Footer = () => {
+  // Get the current location using useLocation hook
+  const location = useLocation();
+  
+  // Function to determine the page type
+  const getPageType = () => {
+    const path = location.pathname.toLowerCase();
+    if (path.includes('opportunitylistingpage')) return 'opportunity-listing-page';
+    if (path.includes('login')) return 'login-page';
+    return '';
+  };
+
+  const pageClassName = getPageType();
+
   const footerStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
@@ -12,11 +27,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="custom-footer" style={footerStyle}>
+    <footer className={`custom-footer ${pageClassName}`} style={footerStyle}>
       <div className="custom-container">
         <div className="custom-row">
-          
-          {/* This section will be hidden on mobile */}
           <div className="custom-col about-sectionfooter">
             <p className="custom-text">
               FurFuture Funding is committed to helping aspiring professionals secure funding for their career growth. 
@@ -26,7 +39,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div className="custom-col custom-footer-links">
             <h6>Quick Links</h6>
             <ul>
@@ -41,10 +53,9 @@ const Footer = () => {
 
         <hr className="custom-divider" />
 
-        {/* Footer Bottom Section */}
         <div className="custom-footer-bottom">
           <p className="custom-copyright">
-            Copyright &copy; 2025 FurFuture Funding. All Rights Reserved.
+            Copyright © 2025 FurFuture Funding. All Rights Reserved.
           </p>
           <ul className="custom-social-icons">
             <li><a href="#"><FaFacebookF /></a></li>

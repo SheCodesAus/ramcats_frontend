@@ -1,15 +1,17 @@
-// import { oneOpportunity } from "../data";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import useOpportunity from "../hooks/use-opportunity";
-import { Link } from "react-router-dom";
-// import { useAuth } from "../hooks/use-auth";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
-import { useEffect, useState } from "react";
+import OpportunityListingInfo from "../components/OpportunityListingInfo";
+import Footer from '../components/Footer';
+import { useNavigate } from "react-router-dom";
+import '../components/OpportunityListingPage.css';
 
 function OpportunityListingPage() {
   const { id } = useParams();
   const opportunityId = id;
+  const navigate = useNavigate();
   const { opportunity, isLoading, error } = useOpportunity(opportunityId);
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const [loggedinUserId, setLoggedinUserId] = useState(null);
@@ -22,8 +24,31 @@ function OpportunityListingPage() {
     }
   }, [opportunity]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message || "An error occurred."}</p>;
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <img
+          src="https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif"
+          alt="Loading..."
+          style={{
+            border: "3px solid navy",
+            borderRadius: "10px",
+            width: "300px",
+          }}
+        />
+      </div>
+    );
+  }
+  if (error) {
+    return navigate("*");
+  }
 
   const handleArchive = async () => {
     const updatedArchive = !archive;
@@ -37,57 +62,50 @@ function OpportunityListingPage() {
     }
   };
 
-  const formatDate = (isoString) => {
-    const date = new Date(isoString);
-    const options = { day: "numeric", month: "long", year: "numeric" };
-    return date.toLocaleDateString(undefined, options);
-  };
-
   return (
-    <div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <div>
-        <h2>{opportunity.title}</h2>
-        <h3>About the opportunity:</h3>
-        <p>{opportunity.description}</p>
-        <h4>Applications open:</h4>
-        <p>{formatDate(opportunity.open_date)}</p>
-        <h4>Applications close:</h4>
-        <p>{formatDate(opportunity.close_date)}</p>
-        <h4>Important information:</h4>
-        <p>{`Scholarship type: ${opportunity.type.map(
-          (typesData) => typesData.description
-        )}`}</p>
-        <p>{`Field of study: ${opportunity.discipline.map(
-          (disciplineData) => disciplineData.description
-        )}`}</p>
-        <p>{`Study mode: ${opportunity.attendance_mode}`}</p>
-        <p>{`Location: ${opportunity.location}`}</p>
-      </div>
-      <div>
-        <OrganisationCard organisation={opportunity.organisation} />
-      </div>
-      <button className="apply_button">Apply Now</button>
-      <div>
-        {userId === loggedinUserId ? (
-          <span>
-            {
-              <Link to={`/opportunities/edit/${opportunityId}`}>
-                Edit project detail
-              </Link>
-            }
-          </span>
-        ) : null}
-        {userId === loggedinUserId ? (
-          <button onClick={handleArchive}>
-            {archive ? "Unarchive" : "Archive"}
-          </button>
-        ) : null}
-      </div>
+    <div className="page-container">
+      <main className="main-content">
+        <div>
+          <OpportunityListingInfo opportunity={opportunity} />
+          <OrganisationCard organisation={opportunity.organisation} />
+          <OpportunityActions
+            userId={userId}
+            loggedinUserId={loggedinUserId}
+            id={id}
+            archive={archive}
+            handleArchive={handleArchive}
+          />
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
+
+function OpportunityActions({
+  userId,
+  loggedinUserId,
+  id,
+  archive,
+  handleArchive,
+}) {
+  return (
+    <div>
+      {userId === loggedinUserId && (
+        <div className="opportunity-actions">
+          <Link to={`/opportunities/edit/${id}`} className="edit-button">
+            Edit project detail
+          </Link>
+          <button 
+            className="archive-button"
+            onClick={handleArchive}
+          >
+            {archive ? "Unarchive" : "Archive"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default OpportunityListingPage;

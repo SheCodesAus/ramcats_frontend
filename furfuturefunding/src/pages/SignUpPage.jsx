@@ -1,7 +1,14 @@
 import SignupForm from "../components/SignUpForm";
+import Footer from '../components/Footer';
 
 function SignUpPage() {
-  return <SignupForm />;
-  }
-  
+  return (
+    <div>
+      <main>
+        <SignupForm />
+      </main>
+      <Footer />
+    </div>
+  );
+}
 export default SignUpPage;

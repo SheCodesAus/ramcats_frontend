@@ -41,6 +41,7 @@
 }
 
 /* Contact form specific styles */
+
 .contact-form .form-row {
   display: flex;
   justify-content: space-between;
@@ -133,6 +134,7 @@
 
 /* Media Queries */
 @media (max-width: 768px) {
+
   .contact-container {
     width: 90%;
     margin: 6rem auto;
@@ -183,3 +185,4 @@
     margin-bottom: 1rem;
   }
 }
+

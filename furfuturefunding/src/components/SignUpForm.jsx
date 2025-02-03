@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import postSignup from "../api/post-signup";
 import './SignUpForm.css';
+import ramcats_mascot from "../img/ramcats_mascot.png";
+import ramcats_1 from "../img/ramcats_1.png";
+
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -42,11 +45,12 @@ function SignupForm() {
     
 
   return (
-    <div className="signup-page">
-      <div className="signup-container">
-        <div className="catmascot">
-          <img src="/src/img/ramcats-mascot.png" alt="Cat paw" className="paw" />
-        </div>
+      <div className="signup-page">
+        <img src={ramcats_1} alt="Background pattern" className="background-pattern-signup" />
+        <div className="signup-container">
+          <div className="cat-container-signup">
+            <img src={ramcats_mascot} alt="Cat" className="cat-icon-login" />
+          </div>
         <h1>Sign up</h1>
         <form onSubmit={handleSubmit}>
           <div className="signup-form-group">

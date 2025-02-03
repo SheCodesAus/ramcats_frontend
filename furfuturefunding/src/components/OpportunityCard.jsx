@@ -17,6 +17,8 @@ const OpportunityCards = ({ opportunities = [] }) => {
 
   return (
     <div className="opportunities-container">
+      <h1 className="opportunity-title">Available Opportunities</h1>
+
       <div className="opportunities-grid">
         {currentCards.map(opportunityData => (
           <OpportunityCard key={opportunityData.id} opportunitiesData={opportunityData} />

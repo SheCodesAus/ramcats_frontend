@@ -13,7 +13,7 @@ const Footer = () => {
   const getPageType = () => {
     const path = location.pathname.toLowerCase();
     if (path.includes('opportunitylistingpage')) return 'opportunity-listing-page';
-    if (path.includes('login')) return 'login-page';
+    // if (path.includes('login')) return 'login-page';
     return '';
   };
 

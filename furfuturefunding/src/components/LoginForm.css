@@ -1,5 +1,6 @@
 .login-page {
-  min-height: 100vh;
+  min-height: 130vh;
+  max-height: 150px;
   /* background-image: url("src/img/ramcats_1.png"); */
   background-image: url(https://1drv.ms/i/c/42e13c4316a5d144/IQQBprp3UFxmQ5gXu1OG-nkDAUI5rAqvtSFxKm5tJH7t6_g);
   position: relative;

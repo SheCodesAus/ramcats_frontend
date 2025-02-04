@@ -8,6 +8,7 @@ import "./LoginForm.css";
 import hellocat from "../img/hellocat.png";
 import ramcats_1 from "../img/ramcats_1.png";
 
+
 function LoginForm() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
@@ -52,7 +53,10 @@ function LoginForm() {
     <div className="login-page">
       <div className="login-container">
         <div className="cat-container-login">
-          <img src={hellocat} alt="Cat" className="cat-icon-login" />
+          <img 
+          src={hellocat} 
+          alt="Cat" 
+          className="cat-icon-login" />
         </div>
         <h1 className="login-title">Login</h1>
         <form onSubmit={handleSubmit}>

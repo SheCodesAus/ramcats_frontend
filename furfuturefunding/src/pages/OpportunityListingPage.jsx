@@ -4,9 +4,9 @@ import useOpportunity from "../hooks/use-opportunity";
 import OrganisationCard from "../components/OrganisationCard";
 import archiveOpportunity from "../api/put-opportunity-archive";
 import OpportunityListingInfo from "../components/OpportunityListingInfo";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import '../components/OpportunityListingPage.css';
+import "../components/OpportunityListingPage.css";
 
 function OpportunityListingPage() {
   const { id } = useParams();
@@ -96,10 +96,7 @@ function OpportunityActions({
           <Link to={`/opportunities/edit/${id}`} className="edit-button">
             Edit project detail
           </Link>
-          <button 
-            className="archive-button"
-            onClick={handleArchive}
-          >
+          <button className="archive-button" onClick={handleArchive}>
             {archive ? "Unarchive" : "Archive"}
           </button>
         </div>

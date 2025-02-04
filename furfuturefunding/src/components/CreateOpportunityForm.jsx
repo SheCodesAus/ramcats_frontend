@@ -8,6 +8,7 @@ import useDisciplines from "../hooks/use-disciplines";
 import useEligibilities from "../hooks/use-eligibilities";
 import useTypes from "../hooks/use-types.js";
 import Catmaskot from "../../src/img/ramcats_mascot.png";
+import Footer from "./Footer.jsx";
 
 function CreateOpportunityForm() {
   const { id } = useParams();
@@ -34,7 +35,6 @@ function CreateOpportunityForm() {
   });
 
   const handleChange = (event) => {
-    console.log("Handle change working:", event.target.value);
     const { id, value } = event.target;
 
     setOpportunity((prevOpportunity) => ({
@@ -86,13 +86,11 @@ function CreateOpportunityForm() {
         opportunity.discipline,
         opportunity.eligibility
       ).then((response) => {
-        console.log("Response JSON:", response);
-        window.localStorage.setItem("token", response.token);
-        setAuth({
-          token: response.token,
-        });
+        setAuth((prevAuth) => ({
+          ...prevAuth,
+          token: response.token || prevAuth.token,
+        }));
         navigate("/");
-        console.log("Form Data Submitted Final:", opportunity);
       });
     }
   };
@@ -229,6 +227,7 @@ function CreateOpportunityForm() {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

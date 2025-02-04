@@ -14,7 +14,6 @@ async function postOpportunity(
   eligibility
 ) {
   const url = `${import.meta.env.VITE_API_URL}/opportunities/`;
-  console.log("URL being used:", url);
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -39,6 +38,7 @@ async function postOpportunity(
     }),
   });
   console.log("Response Status:", response.status);
+  console.log(response);
 
   if (!response.ok) {
     const fallbackError = `Error trying to create an opportunity`;

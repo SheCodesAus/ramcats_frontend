@@ -20,19 +20,19 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
   const eligibilityOptions = [
     { value: 'Women in STEM', label: 'Women in STEM' },
     { value: 'Aboriginal and Torres Strait Islander peoples', label: 'Aboriginal and Torres Strait Islander peoples' },
-    { value: 'Refugees and Asylum Seekers', label: 'Refugees and Asylum Seekers' },
-    { value: 'People with Disability', label: 'People with Disability' },
-    { value: 'Low-income Families', label: 'Low-income Families' },
-    { value: 'First Generation University Students', label: 'First Generation University Students' }
+    { value: 'Refugees and Asylum seekers', label: 'Refugees and Asylum Seekers' },
+    { value: 'People with disability', label: 'People with Disability' },
+    { value: 'Low-income families', label: 'Low-income Families' },
+    { value: 'First generation university students', label: 'First Generation University Students' }
   ];
 
   const disciplineOptions = [
-    { value: 'humanities', label: 'Humanities' },
-    { value: 'computer-science', label: 'Computer Science' },
-    { value: 'chemistry', label: 'Chemistry' },
-    { value: 'biology', label: 'Biology' },
-    { value: 'engineering', label: 'Engineering' },
-    { value: 'mathematics', label: 'Mathematics' }
+    { value: 'Humanities', label: 'Humanities' },
+    { value: 'Computer science', label: 'Computer Science' },
+    { value: 'Chemistry', label: 'Chemistry' },
+    { value: 'Biology', label: 'Biology' },
+    { value: 'Engineering', label: 'Engineering' },
+    { value: 'Mathematics', label: 'Mathematics' }
   ];
 
   React.useEffect(() => {
@@ -47,9 +47,10 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
     const value = e.target.value;
     onFilterChange({
       type: filterType,
-      value: value
+      value: value,
     });
-  }
+  };
+
   const handleReset = () => {
     ['state', 'eligibility', 'discipline'].forEach(filterType => {
       onFilterChange({
@@ -65,12 +66,13 @@ const FilterOption = ({ onFilterChange, onSortChange, currentFilters = {}, hasRe
   };
 
   const handleSortClick = () => {
-    const newSortValue = !sortByDate;
-    setSortByDate(newSortValue);
+    const newSortValue = !sortByDate ? "-close_date" : "close_date";
+    setSortByDate(!sortByDate);
     if (onSortChange) {
-      onSortChange(newSortValue ? 'closing_date' : 'closing_date_reverse');
+      onSortChange(newSortValue);
     }
   };
+  
 
   const toggleFilters = () => {
     setIsOpen(!isOpen);
